@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('colaborador', function (Blueprint $table) {
-            $table->id();
+            $table->id('id_colaborador');
+            $table->foreign('id_usuario')->references('id_usuario')->on('usuario')->onDelete('cascade');
             $table->timestamps();
         });
     }

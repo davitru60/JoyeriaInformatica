@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('usuario_rol', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->foreign('id_rolAsignado')->references('id_rolAsignado')->on('rol_asignado')->onDelete('cascade');
+            $table->foreign('id_usuario')->references('id_usuario')->on('usuario')->onDelete('cascade');
         });
     }
 

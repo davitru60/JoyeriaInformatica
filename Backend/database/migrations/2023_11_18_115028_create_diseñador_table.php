@@ -11,7 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::create('disenador', function (Blueprint $table) {
+            $table->id('id_disenador');
+            $table->foreign('id_usuario')->references('id_usuario')->on('usuario')->onDelete('cascade');
+            $table->timestamps();
+        });
     }
 
     /**
