@@ -1,5 +1,6 @@
 body {
-  height: 100vh;
+  min-height: 100vh;
+  height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,10 +21,19 @@ body .contenedor-registro .container-fluid .row.roles {
   display: flex;
   justify-content: space-around;
 }
+body .contenedor-registro .container-fluid .row.boton {
+  padding: 0;
+  display: flex;
+  text-align: center;
+}
+body .contenedor-registro .container-fluid .row.boton .btn {
+  margin-left: 25%;
+  width: 50%;
+}
+body .contenedor-registro .container-fluid .row.boton p {
+  margin-top: 10px;
+}
 @media screen and (max-width: 768px) {
-  body {
-    height: 120vh;
-  }
   body .contenedor-registro {
     margin-top: 50px;
     margin-bottom: 50px;

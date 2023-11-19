@@ -7,6 +7,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const emailEntrada = document.getElementById("email")
     const contraEntrada = document.getElementById("contra")
     const contraConfirmarEntrada = document.getElementById("contra-confirmar")
+    const fotoEntrada = document.getElementById("foto")
+
+    //Botones
     const registrarBtn = document.getElementById("btn")
     const botonContra = document.getElementById("btn-contra")
     const botonContraConfirmar = document.getElementById("btn-contra-confirmar")
@@ -136,16 +139,39 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    document.getElementById("btn").addEventListener("click", function () {
+    function obtenerValorImagen(){
+       if(fotoEntrada.files.length>0){
+        let archivo= foto.files[0].name
+          return archivo
+       }
+    }
+
+    function enviarDatos(){
         var checkboxes = document.querySelectorAll('.form-check-input')
         var valoresCheckbox = []
 
         checkboxes.forEach(function (checkbox) {
             if (checkbox.checked) {
-                valoresCheckbox.push(checkbox.value)
+                valoresCheckbox.push(checkbox.value.toLowerCase())
             }
         })
-    })
+
+        var foto = obtenerValorImagen()
+
+        var usuario ={
+            'nombre':nombreEntrada.value,
+            'ape1':ap1Entrada.value,
+            'ape2':ap2Entrada.value,
+            'email':emailEntrada.value,
+            'contrasena': contraConfirmarEntrada.value,
+            'foto':foto,
+            'roles':valoresCheckbox
+        }
+
+        console.log(usuario.foto)
+    }
+
+    registrarBtn.addEventListener("click", enviarDatos)
 
 
 
@@ -158,7 +184,5 @@ document.addEventListener("DOMContentLoaded", function () {
 
     botonContra.addEventListener("click", mostrarContrasena)
     botonContraConfirmar.addEventListener("click", mostrarContrasenaConfirmar)
-
-
 
 })

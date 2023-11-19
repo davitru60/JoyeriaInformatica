@@ -1,5 +1,6 @@
 body {
-    height: 100vh;
+    min-height: 100vh;
+    height: auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -19,15 +20,29 @@ body {
                 }
             }
 
-            .row.roles{
+            .row.roles {
                 display: flex;
                 justify-content: space-around;
+            }
+
+            .row.boton {
+                padding: 0;
+                display: flex;
+                text-align: center;
+
+                .btn {
+                    margin-left: 25%;
+                    width: 50%;
+                }
+
+                p {
+                    margin-top: 10px;
+                }
             }
         }
     }
 
     @media screen and (max-width: 768px) {
-        height: 120vh;
         .contenedor-registro {
             margin-top: 50px;
             margin-bottom: 50px;
