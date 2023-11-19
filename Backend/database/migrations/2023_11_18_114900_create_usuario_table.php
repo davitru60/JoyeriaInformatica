@@ -11,9 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('rol_asignado', function (Blueprint $table) {
-            $table->id('id_rolAsignado');
-            $table->foreign('id_rol')->references('id_rol')->on('rol')->onDelete('cascade');
+        Schema::create('usuario', function (Blueprint $table) {
+            $table->id('id_usuario');
+            $table->string('nombre');
+            $table->string('ape1');
+            $table->string('ape2');
+            $table->string('email');
+            $table->string('contrasena');
+            $table->string('foto');
             $table->timestamps();
         });
     }
@@ -23,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('rol_asignado');
+        Schema::dropIfExists('usuario');
     }
 };
