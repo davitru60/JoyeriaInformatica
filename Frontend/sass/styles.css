@@ -14,23 +14,34 @@ body .contenedor-registro .container-fluid .row {
   padding-top: 20px;
 }
 body .contenedor-registro .container-fluid .row .col-2 {
-  width: 45%;
+  width: 50%;
+}
+body .contenedor-registro .container-fluid .row.roles {
+  display: flex;
+  justify-content: space-around;
 }
 @media screen and (max-width: 768px) {
+  body {
+    height: 120vh;
+  }
+  body .contenedor-registro {
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
   body .contenedor-registro .container-fluid {
     width: 75%;
   }
   body .contenedor-registro .container-fluid .row {
     flex-direction: column;
+    padding: 0;
   }
   body .contenedor-registro .container-fluid .row .col-2 {
-    width: 100%;
-  }
-  body .contenedor-registro .container-fluid .row .col-2 input {
+    margin-top: 20px;
     width: 100%;
   }
   body .contenedor-registro .container-fluid .row.roles {
     flex-direction: row;
+    margin-top: 20px;
   }
   body .contenedor-registro .container-fluid .row.roles .col-3 {
     width: 150px;

@@ -7,10 +7,13 @@
     <title>Document</title>
     <link rel="stylesheet" href="../sass/styles.css">
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link href="../node_modules/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 
 <body>
     <script type="module" src="../js/interface/registroUI.js"></script>
+
+
     <main class="contenedor-registro">
         <div class="container-fluid">
             <form>
@@ -18,13 +21,15 @@
                     <h3> Información básica</h3>
                     <div class="col-2">
                         <label for="nombre" class="form-label">Nombre</label>
-                        <input type="text" id="nombre" name="nombre" class="form-control">
+                        <input type="text" id="nombre" name="nombre" class="form-control"
+                            placeholder="Introduzca el nombre">
                         <div class="invalid-feedback" id="mensajeNombre"></div>
                     </div>
 
                     <div class="col-2">
                         <label for="ap1" class="form-label">Primer apellido</label>
-                        <input type="text" id="ap1" name="ap1" class="form-control">
+                        <input type="text" id="ap1" name="ap1" class="form-control"
+                            placeholder="Introduzca el primer apellido">
                         <div class="invalid-feedback" id="mensajeAp1"></div>
                     </div>
                 </div>
@@ -32,24 +37,50 @@
                 <div class="row">
                     <div class="col-2">
                         <label for="ap2" class="form-label">Segundo apellido</label>
-                        <input type="text" id="ap2" name="ap2" class="form-control">
+                        <input type="text" id="ap2" name="ap2" class="form-control"
+                            placeholder="Introduzca el segundo apellido">
                         <div class="invalid-feedback" id="mensajeAp2"></div>
                     </div>
 
                     <div class="col-2">
                         <label for="email" class="form-label">Email</label>
-                        <input type="text" id="email" name="email" class="form-control">
-                        <div class="invalid-feedback" id="mensajeCorreo"></div>
+                        <input type="text" id="email" name="email" class="form-control"
+                            placeholder="Introduzca el email">
+                        <div class="invalid-feedback" id="mensajeEmail"></div>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-2">
                         <label for="contra" class="form-label">Contraseña</label>
-                        <input type="password" id="contra" name="contra" class="form-control">
-                        <div class="invalid-feedback" id="mensajeContrasena"></div>
+                        <div class="input-group">
+                            <input type="password" id="contra" name="contra" class="form-control"
+                                placeholder="Introduzca la contraseña">
+                            <button type="button" class="btn btn-primary" id="btn-contra">
+                                <i class="bi bi-eye-slash-fill" id="eye-icon"></i>
+                            </button>
+                            <div class="invalid-feedback" id="mensajeContrasena"></div>
+                        </div>
+
+
                     </div>
 
+                    <div class="col-2">
+                        <label for="contra-confirmar" class="form-label">Confirmar contraseña</label>
+                        <div class="input-group">
+                            <input type="password" id="contra-confirmar" name="contra-confirmar" class="form-control"
+                                placeholder="Confirme la contraseña">
+                            <button type="button" class="btn btn-primary" id="btn-contra-confirmar">
+                                <i class="bi bi-eye-slash-fill" id="eye-icon-confirmar"></i>
+                            </button>
+
+                            <div class="invalid-feedback" id="mensajeContrasenaConf"></div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
                     <div class="col-2">
                         <label for="foto" class="form-label">Foto</label>
                         <input type="file" id="foto" name="foto" class="form-control">
@@ -62,32 +93,35 @@
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="Administrador" id="flexCheckDefault">
                             <label class="form-check-label" for="flexCheckDefault">
-                              Administrador
+                                Administrador
                             </label>
-                          </div>
+                        </div>
                     </div>
 
                     <div class="col-3">
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="Diseñador" id="flexCheckChecked">
                             <label class="form-check-label" for="flexCheckChecked">
-                              Diseñador
+                                Diseñador
                             </label>
-                          </div>
+                        </div>
                     </div>
 
                     <div class="col-3">
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="Clasificador" id="flexCheckChecked">
                             <label class="form-check-label" for="flexCheckChecked">
-                              Clasificador
+                                Clasificador
                             </label>
-                          </div>
-                    </div>        
+                        </div>
+                    </div>
                 </div>
-
             </form>
-            <button type="submit" class="btn btn-primary mt-4" id="btn">Crear Usuario</button>
+
+            <div class="row btn">
+                <button type="submit" class="btn btn-primary mt-4" id="btn">Crear Usuario</button>
+            </div>
+
         </div>
     </main>
 </body>

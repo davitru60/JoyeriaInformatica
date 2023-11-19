@@ -15,28 +15,37 @@ body {
                 padding-top: 20px;
 
                 .col-2 {
-                    width: 45%;
+                    width: 50%;
                 }
+            }
+
+            .row.roles{
+                display: flex;
+                justify-content: space-around;
             }
         }
     }
 
     @media screen and (max-width: 768px) {
+        height: 120vh;
         .contenedor-registro {
+            margin-top: 50px;
+            margin-bottom: 50px;
+
             .container-fluid {
                 width: 75%;
                 .row {
                     flex-direction: column;
+                    padding: 0;
+
                     .col-2 {
+                        margin-top: 20px;
                         width: 100%;
-                        input {
-                            width: 100%;
-                        }
                     }
                 }
-
                 .row.roles {
                     flex-direction: row;
+                    margin-top: 20px;
 
                     .col-3 {
                         width: 150px;
