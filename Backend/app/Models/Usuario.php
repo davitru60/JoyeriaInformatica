@@ -7,5 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Usuario extends Model
 {
-    use HasFactory;
+    use HasFactory; 
+    protected $table = 'usuario';
+    protected $fillable = [
+        'nombre',
+        'ape1',
+        'ape2',
+        'email',
+        'contrasena',
+    ];
 }
