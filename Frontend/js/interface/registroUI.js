@@ -139,39 +139,64 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    function obtenerValorImagen(){
-       if(fotoEntrada.files.length>0){
-        let archivo= foto.files[0].name
-          return archivo
-       }
+    function obtenerValorImagen() {
+        if (fotoEntrada.files.length > 0) {
+            let archivo = foto.files[0].name
+            return archivo
+        }
     }
 
-    function enviarDatos(){
+    function obtenerDatosUsuario() {
         var checkboxes = document.querySelectorAll('.form-check-input')
-        var valoresCheckbox = []
+        var valoresCheckbox = ['Colaborador']
 
         checkboxes.forEach(function (checkbox) {
             if (checkbox.checked) {
-                valoresCheckbox.push(checkbox.value.toLowerCase())
+                valoresCheckbox.push(checkbox.value)
             }
         })
 
         var foto = obtenerValorImagen()
 
-        var usuario ={
-            'nombre':nombreEntrada.value,
-            'ape1':ap1Entrada.value,
-            'ape2':ap2Entrada.value,
-            'email':emailEntrada.value,
+        return {
+            'nombre': nombreEntrada.value,
+            'ape1': ap1Entrada.value,
+            'ape2': ap2Entrada.value,
+            'email': emailEntrada.value,
             'contrasena': contraConfirmarEntrada.value,
-            'foto':foto,
-            'roles':valoresCheckbox
+            'foto': foto,
+            'roles': valoresCheckbox
         }
-
-        console.log(usuario.foto)
     }
 
-    registrarBtn.addEventListener("click", enviarDatos)
+    async function registrarUsuario() {
+        const urlApi = 'http://127.0.0.1:8000/api/'
+        var usuario = obtenerDatosUsuario()
+        try {
+            const respuesta = await fetch(urlApi + 'registrar', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(usuario)
+            })
+
+            if(respuesta.ok){
+                const datosRespuesta = await respuesta.json()
+                alert(datosRespuesta)
+            }
+
+
+           
+        } catch (error) {
+
+        }
+    }
+
+
+    registrarBtn.addEventListener("click", async() => {
+        await registrarUsuario()
+    }) 
 
 
 
@@ -182,7 +207,7 @@ document.addEventListener("DOMContentLoaded", function () {
     contraEntrada.addEventListener("input", comprobarContrasena)
     contraConfirmarEntrada.addEventListener("input", comprobarConfirmarContrasena)
 
-    botonContra.addEventListener("click", mostrarContrasena)
+    botonContra.addEventListener("submit", mostrarContrasena)
     botonContraConfirmar.addEventListener("click", mostrarContrasenaConfirmar)
 
 })

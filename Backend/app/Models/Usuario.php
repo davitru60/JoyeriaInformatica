@@ -15,5 +15,10 @@ class Usuario extends Model
         'ape2',
         'email',
         'contrasena',
+        'foto',
     ];
+
+    public function roles(){
+        return $this->belongsToMany(Rol::class , 'id_rol');
+    }
 }
