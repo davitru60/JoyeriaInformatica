@@ -5,4 +5,6 @@ export const constantes ={
     cadenaNick : /^[\w]{4,10}$/,
     cadenaContrasena : /^[a-zA-Z0-9*#\$]{6,12}$/,
     cadenaContrasenaCarac : /[\w]$/,
+
+    urlApi: 'http://127.0.0.1:8000/api/'
 }

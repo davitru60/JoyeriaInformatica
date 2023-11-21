@@ -170,7 +170,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     async function registrarUsuario() {
-        const urlApi = 'http://127.0.0.1:8000/api/'
+        const urlApi = constantes.urlApi
         var usuario = obtenerDatosUsuario()
         try {
             const respuesta = await fetch(urlApi + 'registrar', {
@@ -183,16 +183,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if(respuesta.ok){
                 const datosRespuesta = await respuesta.json()
-                alert(datosRespuesta)
             }
 
-
-           
         } catch (error) {
 
         }
     }
-
 
     registrarBtn.addEventListener("click", async() => {
         await registrarUsuario()
