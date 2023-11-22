@@ -3,48 +3,61 @@
 namespace App\Http\Controllers;
 
 use App\Models\Usuario;
+use GuzzleHttp\Psr7\Response;
+use Illuminate\Database\Eloquent\Casts\Json;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UsuarioController extends Controller
 {
     public function index()
     {
         $usuarios = Usuario::all();
-        return view('usuarios.index', compact('usuarios'));
+        return response()->json(['usuarios' => $usuarios]);
     }
 
     public function create()
     {
-        return view('usuarios.create');
+        return response()->json(['message' => 'Not supported for JSON response'], 400);
     }
 
     public function store(Request $request)
     {
-        // Valida los datos del formulario
         $request->validate([
             'nombre' => 'required',
             'ape1' => 'required',
             'ape2' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:usuario,email',
             'contrasena' => 'required',
             'foto' => 'required',
         ]);
 
-        // Crea un nuevo usuario
-        Usuario::create($request->all());
+        // Crear un nuevo usuario de forma manual
+        $usuario = new Usuario();
+        $usuario->nombre = $request->input('nombre');
+        $usuario->ape1 = $request->input('ape1');
+        $usuario->ape2 = $request->input('ape2');
+        $usuario->email = $request->input('email');
+        $usuario->contrasena = $request->input('contrasena');
+        $usuario->foto = $request->input('foto');
+        $usuario->save();
 
-        return redirect()->route('usuarios.index')
-            ->with('success', 'Usuario creado exitosamente');
+        return response()->json(['usuario' => $usuario, 'message' => 'Usuario creado exitosamente']);
+
+    }
+
+    public function show(Usuario $usuario)
+    {
+        return response()->json(['usuario' => $usuario]);
     }
 
     public function edit(Usuario $usuario)
     {
-        return view('usuarios.edit', compact('usuario'));
+        return response()->json(['message' => 'Not supported for JSON response'], 400);
     }
 
     public function update(Request $request, Usuario $usuario)
     {
-        // Valida los datos del formulario
         $request->validate([
             'nombre' => 'required',
             'ape1' => 'required',
@@ -53,20 +66,16 @@ class UsuarioController extends Controller
             'contrasena' => 'required',
             'foto' => 'required',
         ]);
-
-        // Actualiza los datos del usuario
+    
         $usuario->update($request->all());
-
-        return redirect()->route('usuarios.index')
-            ->with('success', 'Usuario actualizado exitosamente');
+    
+        return response()->json(['usuario' => $usuario, 'message' => 'Usuario actualizado exitosamente']);
     }
 
     public function destroy(Usuario $usuario)
     {
-        // Elimina el usuario
         $usuario->delete();
-
-        return redirect()->route('usuarios.index')
-            ->with('success', 'Usuario eliminado exitosamente');
+    
+        return response()->json(['message' => 'Usuario eliminado exitosamente']);
     }
 }
