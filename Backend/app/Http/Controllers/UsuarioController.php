@@ -7,6 +7,7 @@ use GuzzleHttp\Psr7\Response;
 use Illuminate\Database\Eloquent\Casts\Json;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Js;
 
 class UsuarioController extends Controller
 {
@@ -23,14 +24,14 @@ class UsuarioController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        /*$request->validate([
             'nombre' => 'required',
             'ape1' => 'required',
             'ape2' => 'required',
             'email' => 'required|email|unique:usuario,email',
             'contrasena' => 'required',
             'foto' => 'required',
-        ]);
+        ]);*/
 
         // Crear un nuevo usuario de forma manual
         $usuario = new Usuario();
@@ -46,14 +47,15 @@ class UsuarioController extends Controller
 
     }
 
-    public function show(Usuario $usuario)
+    public function buscar($id_usuario)
     {
-        return response()->json(['usuario' => $usuario]);
-    }
+        $usuario = Usuario::find($id_usuario);
 
-    public function edit(Usuario $usuario)
-    {
-        return response()->json(['message' => 'Not supported for JSON response'], 400);
+        if (!$usuario) {
+            return response()->json(['message' => 'Usuario no encontrado'], 404);
+        }
+
+        return response()->json(['usuario' => $usuario]);
     }
 
     public function update(Request $request, Usuario $usuario)
@@ -72,8 +74,9 @@ class UsuarioController extends Controller
         return response()->json(['usuario' => $usuario, 'message' => 'Usuario actualizado exitosamente']);
     }
 
-    public function destroy(Usuario $usuario)
+    public function destroy($id_usuario)
     {
+        $usuario = Usuario::find($id_usuario);
         $usuario->delete();
     
         return response()->json(['message' => 'Usuario eliminado exitosamente']);
