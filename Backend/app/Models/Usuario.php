@@ -9,11 +9,18 @@ class Usuario extends Model
 {
     use HasFactory; 
     protected $table = 'usuario';
+    protected $primaryKey = 'id_usuario';
     protected $fillable = [
         'nombre',
         'ape1',
         'ape2',
         'email',
         'contrasena',
+        'foto',
     ];
+
+    public function roles(){
+        return $this->belongsToMany(Rol::class , 'id_rol');
+    }
+
 }
