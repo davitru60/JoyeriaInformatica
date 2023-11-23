@@ -1,36 +1,72 @@
 import { constantes } from './../utilities/constantes.js';
 document.addEventListener("DOMContentLoaded", function () {
-    let rellenar = document.getElementById("rellenarTabla")
-    rellenar.innerHTML = rellenarConUsuario
+    const rutaUsuario = constantes.urlApi + 'Usuarios'
+    rellenarConUsuario()
+
     
-    function rellenarConUsuario() {
+    async function rellenarConUsuario() {
 
-        let tabla = ""
-        //Esto rellenará con lo que saque de la llamada asincrona
-        tabla = `<tr>
-        <td>Mike</td>
-        <td>System Architect</td>
-        <td>Edinburgh</td>
-        <td>61</td>
-        <td>2011-04-25</td>
-        <td>
-            <button class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></button>
-            <button class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
-        </td>
-    </tr>
+        let rellenar = document.getElementById("rellenarTabla")
+        let tabla = "" 
+        const respuesta = await fetch(rutaUsuario, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(usuario)
+        })
+        const usuarios = await respuesta.json()
 
-    <tr>
-        <td>Tiger Nixon</td>
-        <td>System Architect</td>
-        <td>Edinburgh</td>
-        <td>61</td>
-        <td>2011-04-25</td>
-        <td>
-            <button class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></button>
-            <button class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
-        </td>
-    </tr>`
+        const arrayUsuario = {usuarios}
+        for (let i = 0; i < array.length; i++) {
+            tabla = `
+            <tr>
+                <td>${arrayUsuario[i].foto}</td>
+                <td>${arrayUsuario[i].nombre}</td>
+                <td>${arrayUsuario[i].ape1}</td>
+                <td>${arrayUsuario[i].ape2}</td>
+                <td>${arrayUsuario[i].email}</td>
+                <td>
+                    <button class="btn btn-primary btn-sm" id="editar"><i class="fas fa-edit"></i></button>
+                    <button class="btn btn-danger btn-sm" id="borrar"><i class="fas fa-trash-alt"></i></button>
+                </td>
+            </tr>
+            `
+            let edit = document.getElementById("editar")
+            edit.addEventListener('click',editar)
+            let bor = document.getElementById("borrar")
+            bor.addEventListener('click',borrar)
+            let contenedor = document.getElementById("popupAbrir")
+            let cerrar = document.getElementById("popupCerrar")
+            
+            bor.addEventListener('click', () => (
+                contenedor.classList.add("show") //hay que crear un evento show y hay que ocultar el contenedor
+            ))
+            cerrar.addEventListener('click', () => (
+                contenedor.classList.remove("show")
+            ))
 
-    return tabla
+        }
+
+        
+    
+    function editar(id_usuario) {
+        localStorage.setItem = ('id_usuario', "")
+        localStorage.setItem = ('id_usuario', JSON.stringify(id_usuario)) 
+        window.location.href = "./editarUsuario.html"
+    }
+
+    async function borrar(id_usuario){
+        const respuesta = await fetch(rutaUsuario + id_usuario, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(usuario)
+        })
+        const usuarios = await respuesta.json()
+    }
+
+    rellenar.innerHTML = tabla
     }
 })
