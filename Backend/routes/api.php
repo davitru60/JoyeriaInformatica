@@ -1,9 +1,9 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\ComponentesController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\Api\LoteController;
-
 use Illuminate\Support\Facades\Route;
 
 
@@ -19,3 +19,7 @@ Route::post('registrar',[AuthController::class, 'registrar']);
 
 Route::post('lote',[LoteController::class]);
 
+Route::get('/componente', [ComponentesController::class, 'index']); 
+Route::post('/componente', [ComponentesController::class, 'store']); 
+Route::get('/componente/{id}', [ComponentesController::class, 'buscar']); 
+Route::delete('/componente/{id}', [ComponentesController::class, 'destroy']); 
