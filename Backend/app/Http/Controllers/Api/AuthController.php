@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\Response;
 class AuthController extends Controller
 {
 
-    public function register(Request $request){
+    public function registrar(Request $request){
         $validator = Validator::make($request->all(), [
             'nombre' => 'required|string|max:255',
             'ape1' => 'required|string|max:255',

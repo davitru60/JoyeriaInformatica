@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const nombreEntrada = document.getElementById("nombre")
     const ap1Entrada = document.getElementById("ap1")
- /* These lines of code are selecting HTML elements by their IDs and assigning them to variables. */
+
     const ap2Entrada = document.getElementById("ap2")
     const emailEntrada = document.getElementById("email")
     const contraEntrada = document.getElementById("contra")

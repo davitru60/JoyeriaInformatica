@@ -3,54 +3,26 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: solid;
 }
 .contenedor-formulario .container-fluid {
   width: 50%;
 }
-.contenedor-formulario .container-fluid form .row {
-  display: flex;
-  flex-direction: row;
-  padding-top: 20px;
+.contenedor-formulario .container-fluid form .row .col-sm-12 {
+  padding-top: 15px;
 }
-.contenedor-formulario .container-fluid form .row .col-2 {
-  width: 50%;
-}
-.contenedor-formulario .container-fluid form .row.boton {
+.contenedor-formulario .container-fluid form .row .row.boton {
   padding: 0;
   display: flex;
   text-align: center;
 }
-.contenedor-formulario .container-fluid form .row.boton .btn {
+.contenedor-formulario .container-fluid form .row .row.boton .btn {
   margin-left: 25%;
   width: 50%;
 }
-.contenedor-formulario .container-fluid form .row.boton p {
+.contenedor-formulario .container-fluid form .row .row.boton p {
   margin-top: 10px;
 }
 
-@media screen and (max-width: 768px) {
-  .contenedor-formulario {
-    margin-top: 50px;
-    margin-bottom: 50px;
-  }
-  .contenedor-formulario .container-fluid {
-    width: 75%;
-  }
-  .contenedor-formulario .container-fluid .row {
-    flex-direction: column;
-    padding: 0;
-  }
-  .contenedor-formulario .container-fluid .row .col-2 {
-    margin-top: 20px;
-    width: 100%;
-  }
-}
-@media screen and (max-width: 576px) {
-  .contenedor-formulario .container-fluid {
-    width: 100%;
-  }
-}
 * {
   font-family: "Inter", sans-serif;
 }
@@ -147,10 +119,31 @@ main {
   nav {
     width: 100%;
   }
-  main .row .col {
+  main .row .col-table {
     overflow-x: scroll;
   }
 }
 .contenedor-formulario .container-fluid.login {
   width: 35%;
+}
+.contenedor-formulario .container-fluid.login form .row {
+  padding: 10px;
+}
+.contenedor-formulario .container-fluid.login form .row.boton {
+  padding: 0;
+  display: flex;
+  text-align: center;
+}
+.contenedor-formulario .container-fluid.login form .row.boton .btn {
+  margin-left: 25%;
+  width: 50%;
+}
+.contenedor-formulario .container-fluid.login form .row.boton p {
+  margin-top: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .contenedor-formulario .container-fluid {
+    min-width: 100%;
+  }
 }/*# sourceMappingURL=styles.css.map */

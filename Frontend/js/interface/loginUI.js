@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     //Botones
     const btnLogin = document.getElementById("btn-login")
+    const botonContra = document.getElementById("btn-contra")
 
     //Icono
     const ojoIcono = document.getElementById("eye-icon")
@@ -54,6 +55,10 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    bt
+
+    
+    emailEntrada.addEventListener("input", comprobarEmail)
+    contraEntrada.addEventListener("input", comprobarContrasena)
+    botonContra.addEventListener("click", mostrarContrasena)
 
 })

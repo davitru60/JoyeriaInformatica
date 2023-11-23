@@ -21,10 +21,5 @@ class LoteController extends Controller
             return response(['errores' => $validator->errors()->all()], Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
-        $lote = Lote::create([
-            'ubi' => $request['ubi'],
-            'estado' => $request['estado'],
-        ]);
-
     }
 }
