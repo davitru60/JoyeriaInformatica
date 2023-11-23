@@ -12,7 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('componente', function (Blueprint $table) {
-            $table->id();
+            $table->id('id_comp');
+            $table->string('nombre');
+            $table->boolean('hw');
             $table->timestamps();
         });
     }

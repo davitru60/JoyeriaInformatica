@@ -19,6 +19,7 @@ class ComponentesController extends Controller
 
         $componente = new Componentes();
         $componente->nombre = $request->input('nombre');
+        $componente->hw = $request->input('hw');
         $componente->save();
 
         return response()->json(['componente' => $componente, 'message' => 'componente creado exitosamente']);

@@ -11,6 +11,7 @@ class Componentes extends Model
     protected $table = 'componente';
     protected $primaryKey = 'id_comp';
     protected $fillable = [
-        'nombre'
+        'nombre',
+        'hw'
     ];
 }
