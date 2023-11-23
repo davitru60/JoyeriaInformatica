@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Administrador;
+use App\Models\Clasificador;
+use App\Models\Diseñador;
+use App\Models\Rol;
 use App\Models\User;
-use App\Models\Usuario;
-use GuzzleHttp\Psr7\Response;
-use Illuminate\Database\Eloquent\Casts\Json;
+use App\Models\UsuarioRol;
+use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Js;
+use Illuminate\Support\Facades\Validator;
 
 class UsuarioController extends Controller
 {
@@ -25,26 +27,38 @@ class UsuarioController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'nombre' => 'required',
-            'ape1' => 'required',
-            'ape2' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'contrasena' => 'required',
-            'foto' => 'required',
+        $validator = Validator::make($request->all(), [
+            'nombre' => 'required|string|max:255',
+            'ape1' => 'required|string|max:255',
+            'ape2' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'contrasena' => 'required|string|min:6',
+            'foto' => 'required|string'
         ]);
 
-        // Crear un nuevo usuario de forma manual
-        $usuario = new User();
-        $usuario->nombre = $request->input('nombre');
-        $usuario->ape1 = $request->input('ape1');
-        $usuario->ape2 = $request->input('ape2');
-        $usuario->email = $request->input('email');
-        $usuario->password = $request->input('contrasena');
-        $usuario->foto = $request->input('foto');
-        $usuario->save();
+        if ($validator->fails()) {
+            return response(['errors' => $validator->errors()->all()], Response::HTTP_UNPROCESSABLE_ENTITY);
+        } else {
+            $usuario = User::create([
+                'nombre' => $request['nombre'],
+                'ape1' => $request['ape1'],
+                'ape2' => $request['ape2'],
+                'email' => $request['email'],
+                'password' => bcrypt($request['contrasena']),
+                'foto' => $request['foto']
 
-        return response()->json(['usuario' => $usuario, 'message' => 'Usuario creado exitosamente']);
+            ]);
+
+            $roles = $request->input('roles');
+            $this->crearTipoUsuario($usuario, $roles);
+
+            $respuestasRoles = $this->crearUsuarioPorRol($usuario, $request->input('roles'));
+
+            return response()->json([
+                'usuario' => $usuario,
+                'respuestasRoles' => $respuestasRoles,
+            ], Response::HTTP_CREATED);
+        }
 
     }
 
@@ -69,9 +83,9 @@ class UsuarioController extends Controller
             'contrasena' => 'required',
             'foto' => 'required',
         ]);
-    
+
         $usuario->update($request->all());
-    
+
         return response()->json(['usuario' => $usuario, 'message' => 'Usuario actualizado exitosamente']);
     }
 
@@ -79,7 +93,71 @@ class UsuarioController extends Controller
     {
         $usuario = User::find($id_usuario);
         $usuario->delete();
-    
+
         return response()->json(['message' => 'Usuario eliminado exitosamente']);
+    }
+
+    protected function crearUsuarioPorRol(User $usuario, array $roles)
+    {
+        $respuestas = [];
+        foreach ($roles as $rolNombre) {
+
+            $rol = Rol::where('descripcion', $rolNombre)->first();
+
+            if ($rol) {
+                UsuarioRol::create([
+                    'id_usuario' => $usuario->id,
+                    'id_rol' => $rol->id_rol,
+                ]);
+
+                $respuestas[] = [
+                    'rol' => $rolNombre,
+                    'mensaje' => 'Rol asignado correctamente',
+                ];
+
+
+            } else {
+                $respuestas[] = [
+                    'rol' => $rol,
+                    'mensaje' => 'Rol no encontrado'
+                ];
+            }
+        }
+
+        return $respuestas;
+    }
+
+    protected function crearTipoUsuario(User $usuario, array $roles)
+    {
+        foreach ($roles as $rol) {
+            switch ($rol) {
+                case 'Diseñador':
+                    $this->crearDisenador($usuario);
+                    break;
+                case 'Administrador':
+                    $this->crearAdministrador($usuario);
+                    break;
+
+                case 'Clasificador':
+                    $this->crearAdministrador($usuario);
+                    break;
+            }
+        }
+    }
+
+
+    protected function crearDisenador(User $usuario)
+    {
+        Diseñador::create(['id_usuario' => $usuario->id]);
+    }
+
+    protected function crearAdministrador(User $usuario)
+    {
+        Administrador::create(['id_usuario' => $usuario->id]);
+    }
+
+    protected function crearClasificador(User $usuario)
+    {
+        Clasificador::create(['id_usuario' => $usuario->id]);
     }
 }
