@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const nombreEntrada = document.getElementById("nombre")
     const ap1Entrada = document.getElementById("ap1")
+
     const ap2Entrada = document.getElementById("ap2")
     const emailEntrada = document.getElementById("email")
     const contraEntrada = document.getElementById("contra")
@@ -203,7 +204,7 @@ document.addEventListener("DOMContentLoaded", function () {
     contraEntrada.addEventListener("input", comprobarContrasena)
     contraConfirmarEntrada.addEventListener("input", comprobarConfirmarContrasena)
 
-    botonContra.addEventListener("submit", mostrarContrasena)
+    botonContra.addEventListener("click", mostrarContrasena)
     botonContraConfirmar.addEventListener("click", mostrarContrasenaConfirmar)
 
 })

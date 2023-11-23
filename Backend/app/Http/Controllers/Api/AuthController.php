@@ -3,22 +3,19 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Administrador;
-use App\Models\Clasificador;
 use App\Models\Colaborador;
-use App\Models\Diseñador;
 use App\Models\Rol;
-use App\Models\Usuario;
+use App\Models\User;
 use App\Models\UsuarioRol;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class AuthController extends Controller
 {
 
-    public function registrar(Request $request)
-    {
+    public function registrar(Request $request){
         $validator = Validator::make($request->all(), [
             'nombre' => 'required|string|max:255',
             'ape1' => 'required|string|max:255',
@@ -29,15 +26,16 @@ class AuthController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response(['errores' => $validator->errors()->all()], Response::HTTP_UNPROCESSABLE_ENTITY);
-        } else {
-            $usuario = Usuario::create([
+            return response(['errors' => $validator->errors()->all()], Response::HTTP_UNPROCESSABLE_ENTITY);
+        }else{
+            $usuario = User::create([
                 'nombre' => $request['nombre'],
                 'ape1' => $request['ape1'],
                 'ape2' => $request['ape2'],
                 'email' => $request['email'],
-                'contrasena' => bcrypt($request['contrasena']),
+                'password' => bcrypt($request['contrasena']),
                 'foto' => $request['foto']
+                
             ]);
 
             $roles = $request->input('roles');
@@ -52,7 +50,8 @@ class AuthController extends Controller
         }
     }
 
-    protected function crearUsuarioPorRol(Usuario $usuario, array $roles)
+
+    protected function crearUsuarioPorRol(User $usuario, array $roles)
     {
         $respuestas = [];
         foreach ($roles as $rolNombre) {
@@ -82,19 +81,10 @@ class AuthController extends Controller
         return $respuestas;
     }
 
-    protected function crearTipoUsuario(Usuario $usuario, array $roles)
+    protected function crearTipoUsuario(User $usuario, array $roles)
     {
         foreach ($roles as $rol) {
             switch ($rol) {
-                case 'Administrador':
-                    $this->crearAdmin($usuario);
-                    break;
-                case 'Clasificador':
-                    $this->crearClasificador($usuario);
-                    break;
-                case 'Diseñador':
-                    $this->crearDisenador($usuario);
-                    break;
                 case 'Colaborador':
                     $this->crearColaborador($usuario);
                     break;
@@ -102,24 +92,26 @@ class AuthController extends Controller
         }
     }
 
-    protected function crearAdmin(Usuario $usuario)
-    {
-        Administrador::create(['id_usuario' => $usuario->id]);
-    }
-
-
-    protected function crearClasificador(Usuario $usuario)
-    {
-        Clasificador::create(['id_usuario' => $usuario->id]);
-    }
-
-    protected function crearDisenador(Usuario $usuario)
-    {
-        Diseñador::create(['id_usuario' => $usuario->id]);
-    }
-
-    protected function crearColaborador(Usuario $usuario)
+    protected function crearColaborador(User $usuario)
     {
         Colaborador::create(['id_usuario' => $usuario->id]);
     }
+
+    public function login(Request $request){
+        $credenciales = [
+            'email' => $request->input('email'),
+            'password' => $request->input('contrasena'),
+        ];
+
+        if (Auth::attempt($credenciales)) {
+            $token = Auth::user()->createToken('token')->plainTextToken;
+            return response(['token' => $token], Response::HTTP_OK);
+        } else {
+            return response(['error' => 'Unauthorized'], Response::HTTP_UNAUTHORIZED);
+        }
+        
+    }
+
+    
+    
 }

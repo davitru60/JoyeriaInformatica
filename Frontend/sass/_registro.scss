@@ -1,77 +1,38 @@
-body {
+.contenedor-formulario {
     min-height: 100vh;
-    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
 
-    .contenedor-registro {
-        max-width: 750px;
-        width: 100%;
-
-        .container-fluid {
-            .row {
-                display: flex;
-                flex-direction: row;
-                padding-top: 20px;
-
-                .col-2 {
-                    width: 50%;
+    .container-fluid {
+        width: 50%;
+        form{
+            .row{
+                .col-sm-12{
+                    padding-top: 15px;
                 }
-            }
-
-            .row.roles {
-                display: flex;
-                justify-content: space-around;
-            }
-
-            .row.boton {
-                padding: 0;
-                display: flex;
-                text-align: center;
-
-                .btn {
-                    margin-left: 25%;
-                    width: 50%;
-                }
-
-                p {
-                    margin-top: 10px;
-                }
-            }
-        }
-    }
-
-    @media screen and (max-width: 768px) {
-        .contenedor-registro {
-            margin-top: 50px;
-            margin-bottom: 50px;
-
-            .container-fluid {
-                width: 75%;
-                .row {
-                    flex-direction: column;
+                .row.boton {
                     padding: 0;
-
-                    .col-2 {
-                        margin-top: 20px;
-                        width: 100%;
+                    display: flex;
+                    text-align: center;
+        
+                    .btn {
+                        margin-left: 25%;
+                        width: 50%;
                     }
-                }
-                .row.roles {
-                    flex-direction: row;
-                    margin-top: 20px;
-
-                    .col-3 {
-                        width: 150px;
+        
+                    p {
+                        margin-top: 10px;
                     }
                 }
             }
-        }
-    }
 
-    @media screen and (max-width: 576px) {
-        .contenedor-registro {
-            .container-fluid {
-                width: 100%;
-            }
+           
         }
+        
     }
 }
+
+
+
