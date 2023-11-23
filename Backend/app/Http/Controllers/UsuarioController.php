@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Usuario;
 use GuzzleHttp\Psr7\Response;
 use Illuminate\Database\Eloquent\Casts\Json;
@@ -13,7 +14,7 @@ class UsuarioController extends Controller
 {
     public function index()
     {
-        $usuarios = Usuario::all();
+        $usuarios = User::all();
         return response()->json(['usuarios' => $usuarios]);
     }
 
@@ -28,18 +29,18 @@ class UsuarioController extends Controller
             'nombre' => 'required',
             'ape1' => 'required',
             'ape2' => 'required',
-            'email' => 'required|email|unique:usuario,email',
+            'email' => 'required|email|unique:users,email',
             'contrasena' => 'required',
             'foto' => 'required',
         ]);
 
         // Crear un nuevo usuario de forma manual
-        $usuario = new Usuario();
+        $usuario = new User();
         $usuario->nombre = $request->input('nombre');
         $usuario->ape1 = $request->input('ape1');
         $usuario->ape2 = $request->input('ape2');
         $usuario->email = $request->input('email');
-        $usuario->contrasena = $request->input('contrasena');
+        $usuario->password = $request->input('contrasena');
         $usuario->foto = $request->input('foto');
         $usuario->save();
 
@@ -49,7 +50,7 @@ class UsuarioController extends Controller
 
     public function buscar($id_usuario)
     {
-        $usuario = Usuario::find($id_usuario);
+        $usuario = User::find($id_usuario);
 
         if (!$usuario) {
             return response()->json(['message' => 'Usuario no encontrado'], 404);
@@ -58,7 +59,7 @@ class UsuarioController extends Controller
         return response()->json(['usuario' => $usuario]);
     }
 
-    public function update(Request $request, Usuario $usuario)
+    public function update(Request $request, User $usuario)
     {
         $request->validate([
             'nombre' => 'required',
@@ -76,7 +77,7 @@ class UsuarioController extends Controller
 
     public function destroy($id_usuario)
     {
-        $usuario = Usuario::find($id_usuario);
+        $usuario = User::find($id_usuario);
         $usuario->delete();
     
         return response()->json(['message' => 'Usuario eliminado exitosamente']);
