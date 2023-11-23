@@ -24,14 +24,14 @@ class UsuarioController extends Controller
 
     public function store(Request $request)
     {
-        /*$request->validate([
+        $request->validate([
             'nombre' => 'required',
             'ape1' => 'required',
             'ape2' => 'required',
             'email' => 'required|email|unique:usuario,email',
             'contrasena' => 'required',
             'foto' => 'required',
-        ]);*/
+        ]);
 
         // Crear un nuevo usuario de forma manual
         $usuario = new Usuario();
