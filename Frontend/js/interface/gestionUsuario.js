@@ -1,6 +1,6 @@
 import { constantes } from './../utilities/constantes.js';
 document.addEventListener("DOMContentLoaded", function () {
-    const rutaUsuario = constantes.urlApi + 'Usuarios'
+    const rutaUsuario = constantes.urlApi + 'usuarios'
     rellenarConUsuario()
 
     
@@ -12,13 +12,13 @@ document.addEventListener("DOMContentLoaded", function () {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(usuario)
+            }
         })
         const usuarios = await respuesta.json()
 
-        const arrayUsuario = {usuarios}
-        for (let i = 0; i < array.length; i++) {
+        const arrayUsuario = [usuarios]
+        console.log(usuarios)
+        for (let i = 0; i < usuarios.length; i++) {
             tabla = `
             <tr>
                 <td>${arrayUsuario[i].foto}</td>
