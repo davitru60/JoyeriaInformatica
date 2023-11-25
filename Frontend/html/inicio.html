@@ -25,7 +25,6 @@
 
         <!-- Page Content -->
         <div id="page-content-wrapper">
-             <script src="../js/components/na.js"></script>
             <nav class="navbar navbar-expand-lg navbar-dark py-4 px-4">
                 <div class="d-flex align-items-center">
                     <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
@@ -114,26 +113,56 @@
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Santa Maria</td>
-                                    <td> En proceso</td>
-                                    <td>
-                                        <button class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></button>
-                                        <button class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
-                                    </td>
-
-                                </tr>
-                            </tbody>
+                              <!-- The Modal -->
+                <div class="modal" id="myModal">
+                    <div class="modal-dialog modal-md">
+                        <div class="modal-content">
+                
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">Detalles del Lote</h4>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                
+                            <!-- Modal Body -->
+                            <div class="modal-body">
+                                <!-- Agrega tu formulario aquí -->
+                                <form id="detalleLoteForm">
+                                    <div class="mb-3">
+                                        <label for="ubicacion" class="form-label">Ubicación:</label>
+                                        <input type="text" class="form-control" id="ubicacion"readonly>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="estado" class="form-label">Estado:</label>
+                                        <input type="text" class="form-control" id="estado" readonly>
+                                    </div>
+                                    <!-- Agrega más campos según tus necesidades -->
+                
+                                    <!-- Puedes agregar botones de envío o cualquier otro elemento necesario -->
+                                </form>
+                            </div>
+                
+                            <!-- Modal Footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                            </div>
+                
+                        </div>
+                    </div>
+                </div>
                         </table>
                     </div>
                 </div>
-    
+                
+            
+                
+              
             </main>
             
         </div>
     </div>
+
+    
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -143,6 +172,8 @@
     <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
     <script src="../js/utilities/tabla.js"></script>
 
+    <script type="module" src="../js/api/lotesAPI.js"></script>
+    <script type="module" src="../js/interface/lotesUI.js"></script>
 
 
     <script>

@@ -23,6 +23,7 @@ Route::get('/componente/{id}', [ComponentesController::class, 'buscar']);
 Route::delete('/componente/{id}', [ComponentesController::class, 'destroy']); 
 
 
+
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('mostrarLotes',[LoteController::class,'mostrarLotes']);
     Route::post('agregarLote',[LoteController::class,'agregarLote']);

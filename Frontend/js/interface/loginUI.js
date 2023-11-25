@@ -77,12 +77,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 const datos = await respuesta.json();
                 const token = datos.token;
 
-                localStorage.setItem('token', token);
+                localStorage.setItem('token', token)
+
+                const headersConToken = {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + token
+                }
 
                 window.location.href='html/inicio.html'
 
             } else {
-               alert('shit')
             }
 
         }catch(error){
