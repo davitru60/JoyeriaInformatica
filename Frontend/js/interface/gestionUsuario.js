@@ -51,9 +51,16 @@ document.addEventListener("DOMContentLoaded", function () {
         
     
     function editar(id_usuario) {
-        localStorage.setItem = ('id_usuario', "")
-        localStorage.setItem = ('id_usuario', JSON.stringify(id_usuario)) 
-        window.location.href = "./editarUsuario.html"
+        async function bajarUsuario(){
+            const respuesta = await fetch(rutaUsuario + id_usuario, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(usuario)
+            })
+            const usuarios = await respuesta.json()
+        }
     }
 
     async function borrar(id_usuario){
