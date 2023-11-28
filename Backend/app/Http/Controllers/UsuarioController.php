@@ -59,7 +59,6 @@ class UsuarioController extends Controller
                 'respuestasRoles' => $respuestasRoles,
             ], Response::HTTP_CREATED);
         }
-
     }
 
     public function buscar($id_usuario)
@@ -73,28 +72,39 @@ class UsuarioController extends Controller
         return response()->json(['usuario' => $usuario]);
     }
 
-    public function update(Request $request, User $usuario)
-    {
-        $request->validate([
-            'nombre' => 'required',
-            'ape1' => 'required',
-            'ape2' => 'required',
-            'email' => 'required|email',
-            'contrasena' => 'required',
-            'foto' => 'required',
-        ]);
-
-        $usuario->update($request->all());
-
-        return response()->json(['usuario' => $usuario, 'message' => 'Usuario actualizado exitosamente']);
-    }
-
     public function destroy($id_usuario)
     {
         $usuario = User::find($id_usuario);
         $usuario->delete();
 
         return response()->json(['message' => 'Usuario eliminado exitosamente']);
+    }
+
+    public function actualizar(Request $request, User $usuario)
+    {
+        $validator = Validator::make($request->all(), [
+            'nombre' => 'required|string|max:255',
+            'ape1' => 'required|string|max:255',
+            'ape2' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email,' . $usuario->id,
+            'contrasena' => 'required|string|min:6',
+            'foto' => 'required|string',
+        ]);
+
+        if ($validator->fails()) {
+            return response(['errors' => $validator->errors()->all()], Response::HTTP_UNPROCESSABLE_ENTITY);
+        } else {
+            $usuario->update([
+                'nombre' => $request['nombre'],
+                'ape1' => $request['ape1'],
+                'ape2' => $request['ape2'],
+                'email' => $request['email'],
+                'password' => bcrypt($request['contrasena']),
+                'foto' => $request['foto'],
+            ]);
+
+            return response()->json(['usuario' => $usuario, 'message' => 'Usuario actualizado exitosamente']);
+        }
     }
 
     protected function crearUsuarioPorRol(User $usuario, array $roles)
@@ -114,8 +124,6 @@ class UsuarioController extends Controller
                     'rol' => $rolNombre,
                     'mensaje' => 'Rol asignado correctamente',
                 ];
-
-
             } else {
                 $respuestas[] = [
                     'rol' => $rol,
@@ -144,7 +152,6 @@ class UsuarioController extends Controller
             }
         }
     }
-
 
     protected function crearDisenador(User $usuario)
     {

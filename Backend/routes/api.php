@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/usuarios', [UsuarioController::class, 'index']); //Saca todos los usuarios
 Route::post('/usuarios', [UsuarioController::class, 'store']); //Guarda 1 usuario
+Route::update('/usuarios/{id}',[UsuarioController::class,'actualizar']); //Editar 1 usuario por id
 Route::get('/usuarios/{id}', [UsuarioController::class, 'buscar']); //Busca 1 usuario por id
 Route::delete('/usuarios/{id}', [UsuarioController::class, 'destroy']); //Elimina 1 usuario por id
 
