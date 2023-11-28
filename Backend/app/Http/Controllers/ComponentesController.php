@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Componentes;
+use Illuminate\Console\View\Components\Component;
 use Illuminate\Http\Request;
 
 class ComponentesController extends Controller
@@ -24,6 +25,15 @@ class ComponentesController extends Controller
 
         return response()->json(['componente' => $componente, 'message' => 'componente creado exitosamente']);
 
+    }
+
+    public function actualizar($id_comp)
+    {
+        $componente = Componentes::find($id_comp);
+        $componente->update();
+        $componente->save();
+
+        return response()->json(['message' => 'Usuario actualizado exitosamente']);
     }
 
     public function buscar($id_usuario)

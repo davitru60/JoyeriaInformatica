@@ -80,31 +80,17 @@ class UsuarioController extends Controller
         return response()->json(['message' => 'Usuario eliminado exitosamente']);
     }
 
-    public function actualizar(Request $request, User $usuario)
+    public function actualizar($id_usuario)
     {
-        $validator = Validator::make($request->all(), [
-            'nombre' => 'required|string|max:255',
-            'ape1' => 'required|string|max:255',
-            'ape2' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,email,' . $usuario->id,
-            'contrasena' => 'required|string|min:6',
-            'foto' => 'required|string',
-        ]);
+        /*$this->model->where('id_usuario', $id_usuario)
+        ->first()
+        ->fill($usuario)
+        ->save();*/
+        $usuario = User::find($id_usuario);
+        $usuario->update();
+        $usuario->save();
 
-        if ($validator->fails()) {
-            return response(['errors' => $validator->errors()->all()], Response::HTTP_UNPROCESSABLE_ENTITY);
-        } else {
-            $usuario->update([
-                'nombre' => $request['nombre'],
-                'ape1' => $request['ape1'],
-                'ape2' => $request['ape2'],
-                'email' => $request['email'],
-                'password' => bcrypt($request['contrasena']),
-                'foto' => $request['foto'],
-            ]);
-
-            return response()->json(['usuario' => $usuario, 'message' => 'Usuario actualizado exitosamente']);
-        }
+        return response()->json(['message' => 'Usuario actualizado exitosamente']);
     }
 
     protected function crearUsuarioPorRol(User $usuario, array $roles)
