@@ -1,6 +1,6 @@
 import { constantes } from "../utilities/constantes.js"
 
-export async function monstrarUsuario(){
+export async function mostrarUsuario(){
     const rutaUsuario = constantes.urlApi + 'usuarios';
 
     try {
@@ -18,7 +18,7 @@ export async function monstrarUsuario(){
         }
 
         const usuarios = await respuesta.json();
-        return usuarios;
+        return usuarios.usuarios;
     } catch (error) {
         console.error('Error en la función monstrarUsuario:', error.message);
         // Puedes lanzar el error nuevamente si quieres que se maneje en el contexto superior

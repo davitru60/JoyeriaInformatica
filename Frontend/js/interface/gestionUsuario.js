@@ -1,14 +1,13 @@
-import { constantes } from './../utilities/constantes.js';
-import { monstrarUsuario,eliminarUsuario,cogerUnUsuario } from '../api/adminAPI.js';
+import { mostrarUsuario,eliminarUsuario,cogerUnUsuario } from '../api/adminAPI.js';
 document.addEventListener("DOMContentLoaded", function () {
-    rellenarConUsuario()
+    
     
     async function rellenarConUsuario() {
-        const usuarios = await monstrarUsuario()
-        const tabla = $('#rellenarTabla').DataTable()
+        const usuarios = await mostrarUsuario()
+        console.log(usuarios)
+        const tabla = $('#usuarios').DataTable()
         tabla.clear().draw()
-        const usuario = [usuarios]
-        usuario.forEach(usu => {
+        usuarios.forEach(usu => {
             const row = tabla.row.add([
                 usu.foto,
                 usu.nombre,
@@ -17,7 +16,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 usu.email,
                 `<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#myModal${usu.id_usuario}"><i class="fas fa-edit"></i></button>`+
                 `<button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal${usu.id_usuario}" ><i class="fas fa-trash-alt"></i></button>`
-            ]).draw()        
+            ]).draw()   
+ 
 
             /*tabla = `
             <tr>
@@ -39,7 +39,9 @@ document.addEventListener("DOMContentLoaded", function () {
             let contenedor = document.getElementById("popupAbrir")
             let cerrar = document.getElementById("popupCerrar")*/
 
-
+            row.nodes().to$().data('usuarios',usu)
         });
     }
+
+    rellenarConUsuario()
 })
