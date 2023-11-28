@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
-    <link rel="stylesheet" href="../sass/estilos.css" />
+    <link rel="stylesheet" href="../sass/styles.css" />
 
     <title>Title</title>
 </head>
@@ -25,20 +25,20 @@
                 <h3 class="text-center"> Joyeria Informática</h3>
                 <a href="#" class="list-group-item list-group-item-action bg-transparent second-text active"
                     data-bs-toggle="collapse" data-bs-target="#dashboardCollapse" aria-expanded="false">
-                    <i class="fas fa-tachometer-alt me-2"></i>Dashboard
+                    <i class="fas fa-tachometer-alt me-2"></i>Administración
                     <i class="fas fa-chevron-down ms-auto"></i>
                 </a>
                 <div class="collapse" id="dashboardCollapse">
                     <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
-                        <i class="fas fa-circle me-2 ms-3"></i> Submenu Item 1
+                        <i class="fas fa-circle me-2 ms-3"></i> Añadir usuario
                     </a>
                     <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
-                        <i class="fas fa-circle me-2 ms-3"></i> Submenu Item 2
+                        <i class="fas fa-circle me-2 ms-3"></i> Ir a componentes
                     </a>
                 </div>
 
                 <a href="#" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold"><i
-                        class="fas fa-power-off me-2"></i>Logout</a>
+                        class="fas fa-power-off me-2"></i>Cerrar sesion</a>
             </div>
         </div>
         <!-- /#sidebar-wrapper -->
@@ -48,7 +48,7 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
                 <div class="d-flex align-items-center">
                     <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
-                    <h2 class="fs-2 m-0">Dashboard</h2>
+                    <h2 class="fs-2 m-0">Administración</h2>
                 </div>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -122,7 +122,7 @@
         </div>
     </div>
     <!--Añadir usuario-->
-    <form>
+    <form class="modal" id="anadirUsuario">
         <div class="row">
             <h3> Información básica</h3>
             <div class="col-sm-12 col-md-6 col-lg-6">
