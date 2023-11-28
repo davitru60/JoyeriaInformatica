@@ -7,6 +7,7 @@ use App\Models\Colaborador;
 use App\Models\Rol;
 use App\Models\User;
 use App\Models\UsuarioRol;
+use Exception;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,7 +16,8 @@ use Symfony\Component\HttpFoundation\Response;
 class AuthController extends Controller
 {
 
-    public function registrar(Request $request){
+    public function registrar(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'nombre' => 'required|string|max:255',
             'ape1' => 'required|string|max:255',
@@ -27,7 +29,7 @@ class AuthController extends Controller
 
         if ($validator->fails()) {
             return response(['errors' => $validator->errors()->all()], Response::HTTP_UNPROCESSABLE_ENTITY);
-        }else{
+        } else {
             $usuario = User::create([
                 'nombre' => $request['nombre'],
                 'ape1' => $request['ape1'],
@@ -35,7 +37,7 @@ class AuthController extends Controller
                 'email' => $request['email'],
                 'password' => bcrypt($request['contrasena']),
                 'foto' => $request['foto']
-                
+
             ]);
 
             $roles = $request->input('roles');
@@ -94,10 +96,17 @@ class AuthController extends Controller
 
     protected function crearColaborador(User $usuario)
     {
-        Colaborador::create(['id_usuario' => $usuario->id]);
+        try{
+            Colaborador::create(['id_usuario' => $usuario->id]);
+            return response(['mensaje' => 'Colaborador creado exitosamente'], 200);
+        }catch(Exception $e){
+            return response(['error' => 'Error al crear el colaborador', 'message' => $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+       
     }
 
-    public function login(Request $request){
+    public function login(Request $request)
+    {
         $credenciales = [
             'email' => $request->input('email'),
             'password' => $request->input('contrasena'),
@@ -109,9 +118,23 @@ class AuthController extends Controller
         } else {
             return response(['error' => 'Unauthorized'], Response::HTTP_UNAUTHORIZED);
         }
+
+    }
+
+    public function perfilUsuario()
+    {
+        return response(['usuario' => Auth::user()],Response::HTTP_OK);
+    }
+
+    public function obtenerRoles()
+    {
+        $descripcionRoles = Rol::join('usuario_rol', 'rol.id_rol', '=', 'usuario_rol.id_rol')
+            ->where('usuario_rol.id_usuario', Auth::user()->id)
+            ->pluck('rol.descripcion');
+        return response(['usuario' => $descripcionRoles],Response::HTTP_OK);
+        
+            
         
     }
 
-    
-    
 }

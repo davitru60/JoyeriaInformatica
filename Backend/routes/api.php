@@ -11,6 +11,13 @@ use Illuminate\Support\Facades\Route;
 Route::post('login',[AuthController::class,'login']);
 Route::post('registrar',[AuthController::class, 'registrar']);
 
+
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::get('perfil',[AuthController::class, 'perfilUsuario']);
+    Route::get('roles',[AuthController::class, 'obtenerRoles']);
+});
+
+
 //Administrador
 Route::get('/usuarios', [UsuarioController::class, 'index']); //Saca todos los usuarios
 Route::post('/usuarios', [UsuarioController::class, 'store']); //Guarda 1 usuario
@@ -22,9 +29,9 @@ Route::post('/componente', [ComponentesController::class, 'store']);
 Route::get('/componente/{id}', [ComponentesController::class, 'buscar']); 
 Route::delete('/componente/{id}', [ComponentesController::class, 'destroy']); 
 
-
-
+//Lotes
 Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::get('mostrarLotes',[LoteController::class,'mostrarLotes']);
-    Route::post('agregarLote',[LoteController::class,'agregarLote']);
+    Route::get('lotes',[LoteController::class,'mostrarLotes']);
+    Route::post('lotes',[LoteController::class,'agregarLote']);
+    Route::delete('lotes/{id}',[LoteController::class,'eliminarLote']);
 });

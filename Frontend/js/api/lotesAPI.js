@@ -1,11 +1,11 @@
-import { constantes } from '../utilities/constantes.js';
+import { constantes } from '../utilities/constantes.js'
 export async function mostrarLotes() {
     const urlApi = constantes.urlApi;
 
     try {
         const token = localStorage.getItem('token');
 
-        const respuesta = await fetch(urlApi + 'mostrarLotes', {
+        const respuesta = await fetch(urlApi + 'lotes', {
             headers: {
                 'Authorization': 'Bearer ' + token
             }
@@ -23,4 +23,29 @@ export async function mostrarLotes() {
     }
 }
 
-mostrarLotes()
+export async function eliminarLote(id) {
+    const urlApi = constantes.urlApi
+
+    try {
+        const token = localStorage.getItem('token')
+
+        const respuesta = await fetch(urlApi + 'lotes/' + id, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        })
+
+        if (respuesta.ok) {
+            const mensaje = await respuesta.json()
+            console.log('Lote eliminado correctamente:', mensaje)
+            // Puedes realizar alguna acción adicional si es necesario
+        } else {
+            console.error('No se pudo eliminar el lote')
+        }
+
+    } catch (error) {
+        console.error('Error al eliminar el lote:', error)
+    }
+}
+

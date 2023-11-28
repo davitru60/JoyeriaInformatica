@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="../sass/styles.css" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap" rel="stylesheet">
@@ -19,84 +20,19 @@
 
 <body>
     <div class="d-flex" id="wrapper">
+       
         <!-- Sidebar -->
         <script src="../js/components/sidebarLote.js"></script>
         <!-- /#sidebar-wrapper -->
 
         <!-- Page Content -->
         <div id="page-content-wrapper">
-            <nav class="navbar navbar-expand-lg navbar-dark py-4 px-4">
-                <div class="d-flex align-items-center">
-                    <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
-               
-                </div>
-
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="far fa-user me-2" style="color:rgb(0, 0, 0)"></i>
-                                <span class="user-name">David
-                                    <i class="fas fa-chevron-down ms-auto"></i>
-                                </span>
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <li>
-                                    <div class="dropdown-item">
-                                        <i class="fas fa-user-circle me-2"></i>
-                                        <span class="fw-bold">Perfil de usuario</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="dropdown-divider"></div>
-                                </li>
-                                <li>
-                                    <div class="dropdown-item">
-                                        <i class="fas fa-sign-out-alt me-2"></i>
-                                        <span class="fw-bold">Logout</span>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                <span class="user-name">Roles
-                                    <i class="fas fa-chevron-down ms-auto"></i>
-                                </span>
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <li>
-                                    <div class="dropdown-item">
-                                        <span class="fw-bold">Diseñador</span>
-                                    </div>
-                                </li>
-
-                                <li>
-                                    <div class="dropdown-item">
-                                        <span class="fw-bold">Administrador</span>
-                                    </div>
-                                </li>
-                                <li>
-                            </ul>
-                        </li>
-
-                    </ul>
-                </div>
-            </nav>
+            <!---Navbar-->
+            <script src="../js/components/nav.js"></script>
 
             <div class="container-fluid pages">
-                <div class="card-body">
-                    <h2 class="card-title">Bienvenido David</h2>
-                    <p class="card-text">Colaborador</p>
+                <div class="card-body" id="intro-card">
+                    <script src="../js/components/tarjetaIntro.js"></script>
                 </div>
             </div>
 
@@ -113,56 +49,14 @@
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
-                              <!-- The Modal -->
-                <div class="modal" id="myModal">
-                    <div class="modal-dialog modal-md">
-                        <div class="modal-content">
-                
-                            <!-- Modal Header -->
-                            <div class="modal-header">
-                                <h4 class="modal-title">Detalles del Lote</h4>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                            </div>
-                
-                            <!-- Modal Body -->
-                            <div class="modal-body">
-                                <!-- Agrega tu formulario aquí -->
-                                <form id="detalleLoteForm">
-                                    <div class="mb-3">
-                                        <label for="ubicacion" class="form-label">Ubicación:</label>
-                                        <input type="text" class="form-control" id="ubicacion"readonly>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="estado" class="form-label">Estado:</label>
-                                        <input type="text" class="form-control" id="estado" readonly>
-                                    </div>
-                                    <!-- Agrega más campos según tus necesidades -->
-                
-                                    <!-- Puedes agregar botones de envío o cualquier otro elemento necesario -->
-                                </form>
-                            </div>
-                
-                            <!-- Modal Footer -->
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                            </div>
-                
-                        </div>
-                    </div>
-                </div>
                         </table>
                     </div>
                 </div>
-                
-            
-                
-              
             </main>
-            
+
         </div>
     </div>
 
-    
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -172,7 +66,6 @@
     <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
     <script src="../js/utilities/tabla.js"></script>
 
-    <script type="module" src="../js/api/lotesAPI.js"></script>
     <script type="module" src="../js/interface/lotesUI.js"></script>
 
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Colaborador;
 use App\Models\Lote;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -46,6 +47,17 @@ class LoteController extends Controller
             return response(['lotes' => $lotes], Response::HTTP_OK);
         } else {
             return response(['mensaje' => 'Usuario no tiene un colaborador asociado'], Response::HTTP_NOT_FOUND);
+        }
+    }
+
+    public function eliminarLote($id){
+        try {
+            $lote = Lote::findOrFail($id);
+            $lote->delete();
+
+            return response(['message' => 'Lote eliminado correctamente'], Response::HTTP_OK);
+        } catch (Exception $e) {
+            return response(['error' => 'No se pudo eliminar el lote'], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 }
