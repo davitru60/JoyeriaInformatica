@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", function () {
         anadirUsuarioUI()
 
         const agregarUsuario = document.getElementById('anadirModalUsu')
-        agregarUsuario.addEventListener('click',anadirUsuarioBtn)
+        agregarUsuario.addEventListener('click', anadirUsuarioBtn)
 
     }
     async function eliminarUsuarioUI(id) {
@@ -169,7 +169,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (anadirBtn) {
             anadirBtn.addEventListener('click', async () => {
                 try {
-                    const modalElement = document.getElementById(`anadirModal`);
+                    const modalElement = document.getElementById(`anadirModalUsu`);
                     const nombre = document.getElementById('nombre').value
                     const ape1 = document.getElementById('ap1').value
                     const ape2 = document.getElementById('ap2').value
@@ -200,7 +200,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
     rellenarConUsuario()
-    function anadirUsuarioBtn(){
+    const anadirUsuarioBtn = () => {
         const modal = document.createElement('div')
         modal.classList.add('modal', 'fade')
         modal.id = 'anadirModalUsu'
@@ -259,5 +259,14 @@ document.addEventListener("DOMContentLoaded", function () {
             </div>
         </div>
                     `
+        document.body.appendChild(modal)
+
+        // Agregar evento al botón de "Guardar" del formulario
+        const guardarComponenteBtn = document.getElementById('anadirBtn')
+        guardarComponenteBtn.addEventListener('click', anadirUsuarioUI())
+
+        // Mostrar el modal
+        const modalInstance = new bootstrap.Modal(modal)
+        modalInstance.show()
     }
 })
