@@ -30,32 +30,32 @@ document.addEventListener("DOMContentLoaded", function () {
                 <div class="row">
                 <div class="col-sm-12 col-md-6 col-lg-6">
                     <label for="nombre" class="form-label">Nombre</label>
-                    <input type="text" id="nombre" name="nombre${usu.id}" class="form-control" value=${usu.nombre}>
+                    <input type="text" id="nombre${usu.id}" name="nombre${usu.id}" class="form-control" value=${usu.nombre}>
                     <div class="invalid-feedback" id="mensajeNombre"></div>
                 </div>
 
                 <div class="col-sm-12 col-md-6 col-lg-6">
                     <label for="ap1" class="form-label">Primer apellido</label>
-                    <input type="text" id="ap1" name="ap1${usu.id}" class="form-control" value=${usu.ape1}>
+                    <input type="text" id="ap1${usu.id}" name="ap1${usu.id}" class="form-control" value=${usu.ape1}>
                     <div class="invalid-feedback" id="mensajeAp1"></div>
                 </div>
 
                 <div class="col-sm-12 col-md-6 col-lg-6">
                     <label for="ap2" class="form-label">Segundo apellido</label>
-                    <input type="text" id="ap2" name="ap2${usu.id}" class="form-control" value=${usu.ape2}>
+                    <input type="text" id="ap2${usu.id}" name="ap2${usu.id}" class="form-control" value=${usu.ape2}>
                     <div class="invalid-feedback" id="mensajeAp2"></div>
                 </div>
 
                 <div class="col-sm-12 col-md-6 col-lg-6">
                     <label for="email" class="form-label">Email</label>
-                    <input type="text" id="email" name="email${usu.id}" class="form-control" value=${usu.email}>
+                    <input type="text" id="email${usu.id}" name="email${usu.id}" class="form-control" value=${usu.email}>
                     <div class="invalid-feedback" id="mensajeEmail"></div>
                 </div>
 
                 <div class="col-sm-12 col-md-6 col-lg-6">
                     <label for="contra" class="form-label">Contraseña</label>
                     <div class="input-group">
-                        <input type="password" id="contra" name="contra${usu.id}" class="form-control" value=${usu.contrasena}>
+                        <input type="password" id="contra${usu.id}" name="contra${usu.id}" class="form-control" value=${usu.contrasena}>
                         <button type="button" class="btn btn-primary" id="btn-contra">
                         <i class="bi bi-eye-slash-fill" id="eye-icon"></i>
                         </button>
@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
         
         
                     <div class="modal-body">
-                        <p>¿Estás seguro de que deseas eliminar este lote?</p>
+                        <p>¿Estás seguro de que deseas eliminar el usuario ${usu.nombre} ${usu.ape1} ${usu.ape2}?</p>
                     </div>
         
                     <div class="modal-footer">
@@ -101,11 +101,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
             row.nodes().to$().data('usuarios', usu)
         });
-        document.body.insertAdjacentHTML('beforeend', anadirUsuario)
+        //document.body.insertAdjacentHTML('beforeend', anadirUsuario)
         anadirUsuarioUI()
 
-        const agregarUsuario = document.getElementById('anadirModalUsu')
-        agregarUsuario.addEventListener('click', anadirUsuarioBtn)
+        /*const agregarUsuario = document.getElementById('anadirModalUsu')
+        agregarUsuario.addEventListener('click', anadirUsuarioBtn)*/
 
     }
     async function eliminarUsuarioUI(id) {
@@ -152,7 +152,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         email: emailUsu,
                         contrasena: contraUsu,
                     }
-                    console.log(usuarioObjeto)
+
                     await editarUsuario(id, usuarioObjeto)
 
                     // Cerrar el modal después de modificar
@@ -170,11 +170,11 @@ document.addEventListener("DOMContentLoaded", function () {
             anadirBtn.addEventListener('click', async () => {
                 try {
                     const modalElement = document.getElementById(`anadirModalUsu`);
-                    const nombre = document.getElementById('nombre').value
-                    const ape1 = document.getElementById('ap1').value
-                    const ape2 = document.getElementById('ap2').value
-                    const email = document.getElementById('email').value
-                    const contrasena = document.getElementById('password').value
+                    const nombre = document.getElementById('#nombre').value
+                    const ape1 = document.getElementById('#ap1').value
+                    const ape2 = document.getElementById('#ap2').value
+                    const email = document.getElementById('#email').value
+                    const contrasena = document.getElementById('#contra').value
 
                     const usuario = {
                         nombre: nombre,
@@ -182,7 +182,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         ape2: ape2,
                         correo: email,
                         contrasena: contrasena,
-                        foto: foto
+                        foto: "url"
                     }
                     await anadirUsuario(usuario);
 
@@ -197,10 +197,11 @@ document.addEventListener("DOMContentLoaded", function () {
                     console.error('Error al confirmar la eliminación:', error);
                 }
             });
+
         }
     }
     rellenarConUsuario()
-    const anadirUsuarioBtn = () => {
+ /*   const anadirUsuarioBtn = () => {
         const modal = document.createElement('div')
         modal.classList.add('modal', 'fade')
         modal.id = 'anadirModalUsu'
@@ -268,5 +269,5 @@ document.addEventListener("DOMContentLoaded", function () {
         // Mostrar el modal
         const modalInstance = new bootstrap.Modal(modal)
         modalInstance.show()
-    }
+    }*/
 })

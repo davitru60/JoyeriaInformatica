@@ -30,9 +30,9 @@
                 </a>
                 <div class="collapse" id="dashboardCollapse">
                     
-                    <a class="list-group-item list-group-item-action bg-transparent second-text fw-bold" id="anadirModalUsu">
+                    <button class="list-group-item list-group-item-action bg-transparent second-text fw-bold" data-bs-toggle="modal" id="anadirModalUsu">
                         <i class="fas fa-circle me-2 ms-3" ></i> Añadir usuario
-                    </a>
+                    </button>
 
                     <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
                         <i class="fas fa-circle me-2 ms-3"></i> Ir a componentes
@@ -110,7 +110,57 @@
                     </table>
                 </div>
             </div>
-
+        <!--Modal añadir usuario-->
+        <div class="modal" id="anadirUsuario">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Editar nuevo usuario</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <label for="nombre" class="form-label">Nombre</label>
+                            <input type="text" id="nombre" name="nombre" class="form-control">
+                            <div class="invalid-feedback" id="mensajeNombre"></div>
+                        </div>
+        
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <label for="ap1" class="form-label">Primer apellido</label>
+                            <input type="text" id="ap1" name="ap1" class="form-control">
+                            <div class="invalid-feedback" id="mensajeAp1"></div>
+                        </div>
+        
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <label for="ap2" class="form-label">Segundo apellido</label>
+                            <input type="text" id="ap2" name="ap2" class="form-control">
+                            <div class="invalid-feedback" id="mensajeAp2"></div>
+                        </div>
+        
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="text" id="email" name="email" class="form-control">
+                            <div class="invalid-feedback" id="mensajeEmail"></div>
+                        </div>
+        
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <label for="contra" class="form-label">Contraseña</label>
+                            <div class="input-group">
+                                <input type="password" id="contra" name="contra" class="form-control">
+                                <button type="button" class="btn btn-primary" id="btn-contra">
+                                <i class="bi bi-eye-slash-fill" id="eye-icon"></i>
+                                </button>
+                            <div class="invalid-feedback" id="mensajeContrasena"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="anadirBtn">Crear usuario</button>
+                    </div>
+                </div>                
+            </div>
+        </div>
         </div>
     </div>
 
