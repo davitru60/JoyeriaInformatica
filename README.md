@@ -12,6 +12,18 @@ Este proyecto se centra en el desarrollo de una aplicación web de creación de 
 - **Backend**: Laravel
 
 ## 🤔 Puesta en marcha de la aplicación
+Para reconstruir el proyecto en la parte del frontend es necesario usar el siguiente comando:
+```
+npm install
+```
+Esto lo que hará será descargar todas las dependencias necesarias para que Bootstrap funcione correctamente.
+
+Para reconstruir el proyecto en la parte del backend es necesario usar los siguientes comandos:
+```
+composer install
+composer update
+```
+
 
 ## 💻 Definición de las rutas de la API REST
 ### Rutas para todos los usuarios
