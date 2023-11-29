@@ -20,10 +20,6 @@ class UsuarioController extends Controller
         return response()->json(['usuarios' => $usuarios]);
     }
 
-    public function create()
-    {
-        return response()->json(['message' => 'Not supported for JSON response'], 400);
-    }
 
     public function store(Request $request)
     {
@@ -80,17 +76,40 @@ class UsuarioController extends Controller
         return response()->json(['message' => 'Usuario eliminado exitosamente']);
     }
 
-    public function actualizar($id_usuario)
+    public function actualizar(Request $request,$id_usuario)
     {
-        /*$this->model->where('id_usuario', $id_usuario)
-        ->first()
-        ->fill($usuario)
-        ->save();*/
+        // Buscar el usuario por ID
         $usuario = User::find($id_usuario);
-        $usuario->update();
-        $usuario->save();
 
-        return response()->json(['message' => 'Usuario actualizado exitosamente']);
+        // Verificar si el usuario existe
+        if (!$usuario) {
+            return response()->json(['message' => 'Usuario no encontrado'], 404);
+        }
+
+        // Validar los datos de la solicitud
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'ape1' => 'required|string|max:255',
+            'ape2' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email,' . $usuario->id,
+            'contrasena' => 'required|string|min:6',
+            'foto' => 'required|string',
+        ]);
+
+        // Actualizar los datos del usuario
+        $usuario->update([
+            'nombre' => $request['nombre'],
+            'ape1' => $request['ape1'],
+            'ape2' => $request['ape2'],
+            'email' => $request['email'],
+            'password' => bcrypt($request['contrasena']),
+            'foto' => $request['foto'],
+        ]);
+
+        // Puedes agregar lógica adicional según sea necesario
+
+        // Respuesta JSON con el usuario actualizado
+        return response()->json(['usuario' => $usuario, 'message' => 'Usuario actualizado exitosamente']);
     }
 
     protected function crearUsuarioPorRol(User $usuario, array $roles)

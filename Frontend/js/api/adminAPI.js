@@ -27,7 +27,7 @@ export async function mostrarUsuario(){
 }
 
 export async function cogerUnUsuario(id_usuario) {
-    const rutaUsuario = constantes.urlApi + 'usuarios';
+    const rutaUsuario = constantes.urlApi + 'usuarios/';
 
     try {
         const respuesta = await fetch(rutaUsuario + id_usuario, {
@@ -53,7 +53,7 @@ export async function cogerUnUsuario(id_usuario) {
 }
 
 export async function eliminarUsuario(id_usuario){
-    const rutaUsuario = constantes.urlApi + 'usuarios';
+    const rutaUsuario = constantes.urlApi + 'usuarios/';
 
     try {
         const respuesta = await fetch(rutaUsuario + id_usuario, {
@@ -74,6 +74,53 @@ export async function eliminarUsuario(id_usuario){
     } catch (error) {
         console.error('Error en la función eliminarUsuario:', error.message);
         // Puedes lanzar el error nuevamente si quieres que se maneje en el contexto superior
+        throw error;
+    }
+}
+export async function editarUsuario(id_usuario){
+    const rutaUsuario = constantes.urlApi + 'usuarios/';
+    try {
+        const respuesta = await fetch(rutaUsuario + id_usuario, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+
+        });
+
+        if (!respuesta.ok) {
+
+            throw new Error(`Error al eliminar el usuario. Código de estado: ${respuesta.status}`);
+        }
+
+        const resultado = await respuesta.json();
+        return resultado;
+    } catch (error) {
+        console.error('Error en la función eliminarUsuario:', error.message);
+
+        throw error;
+    }
+}
+export async function anadirUsuario(usuarioCreado){
+    const rutaUsuario = constantes.urlApi + 'usuarios/';
+    try {
+    const respuesta = await fetch(rutaUsuario, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        },
+        body: JSON.stringify(usuarioCreado),
+    })
+    if (!respuesta.ok) {
+
+        throw new Error(`Error al eliminar el usuario. Código de estado: ${respuesta.status}`);
+    }
+    const resultado = await respuesta.json();
+    return resultado;
+    }catch (error){
+        console.error('Error en la función eliminarUsuario:', error.message);
+
         throw error;
     }
 }

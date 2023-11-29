@@ -30,7 +30,7 @@
                 </a>
                 <div class="collapse" id="dashboardCollapse">
                     <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
-                        <i class="fas fa-circle me-2 ms-3"></i> Añadir usuario
+                        <i class="fas fa-circle me-2 ms-3" id="anadirUsuarioBtn"></i> Añadir usuario
                     </a>
                     <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
                         <i class="fas fa-circle me-2 ms-3"></i> Ir a componentes
@@ -93,106 +93,6 @@
             </nav>
 
             <div class="row m-2">
-                
-    <!--Eliminar usuario-->
-    <!-- The Modal -->
-    <div class="modal" id="deleteModal">
-        <div class="modal-dialog modal-md">
-            <div class="modal-content">
-    
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">Confirmar Eliminación</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-    
-                <!-- Modal Body -->
-                <div class="modal-body">
-                    <p>¿Estás seguro de que deseas eliminar este lote?</p>
-                </div>
-    
-                <!-- Modal Footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <!-- Agrega el botón de confirmar eliminación -->
-                    <button type="button" class="btn btn-danger" id="confirmarEliminacionBtn">Confirmar Eliminación</button>
-                </div>
-    
-            </div>
-        </div>
-    </div>
-    <!--Añadir usuario-->
-    <form class="modal" id="anadirUsuario">
-        <div class="row">
-            <h3> Información básica</h3>
-            <div class="col-sm-12 col-md-6 col-lg-6">
-                <label for="nombre" class="form-label">Nombre</label>
-                <input type="text" id="nombre" name="nombre" class="form-control"
-                    placeholder="Introduzca el nombre">
-                <div class="invalid-feedback" id="mensajeNombre"></div>
-            </div>
-
-            <div class="col-sm-12 col-md-6 col-lg-6">
-                <label for="ap1" class="form-label">Primer apellido</label>
-                <input type="text" id="ap1" name="ap1" class="form-control"
-                    placeholder="Introduzca el primer apellido">
-                <div class="invalid-feedback" id="mensajeAp1"></div>
-            </div>
-
-            <div class="col-sm-12 col-md-6 col-lg-6">
-                <label for="ap2" class="form-label">Segundo apellido</label>
-                <input type="text" id="ap2" name="ap2" class="form-control"
-                    placeholder="Introduzca el segundo apellido">
-                <div class="invalid-feedback" id="mensajeAp2"></div>
-            </div>
-
-            <div class="col-sm-12 col-md-6 col-lg-6">
-                <label for="email" class="form-label">Email</label>
-                <input type="text" id="email" name="email" class="form-control"
-                    placeholder="Introduzca el email">
-                <div class="invalid-feedback" id="mensajeEmail"></div>
-            </div>
-
-            <div class="col-sm-12 col-md-6 col-lg-6">
-                <label for="contra" class="form-label">Contraseña</label>
-                <div class="input-group">
-                    <input type="password" id="contra" name="contra" class="form-control"
-                        placeholder="Introduzca la contraseña">
-                    <button type="button" class="btn btn-primary" id="btn-contra">
-                        <i class="bi bi-eye-slash-fill" id="eye-icon"></i>
-                    </button>
-                    <div class="invalid-feedback" id="mensajeContrasena"></div>
-                </div>
-            </div>
-
-
-            <div class="col-sm-12 col-md-6 col-lg-6">
-                <label for="contra-confirmar" class="form-label">Confirmar contraseña</label>
-                <div class="input-group">
-                    <input type="password" id="contra-confirmar" name="contra-confirmar" class="form-control"
-                        placeholder="Confirme la contraseña">
-                    <button type="button" class="btn btn-primary" id="btn-contra-confirmar">
-                        <i class="bi bi-eye-slash-fill" id="eye-icon-confirmar"></i>
-                    </button>
-
-                    <div class="invalid-feedback" id="mensajeContrasenaConf"></div>
-                </div>
-            </div>
-
-            <div class="col-sm-12 col-md-6 col-lg-6">
-                <label for="foto" class="form-label">Foto</label>
-                <input type="file" id="foto" name="foto" class="form-control">
-            </div>
-
-            <div class="row boton">
-                <button type="button" class="btn btn-primary mt-4" id="btn">Crear usuario</button>
-                <p> ¿Ya tiene una cuenta?
-                    <a href="../index.html">Iniciar Sesión</a>
-                </p>
-                </p>
-            </div>
-        </div>
-    </form>
                 <h3 class="fs-4 mb-3">Lista de entregas</h3>
                 <div class="col">
                     <table id="usuarios" class="table table-striped" style="width:100%">

@@ -22,5 +22,6 @@ Route::post('lote',[LoteController::class]);
 
 Route::get('/componente', [ComponentesController::class, 'index']); 
 Route::post('/componente', [ComponentesController::class, 'store']); 
+Route::put('/componente/{id}',[ComponentesController::class,'actualizar']);
 Route::get('/componente/{id}', [ComponentesController::class, 'buscar']); 
 Route::delete('/componente/{id}', [ComponentesController::class, 'destroy']); 
