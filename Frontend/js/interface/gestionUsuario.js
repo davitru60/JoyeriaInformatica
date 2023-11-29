@@ -1,8 +1,9 @@
 import { mostrarUsuario, eliminarUsuario, cogerUnUsuario, editarUsuario, anadirUsuario } from '../api/adminAPI.js';
 document.addEventListener("DOMContentLoaded", function () {
-
+    console.log('DOM completamente cargado');
 
     async function rellenarConUsuario() {
+        console.log('Iniciando rellenarConUsuario');
         const usuarios = await mostrarUsuario()
         console.log(usuarios)
         const tabla = $('#usuarios').DataTable()
@@ -100,13 +101,19 @@ document.addEventListener("DOMContentLoaded", function () {
             eliminarUsuarioUI(usu.id)
 
             row.nodes().to$().data('usuarios', usu)
+
         });
         //document.body.insertAdjacentHTML('beforeend', anadirUsuario)
-        anadirUsuarioUI()
+        const anadirBtn = document.getElementById('anadirUsuario');
+        if (anadirBtn) {
+            console.log('Inicializando evento de clic para anadirUsuario');
+            anadirBtn.addEventListener('click', anadirUsuarioUI);
+        }
+        //anadirUsuarioUI()
 
         /*const agregarUsuario = document.getElementById('anadirModalUsu')
         agregarUsuario.addEventListener('click', anadirUsuarioBtn)*/
-
+        console.log('Finalizando rellenarConUsuario');
     }
     async function eliminarUsuarioUI(id) {
         const confirmarEliminacion = document.getElementById(`confirmarEliminacion${id}`);
@@ -165,11 +172,12 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
     async function anadirUsuarioUI() {
-        const anadirBtn = document.getElementById(`anadirBtn`);
+        console.log('Iniciando anadirUsuarioUI');
+        const anadirBtn = document.getElementById("anadirBtn");
         if (anadirBtn) {
             anadirBtn.addEventListener('click', async () => {
                 try {
-                    const modalElement = document.getElementById(`anadirModalUsu`);
+                    const modalElement = document.getElementById("anadirUsuarioModal");
                     const nombre = document.getElementById('#nombre').value
                     const ape1 = document.getElementById('#ap1').value
                     const ape2 = document.getElementById('#ap2').value
@@ -196,6 +204,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 } catch (error) {
                     console.error('Error al confirmar la eliminación:', error);
                 }
+                console.log('Finalizando anadirUsuarioUI');
             });
 
         }
