@@ -77,7 +77,7 @@ export async function eliminarUsuario(id_usuario){
         throw error;
     }
 }
-export async function editarUsuario(id_usuario){
+export async function editarUsuario(id_usuario, usuario){
     const rutaUsuario = constantes.urlApi + 'usuarios/';
     try {
         const respuesta = await fetch(rutaUsuario + id_usuario, {
@@ -85,7 +85,7 @@ export async function editarUsuario(id_usuario){
             headers: {
                 'Content-Type': 'application/json'
             },
-
+            body: JSON.stringify(usuario),
         });
 
         if (!respuesta.ok) {

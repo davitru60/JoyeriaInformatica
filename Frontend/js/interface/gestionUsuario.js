@@ -1,7 +1,7 @@
-import { mostrarUsuario,eliminarUsuario,cogerUnUsuario,editarUsuario,anadirUsuario } from '../api/adminAPI.js';
+import { mostrarUsuario, eliminarUsuario, cogerUnUsuario, editarUsuario, anadirUsuario } from '../api/adminAPI.js';
 document.addEventListener("DOMContentLoaded", function () {
-    
-    
+
+
     async function rellenarConUsuario() {
         const usuarios = await mostrarUsuario()
         console.log(usuarios)
@@ -14,58 +14,61 @@ document.addEventListener("DOMContentLoaded", function () {
                 usu.ape1,
                 usu.ape2,
                 usu.email,
-                `<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#myModal${usu.id}"><i class="fas fa-edit"></i></button>`+
+                `<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#myModal${usu.id}"><i class="fas fa-edit"></i></button>` +
                 `<button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal${usu.id}" ><i class="fas fa-trash-alt"></i></button>`
-            ]).draw()   
- 
-            const editarUsuario= `
-    <form class="modal" id="editarUsuario${usu.id}">
-        <div class="row">
-            <div class="col-sm-12 col-md-6 col-lg-6">
-                <label for="nombre" class="form-label">Nombre</label>
-                <input type="text" id="nombre" name="nombre" class="form-control" value=${usu.nombre}>
-                <div class="invalid-feedback" id="mensajeNombre"></div>
-            </div>
+            ]).draw()
 
-            <div class="col-sm-12 col-md-6 col-lg-6">
-                <label for="ap1" class="form-label">Primer apellido</label>
-                <input type="text" id="ap1" name="ap1" class="form-control" value=${usu.ape1}>
-                <div class="invalid-feedback" id="mensajeAp1"></div>
+            const editarUsuario = `
+<div class="modal" id="myModal${usu.id}">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Editar usuario ${usu.nombre}</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
+            <div class="modal-body">
+                <div class="row">
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" id="nombre" name="nombre${usu.id}" class="form-control" value=${usu.nombre}>
+                    <div class="invalid-feedback" id="mensajeNombre"></div>
+                </div>
 
-            <div class="col-sm-12 col-md-6 col-lg-6">
-                <label for="ap2" class="form-label">Segundo apellido</label>
-                <input type="text" id="ap2" name="ap2" class="form-control" value=${usu.ape2}>
-                <div class="invalid-feedback" id="mensajeAp2"></div>
-            </div>
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                    <label for="ap1" class="form-label">Primer apellido</label>
+                    <input type="text" id="ap1" name="ap1${usu.id}" class="form-control" value=${usu.ape1}>
+                    <div class="invalid-feedback" id="mensajeAp1"></div>
+                </div>
 
-            <div class="col-sm-12 col-md-6 col-lg-6">
-                <label for="email" class="form-label">Email</label>
-                <input type="text" id="email" name="email" class="form-control" value=${usu.email}>
-                <div class="invalid-feedback" id="mensajeEmail"></div>
-            </div>
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                    <label for="ap2" class="form-label">Segundo apellido</label>
+                    <input type="text" id="ap2" name="ap2${usu.id}" class="form-control" value=${usu.ape2}>
+                    <div class="invalid-feedback" id="mensajeAp2"></div>
+                </div>
 
-            <div class="col-sm-12 col-md-6 col-lg-6">
-                <label for="contra" class="form-label">Contraseña</label>
-                <div class="input-group">
-                    <input type="password" id="contra" name="contra" class="form-control" value=${usu.contrasena}>
-                    <button type="button" class="btn btn-primary" id="btn-contra">
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="text" id="email" name="email${usu.id}" class="form-control" value=${usu.email}>
+                    <div class="invalid-feedback" id="mensajeEmail"></div>
+                </div>
+
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                    <label for="contra" class="form-label">Contraseña</label>
+                    <div class="input-group">
+                        <input type="password" id="contra" name="contra${usu.id}" class="form-control" value=${usu.contrasena}>
+                        <button type="button" class="btn btn-primary" id="btn-contra">
                         <i class="bi bi-eye-slash-fill" id="eye-icon"></i>
-                    </button>
+                        </button>
                     <div class="invalid-feedback" id="mensajeContrasena"></div>
+                    </div>
                 </div>
             </div>
-
-            <div class="col-sm-12 col-md-6 col-lg-6">
-                <label for="foto" class="form-label">Foto</label>
-                <input type="file" id="foto" name="foto" class="form-control">
+            <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="editarBtn${usu.id}">Editar usuario</button>
             </div>
-
-            <div class="row boton">
-            <button type="button" class="btn btn-primary mt-4" id="editarBtn${usu.id}">Editar usuario</button>
-            </div>
-        </div>
-    </form>
+        </div>                
+    </div>
+</div>
             `
             const eliminarUsuario = `
         <div class="modal" id="deleteModal${usu.id}">
@@ -91,71 +94,19 @@ document.addEventListener("DOMContentLoaded", function () {
         </div>
             `
 
-            document.body.insertAdjacentHTML('beforeend',editarUsuario)
+            document.body.insertAdjacentHTML('beforeend', editarUsuario)
             editarUsuarioUI(usu.id)
-            document.body.insertAdjacentHTML('beforeend',eliminarUsuario)
+            document.body.insertAdjacentHTML('beforeend', eliminarUsuario)
             eliminarUsuarioUI(usu.id)
 
-            row.nodes().to$().data('usuarios',usu)
+            row.nodes().to$().data('usuarios', usu)
         });
-        const anadirUsuario = `
-    <form class="modal" id="anadirUsuario">
-        <div class="row">
-            <h3> Información básica</h3>
-            <div class="col-sm-12 col-md-6 col-lg-6">
-                <label for="nombre" class="form-label">Nombre</label>
-                <input type="text" id="nombre" name="nombre" class="form-control"
-                    placeholder="Introduzca el nombre">
-                <div class="invalid-feedback" id="mensajeNombre"></div>
-            </div>
+        document.body.insertAdjacentHTML('beforeend', anadirUsuario)
+        anadirUsuarioUI()
 
-            <div class="col-sm-12 col-md-6 col-lg-6">
-                <label for="ap1" class="form-label">Primer apellido</label>
-                <input type="text" id="ap1" name="ap1" class="form-control"
-                    placeholder="Introduzca el primer apellido">
-                <div class="invalid-feedback" id="mensajeAp1"></div>
-            </div>
+        const agregarUsuario = document.getElementById('anadirModalUsu')
+        agregarUsuario.addEventListener('click',anadirUsuarioBtn)
 
-            <div class="col-sm-12 col-md-6 col-lg-6">
-                <label for="ap2" class="form-label">Segundo apellido</label>
-                <input type="text" id="ap2" name="ap2" class="form-control"
-                    placeholder="Introduzca el segundo apellido">
-                <div class="invalid-feedback" id="mensajeAp2"></div>
-            </div>
-
-            <div class="col-sm-12 col-md-6 col-lg-6">
-                <label for="email" class="form-label">Email</label>
-                <input type="text" id="email" name="email" class="form-control"
-                    placeholder="Introduzca el email">
-                <div class="invalid-feedback" id="mensajeEmail"></div>
-            </div>
-
-            <div class="col-sm-12 col-md-6 col-lg-6">
-                <label for="contra" class="form-label">Contraseña</label>
-                <div class="input-group">
-                    <input type="password" id="contra" name="contra" class="form-control"
-                        placeholder="Introduzca la contraseña">
-                    <button type="button" class="btn btn-primary" id="btn-contra">
-                        <i class="bi bi-eye-slash-fill" id="eye-icon"></i>
-                    </button>
-                    <div class="invalid-feedback" id="mensajeContrasena"></div>
-                </div>
-            </div>
-
-            <div class="col-sm-12 col-md-6 col-lg-6">
-                <label for="foto" class="form-label">Foto</label>
-                <input type="file" id="foto" name="foto" class="form-control">
-            </div>
-
-            <div class="row boton">
-                <button type="button" class="btn btn-primary mt-4" id="AnadirBtn">Crear usuario</button>
-            </div>
-        </div>
-    </form>
-        `
-        document.body.insertAdjacentHTML('beforeend',anadirUsuario)
-        const anadir = document.getElementById('anadirUsuarioBtn')
-        anadir.addEventListener('click',anadirUsuarioUI())
     }
     async function eliminarUsuarioUI(id) {
         const confirmarEliminacion = document.getElementById(`confirmarEliminacion${id}`);
@@ -170,7 +121,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     const modal = new bootstrap.Modal(modalElement);
                     modal.hide();
 
-                    
+
 
                 } catch (error) {
                     console.error('Error al confirmar la eliminación:', error);
@@ -179,63 +130,68 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
     async function editarUsuarioUI(id) {
-        const editar = document.getElementById(`editar${id}`);
+        const modificarBtn = document.getElementById(`editarBtn${id}`);
 
-        if (editar) {
-            editar.addEventListener('click', async () => {
+        if (modificarBtn) {
+
+            modificarBtn.addEventListener('click', async () => {
                 try {
-                    await cogerUnUsuario(id);
 
-                    const modalElement = document.getElementById(`editarUsuario${id}`);
-                    modalElement.addEventListener('click', async () =>{
-                        try {
+                    // Obtener las referencias a los campos de texto dentro del modal específico
+                    const modalElement = document.getElementById(`myModal${id}`)
+                    const nombreUsu = modalElement.querySelector(`#nombre`).value
+                    const ape1Usu = modalElement.querySelector(`#ap1`).value
+                    const ape2Usu = modalElement.querySelector(`#ap2`).value
+                    const emailUsu = modalElement.querySelector(`#email`).value
+                    const contraUsu = modalElement.querySelector(`#contra`).value
 
-                            await editarUsuario(id)
+                    const usuarioObjeto = {
+                        nombre: nombreUsu,
+                        ape1: ape1Usu,
+                        ape2: ape2Usu,
+                        email: emailUsu,
+                        contrasena: contraUsu,
+                    }
+                    console.log(usuarioObjeto)
+                    await editarUsuario(id, usuarioObjeto)
 
-                        } catch (error) {
-                            
-                            console.error('Error al confirmar la edición:', error);
-
-                        }
-                    })
-
-                    const modal = new bootstrap.Modal(modalElement);
+                    // Cerrar el modal después de modificar
+                    const modal = new bootstrap.Modal(modalElement)
                     modal.hide();
-
                 } catch (error) {
-                    console.error('Error al confirmar la obtención del usuario:', error);
+                    console.error('Error al confirmar la modificación:', error)
                 }
             });
         }
     }
     async function anadirUsuarioUI() {
-        const anadirBtn = document.getElementById(`AnadirBtn`);
+        const anadirBtn = document.getElementById(`anadirBtn`);
         if (anadirBtn) {
             anadirBtn.addEventListener('click', async () => {
                 try {
-                    const nombre = document.getElementById('nombre')
-                    const ape1 = document.getElementById('ap1')
-                    const ape2 = document.getElementById('ap2')
-                    const email = document.getElementById('email')
-                    const contrasena = document.getElementById('password')
-                    const foto = document.getElementById('foto')
+                    const modalElement = document.getElementById(`anadirModal`);
+                    const nombre = document.getElementById('nombre').value
+                    const ape1 = document.getElementById('ap1').value
+                    const ape2 = document.getElementById('ap2').value
+                    const email = document.getElementById('email').value
+                    const contrasena = document.getElementById('password').value
 
                     const usuario = {
-                        nombre : nombre,
-                        ape1 : ape1,
-                        ape2 : ape2,
-                        correo : email,
-                        contrasena : contrasena,
-                        foto : foto
+                        nombre: nombre,
+                        ape1: ape1,
+                        ape2: ape2,
+                        correo: email,
+                        contrasena: contrasena,
+                        foto: foto
                     }
                     await anadirUsuario(usuario);
 
                     // Cierra el modal después de eliminar
-                    const modalElement = document.getElementById(`anadirUsuario`);
+
                     const modal = new bootstrap.Modal(modalElement);
                     modal.hide();
 
-                    
+
 
                 } catch (error) {
                     console.error('Error al confirmar la eliminación:', error);
@@ -244,5 +200,64 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
     rellenarConUsuario()
-    
+    function anadirUsuarioBtn(){
+        const modal = document.createElement('div')
+        modal.classList.add('modal', 'fade')
+        modal.id = 'anadirModalUsu'
+        modal.tabIndex = '-1'
+        modal.setAttribute('aria-labelledby', 'agregarComponentesModalLabel')
+        modal.setAttribute('aria-hidden', 'true')
+        modal.innerHTML = `
+        <div class="modal" id="anadirUsuario">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Editar nuevo usuario</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <label for="nombre" class="form-label">Nombre</label>
+                            <input type="text" id="nombre" name="nombre" class="form-control">
+                            <div class="invalid-feedback" id="mensajeNombre"></div>
+                        </div>
+        
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <label for="ap1" class="form-label">Primer apellido</label>
+                            <input type="text" id="ap1" name="ap1" class="form-control">
+                            <div class="invalid-feedback" id="mensajeAp1"></div>
+                        </div>
+        
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <label for="ap2" class="form-label">Segundo apellido</label>
+                            <input type="text" id="ap2" name="ap2" class="form-control">
+                            <div class="invalid-feedback" id="mensajeAp2"></div>
+                        </div>
+        
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="text" id="email" name="email" class="form-control">
+                            <div class="invalid-feedback" id="mensajeEmail"></div>
+                        </div>
+        
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <label for="contra" class="form-label">Contraseña</label>
+                            <div class="input-group">
+                                <input type="password" id="contra" name="contra" class="form-control">
+                                <button type="button" class="btn btn-primary" id="btn-contra">
+                                <i class="bi bi-eye-slash-fill" id="eye-icon"></i>
+                                </button>
+                            <div class="invalid-feedback" id="mensajeContrasena"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="anadirBtn">Crear usuario</button>
+                    </div>
+                </div>                
+            </div>
+        </div>
+                    `
+    }
 })
