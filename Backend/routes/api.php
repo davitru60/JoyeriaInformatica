@@ -27,6 +27,7 @@ Route::delete('/usuarios/{id}', [UsuarioController::class, 'destroy']); //Elimin
 Route::get('/componente', [ComponentesController::class, 'index']); 
 Route::post('/componente', [ComponentesController::class, 'store']); 
 Route::get('/componente/{id}', [ComponentesController::class, 'buscar']); 
+Route::put('/componente/{id}',[ComponentesController::class,'actualizar']);
 Route::delete('/componente/{id}', [ComponentesController::class, 'destroy']); 
 
 //Lotes

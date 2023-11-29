@@ -37,6 +37,32 @@ class ComponentesController extends Controller
         return response()->json(['componente' => $componente]);
     }
 
+    public function actualizar(Request $request, $id_comp){
+        // Buscar el $componente por ID
+        $componente = Componentes::find($id_comp);
+
+        // Verificar si el comp$componente existe
+        if (!$componente) {
+            return response()->json(['message' => 'Componente no encontrado'], 404);
+        }
+
+        // Validar los datos de la solicitud
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'hw' => 'required|boolean',
+        ]);
+
+        // Actualizar los datos del comp$componente
+        $componente->update([
+            'nombre' => $request['nombre'],
+            'hw' => $request['hw'],
+        ]);
+
+        // Respuesta JSON con el $componente actualizado
+        return response()->json(['$componente' => $componente, 'message' => 'Componente actualizado exitosamente']);
+    }
+    
+    
     public function destroy($id_usuario)
     {
         $componente = Componentes::find($id_usuario);
@@ -44,4 +70,6 @@ class ComponentesController extends Controller
     
         return response()->json(['message' => 'Componentes eliminado exitosamente']);
     }
+
+    
 }
