@@ -1,6 +1,6 @@
 import { constantes } from '../utilities/constantes.js'
 export async function mostrarLotes() {
-    const urlApi = constantes.urlApi;
+    const urlApi = constantes.urlApi
 
     try {
         const token = localStorage.getItem('token');
@@ -39,7 +39,6 @@ export async function eliminarLote(id) {
         if (respuesta.ok) {
             const mensaje = await respuesta.json()
             console.log('Lote eliminado correctamente:', mensaje)
-            // Puedes realizar alguna acción adicional si es necesario
         } else {
             console.error('No se pudo eliminar el lote')
         }
