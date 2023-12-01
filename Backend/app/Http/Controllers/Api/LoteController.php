@@ -43,7 +43,7 @@ class LoteController extends Controller
         $colaborador = Colaborador::where('id_usuario', $usuario->id)->value('id_colaborador');
 
         if ($colaborador) {
-            $lotes = Lote::all();
+            $lotes = Lote::where('id_colaborador',$colaborador)->get();
             return response(['lotes' => $lotes], Response::HTTP_OK);
         } else {
             return response(['mensaje' => 'Usuario no tiene un colaborador asociado'], Response::HTTP_NOT_FOUND);

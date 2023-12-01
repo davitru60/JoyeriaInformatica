@@ -24,7 +24,7 @@ class AuthController extends Controller
             'ape2' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'contrasena' => 'required|string|min:6',
-            'foto' => 'required|string'
+            'foto' => 'string'
         ]);
 
         if ($validator->fails()) {
