@@ -61,19 +61,43 @@ const mostrarModalAgregarComponentes = () => {
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                  <form id="formularioAgregarComponentes">
-                      <div class="mb-3">
-                          <label for="nombreComponente" class="form-label">Nombre del componente</label>
-                          <input type="text" class="form-control" id="nombreComponente" required>
-                      </div>
-                      <div class="mb-3">
-                          <label for="hwDropdown" class="form-label">Seleccionar si es de tipo hw</label>
-                          <select class="form-select" id="hwDropdown" required>
-                              <option value="1">1</option>
-                              <option value="0">0</option>
-                          </select>
-                      </div>
-                  </form>
+                <form id="formularioAgregarComponentes">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input type="text" id="nombre" name="nombre" class="form-control">
+                        <div class="invalid-feedback" id="mensajeNombre"></div>
+                    </div>
+  
+                    <div class="col-sm-12 col-md-6 col-lg-6">
+                        <label for="ap1" class="form-label">Primer apellido</label>
+                        <input type="text" id="ap1" name="ap1" class="form-control">
+                        <div class="invalid-feedback" id="mensajeAp1"></div>
+                    </div>
+  
+                    <div class="col-sm-12 col-md-6 col-lg-6">
+                        <label for="ap2" class="form-label">Segundo apellido</label>
+                        <input type="text" id="ap2" name="ap2" class="form-control">
+                        <div class="invalid-feedback" id="mensajeAp2"></div>
+                    </div>
+  
+                    <div class="col-sm-12 col-md-6 col-lg-6">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="text" id="email" name="email" class="form-control">
+                        <div class="invalid-feedback" id="mensajeEmail"></div>
+                    </div>
+  
+                    <div class="col-sm-12 col-md-6 col-lg-6">
+                        <label for="contra" class="form-label">Contraseña</label>
+                        <div class="input-group">
+                            <input type="password" id="contra" name="contra" class="form-control">
+                            <button type="button" class="btn btn-primary" id="btn-contra">
+                            <i class="bi bi-eye-slash-fill" id="eye-icon"></i>
+                            </button>
+                        <div class="invalid-feedback" id="mensajeContrasena"></div>
+                        </div>
+                    </div>
+                </form>
               </div>
               <div class="modal-footer">
                   <button type="button" class="btn btn-primary"  data-bs-dismiss="modal" id="guardarComponenteBtn">Guardar</button>
@@ -97,16 +121,22 @@ const mostrarModalAgregarComponentes = () => {
 
 const guardarComponente = async() => {
 
-    const nombreComponente = document.getElementById('nombreComponente').value
-    const hwDropdown = document.getElementById('hwDropdown').value
+    const nombre = document.getElementById('nombre').value
+    const ape1 = document.getElementById('ap1').value
+    const ape2 = document.getElementById('ap2').value
+    const email = document.getElementById('email').value
+    const contrasena = document.getElementById('contra').value
 
-    const componenteObjeto = {
-        nombre: nombreComponente,
-        hw: hwDropdown
+    const usuario = {
+        nombre: nombre,
+        ape1: ape1,
+        ape2: ape2,
+        correo: email,
+        contrasena: contrasena,
+        foto: "url"
     }
 
-    console.log('Nombre del Componente:', nombreComponente)
-    console.log('Valor de HW:', hwDropdown)
+    //await anadirUsuario(usuario)
 
     // Cerrar el modal si es necesario
     const modalElement = document.getElementById('agregarComponentesModal')
@@ -114,5 +144,28 @@ const guardarComponente = async() => {
     modal.hide()
 }
 
+async function anadirUsuario(usuarioCreado){
+    const rutaUsuario = constantes.urlApi + 'usuarios/';
+    try {
+    const respuesta = await fetch(rutaUsuario, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        },
+        body: JSON.stringify(usuarioCreado),
+    })
+    if (!respuesta.ok) {
+
+        throw new Error(`Error al eliminar el usuario. Código de estado: ${respuesta.status}`);
+    }
+    const resultado = await respuesta.json();
+    return resultado;
+    }catch (error){
+        console.error('Error en la función eliminarUsuario:', error.message);
+
+        throw error;
+    }
+}
 crearBarraLateral()
 guardarComponente()
