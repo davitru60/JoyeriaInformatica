@@ -17,7 +17,6 @@ class LoteController extends Controller
     
         $validator = Validator::make($request->all(), [
             'ubicacion' => 'required|string',
-            'estado' => 'required|string',
         ]);
 
         if ($validator->fails()) {
@@ -28,8 +27,7 @@ class LoteController extends Controller
             $colaboradorId = Colaborador::where('id_usuario', $usuario->id)->value('id_colaborador');
             $lote = Lote::create([
                 'id_colaborador' => $colaboradorId,
-                'ubicacion' => $request->input('ubicacion'),
-                'estado' => $request->input('estado')
+                'ubicacion' => $request->input('ubicacion')
             ]);
 
         
