@@ -146,7 +146,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     // Obtener las referencias a los campos de texto dentro del modal específico
                     const modalElement = document.getElementById(`myModal${id}`)
-                    const nombreUsu = modalElement.querySelector(`#nombre`).value
+                    const nombreUsu = modalElement.querySelector(`nombre`).value
                     const ape1Usu = modalElement.querySelector(`#ap1`).value
                     const ape2Usu = modalElement.querySelector(`#ap2`).value
                     const emailUsu = modalElement.querySelector(`#email`).value
@@ -178,7 +178,7 @@ document.addEventListener("DOMContentLoaded", function () {
             anadirBtn.addEventListener('click', async () => {
                 try {
                     const modalElement = document.getElementById("anadirUsuarioModal");
-                    const nombre = document.getElementById('#nombre').value
+                    const nombre = document.getElementById('nombre').value
                     const ape1 = document.getElementById('#ap1').value
                     const ape2 = document.getElementById('#ap2').value
                     const email = document.getElementById('#email').value

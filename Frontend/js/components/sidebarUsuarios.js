@@ -4,31 +4,19 @@ const crearBarraLateral = () => {
     const barraLateral = `
       <div id="sidebar-wrapper">
           <div class="list-group list-group-flush my-3">
-              <a href="#" class="list-group-item list-group-item-action bg-transparent second-text active"
-                  data-bs-toggle="collapse" data-bs-target="#dashboardCollapse" aria-expanded="false">
-                  <i class="fas fa-truck me-2"></i>Lotes
-                  <i class="fas fa-chevron-down ms-auto"></i>
-              </a>
-
-              <div class="collapse" id="dashboardCollapse">
-                  <a href="clasificacionLote.html" class="list-group-item list-group-item-action fw-bold">
-                      <i class="fas fa-box me-2 ms-3"></i> Clasificar lotes
-                  </a>
-              </div>
-
               <a href="#" class="list-group-item list-group-item-action bg-transparent second-tex fw-bold"
                   data-bs-toggle="collapse" data-bs-target="#componentesCollapse" aria-expanded="false">
-                  <i class="fas fa-cogs me-2"></i>Componentes
+                  <i class="fas fa-cogs me-2"></i>Administración
                   <i class="fas fa-chevron-down ms-auto"></i>
               </a>
 
               <div class="collapse" id="componentesCollapse">
                  <a href="clasificador.html" class="list-group-item list-group-item-action fw-bold" id="verComponenteBtn">
-                    <i class="far fa-keyboard me-2 ms-3"></i> Ver lista de componentes
+                    <i class="far fa-keyboard me-2 ms-3"></i> Ver componentes
                  </a>
 
                   <a class="list-group-item list-group-item-action fw-bold" id="agregarComponenteBtn">
-                      <i class="fas fa-wrench me-2 ms-3"></i> Agregar componente
+                      <i class="fas fa-wrench me-2 ms-3"></i> Agregar Usuarios
                   </a>
 
                   
@@ -136,7 +124,7 @@ const guardarComponente = async() => {
         foto: "url"
     }
 
-    //await anadirUsuario(usuario)
+    await anadirUsuario(usuario)
 
     // Cerrar el modal si es necesario
     const modalElement = document.getElementById('agregarComponentesModal')
