@@ -44,7 +44,8 @@
                             <thead>
                                 <tr>
                                     <th>Número lote</th>
-                                    <th>Ubicación</th>
+                                    <th>Latitud</th>
+                                    <th>Longitud</th>
                                     <th>Estado </th>
                                     <th>Acciones</th>
                                 </tr>
@@ -65,18 +66,11 @@
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
     <script src="../js/utilities/tabla.js"></script>
+    <script src="../js/utilities/barToggle.js"></script>
 
     <script type="module" src="../js/interface/lotesUI.js"></script>
 
 
-    <script>
-        var el = document.getElementById("wrapper");
-        var toggleButton = document.getElementById("menu-toggle");
-
-        toggleButton.onclick = function () {
-            el.classList.toggle("toggled");
-        };
-    </script>
 </body>
 
 </html>

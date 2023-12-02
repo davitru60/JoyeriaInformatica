@@ -11,12 +11,14 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\Response;
 
+
 class LoteController extends Controller
 {
     public function agregarLote(Request $request){
     
         $validator = Validator::make($request->all(), [
-            'ubicacion' => 'required|string',
+            'latitud' => 'required',
+            'longitud' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -27,10 +29,9 @@ class LoteController extends Controller
             $colaboradorId = Colaborador::where('id_usuario', $usuario->id)->value('id_colaborador');
             $lote = Lote::create([
                 'id_colaborador' => $colaboradorId,
-                'ubicacion' => $request->input('ubicacion')
+                'latitud' => $request->input('latitud'),
+                'longitud' => $request->input('longitud')
             ]);
-
-        
 
             return response(['mensaje' => $lote], Response::HTTP_CREATED);
         }

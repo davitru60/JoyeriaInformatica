@@ -126,6 +126,7 @@ class AuthController extends Controller
         return response(['usuario' => Auth::user()],Response::HTTP_OK);
     }
 
+    
     public function obtenerRoles()
     {
         $descripcionRoles = Rol::join('usuario_rol', 'rol.id_rol', '=', 'usuario_rol.id_rol')

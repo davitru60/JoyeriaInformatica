@@ -12,7 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('inventario', function (Blueprint $table) {
-            $table->id();
+            $table->id('id_inventario');
+            $table->unsignedBigInteger('id_comp');
+            $table->string('cantidad');
+            $table->foreign('id_comp')->references('id_comp')->on('componente')->onDelete('cascade');
             $table->timestamps();
         });
     }

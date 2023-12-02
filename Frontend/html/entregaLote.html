@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="../sass/styles.css" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap" rel="stylesheet">
@@ -21,7 +22,7 @@
     <div class="d-flex" id="wrapper">
        
         <!-- Sidebar -->
-        <script src="../js/components/sidebarClasificador.js"></script>
+        <script src="../js/components/sidebarLote.js"></script>
         <!-- /#sidebar-wrapper -->
 
         <!-- Page Content -->
@@ -36,26 +37,37 @@
             </div>
 
             <main>
-                <div class="row m-2">
-                    <h2 class="fs-3 mb-3">Lista de lotes entregados</h2>
-                    <div class="col-table">
-                        <table id="loteEntregado" class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>ID Lote</th>
-                                    <th>Ubicación</th>
-                                    <th>Estado </th>
-                                    <th>Acciones</th>
-                                </tr>
-                            </thead>
-                        </table>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2 class="fs-3 mb-3">Entregar lote</h2>
+                        <div class="form-group">
+                            <label for="latitud">Latitud</label>
+                            <input type="text" name="latitud" id="latitud" class="form-control">
+                        </div>
+            
+                        <div class="form-group">
+                            <label for="longitud">Longitud</label>
+                            <input type="text" name="longitud" id="longitud" class="form-control">
+                        </div>
+            
+                        <button type="button" class="btn btn-primary mt-3" id="enviarBtn">Enviar</button>
+                    </div>
+            
+                    <div class="col-md-6 mt-3">
+                        <div id="map" style="height: 500px; width: 100%;"></div>
                     </div>
                 </div>
             </main>
+            
 
         </div>
     </div>
 
+    <script src="../js/utilities/generarMapa.js"></script>
+    
+
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDaeWicvigtP9xPv919E-RNoxfvC-Hqik&callback=iniciarMap"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -66,7 +78,7 @@
     <script src="../js/utilities/tabla.js"></script>
     <script src="../js/utilities/barToggle.js"></script>
 
-    <script type="module" src="../js/interface/lotesEntregadosUI.js"></script>
+    <script type="module" src="../js/interface/entregaLotesUI.js"></script>
 
 
 </body>

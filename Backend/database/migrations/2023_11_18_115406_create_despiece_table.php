@@ -12,7 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('despiece', function (Blueprint $table) {
-            $table->id();
+            $table->unsignedBigInteger('id_lote');
+            $table->unsignedBigInteger('id_comp');
+            $table->string('cantidad');
+            $table->string('descripcion');
+            $table->foreign('id_lote')->references('id_lote')->on('lote')->onDelete('cascade');
+            $table->foreign('id_comp')->references('id_comp')->on('componente')->onDelete('cascade');
             $table->timestamps();
         });
     }

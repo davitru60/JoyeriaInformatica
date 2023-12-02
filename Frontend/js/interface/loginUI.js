@@ -94,7 +94,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    btnLogin.addEventListener("click",async()=>{
+    btnLogin.addEventListener("click",async(event)=>{
+        event.preventDefault()
         await iniciarSesion()
     })
 

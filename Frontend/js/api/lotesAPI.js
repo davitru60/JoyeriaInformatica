@@ -3,7 +3,7 @@ export async function mostrarLotes() {
     const urlApi = constantes.urlApi
 
     try {
-        const token = localStorage.getItem('token');
+        const token = localStorage.getItem('token')
 
         const respuesta = await fetch(urlApi + 'lotes', {
             headers: {
@@ -48,3 +48,26 @@ export async function eliminarLote(id) {
     }
 }
 
+export async function entregarLote(lote){
+    const urlApi = constantes.urlApi
+    const token = localStorage.getItem('token')
+    try{
+        const respuesta = await fetch(urlApi+'lotes', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            },
+            body: JSON.stringify(lote)
+        })
+
+        if (respuesta.ok) {
+            const datos = await respuesta.json()
+            console.log(datos)
+        }else{
+            console.log('Algo fue mal')
+        }
+    }catch(error){
+        
+    }
+}

@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('admin_componente', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
         });
     }
 
