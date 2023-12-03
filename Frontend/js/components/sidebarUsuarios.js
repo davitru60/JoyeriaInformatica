@@ -11,7 +11,7 @@ const crearBarraLateral = () => {
               </a>
 
               <div class="collapse" id="componentesCollapse">
-                 <a href="clasificador.html" class="list-group-item list-group-item-action fw-bold" id="verComponenteBtn">
+                 <a href="componentesAdmin.html" class="list-group-item list-group-item-action fw-bold" id="verComponenteBtn">
                     <i class="far fa-keyboard me-2 ms-3"></i> Ver componentes
                  </a>
 
