@@ -146,12 +146,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     // Obtener las referencias a los campos de texto dentro del modal específico
                     const modalElement = document.getElementById(`myModal${id}`)
-                    const nombreUsu = modalElement.querySelector(`nombre`).value
-                    const ape1Usu = modalElement.querySelector(`#ap1`).value
-                    const ape2Usu = modalElement.querySelector(`#ap2`).value
-                    const emailUsu = modalElement.querySelector(`#email`).value
-                    const contraUsu = modalElement.querySelector(`#contra`).value
-
+                    const nombreUsu = modalElement.querySelector(`#nombre${id}`).textContent
+                    const ape1Usu = modalElement.querySelector(`#ap1${id}`).value
+                    const ape2Usu = modalElement.querySelector(`#ap2${id}`).value
+                    const emailUsu = modalElement.querySelector(`#email${id}`).value
+                    const contraUsu = modalElement.querySelector(`#contra${id}`).value
+                    
                     const usuarioObjeto = {
                         nombre: nombreUsu,
                         ape1: ape1Usu,
@@ -159,7 +159,6 @@ document.addEventListener("DOMContentLoaded", function () {
                         email: emailUsu,
                         contrasena: contraUsu,
                     }
-
                     await editarUsuario(id, usuarioObjeto)
 
                     // Cerrar el modal después de modificar
@@ -169,44 +168,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     console.error('Error al confirmar la modificación:', error)
                 }
             });
-        }
-    }
-    async function anadirUsuarioUI() {
-        console.log('Iniciando anadirUsuarioUI');
-        const anadirBtn = document.getElementById("anadirBtn");
-        if (anadirBtn) {
-            anadirBtn.addEventListener('click', async () => {
-                try {
-                    const modalElement = document.getElementById("anadirUsuarioModal");
-                    const nombre = document.getElementById('nombre').value
-                    const ape1 = document.getElementById('#ap1').value
-                    const ape2 = document.getElementById('#ap2').value
-                    const email = document.getElementById('#email').value
-                    const contrasena = document.getElementById('#contra').value
-
-                    const usuario = {
-                        nombre: nombre,
-                        ape1: ape1,
-                        ape2: ape2,
-                        correo: email,
-                        contrasena: contrasena,
-                        foto: "url"
-                    }
-                    await anadirUsuario(usuario);
-
-                    // Cierra el modal después de eliminar
-
-                    const modal = new bootstrap.Modal(modalElement);
-                    modal.hide();
-
-
-
-                } catch (error) {
-                    console.error('Error al confirmar la eliminación:', error);
-                }
-                console.log('Finalizando anadirUsuarioUI');
-            });
-
         }
     }
     rellenarConUsuario()

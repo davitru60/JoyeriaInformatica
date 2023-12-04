@@ -80,7 +80,7 @@ export async function eliminarUsuario(id_usuario){
 export async function editarUsuario(id_usuario, usuario){
     const rutaUsuario = constantes.urlApi + 'usuarios/';
     try {
-        const respuesta = await fetch(rutaUsuario + id_usuario, {
+        const respuesta = await fetch('http://127.0.0.1:8000/api/usuarios/' + id_usuario, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
