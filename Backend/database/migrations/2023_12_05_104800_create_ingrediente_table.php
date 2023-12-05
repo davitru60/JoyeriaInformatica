@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('despiece', function (Blueprint $table) {
-            $table->id('id_despiece');
-            $table->unsignedBigInteger('id_lote');
+        Schema::create('ingrediente', function (Blueprint $table) {
+            $table->id('id_ing');
+            $table->unsignedBigInteger('id_receta');
             $table->unsignedBigInteger('id_comp');
-            $table->string('cantidad');
-            $table->string('descripcion');
-            $table->foreign('id_lote')->references('id_lote')->on('lote')->onDelete('cascade');
+            $table->integer('cantidad');
+            $table->foreign('id_receta')->references('id_receta')->on('colaborador')->onDelete('cascade');
             $table->foreign('id_comp')->references('id_comp')->on('componente')->onDelete('cascade');
             $table->timestamps();
         });
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('despiece');
+        Schema::dropIfExists('ingrediente');
     }
 };

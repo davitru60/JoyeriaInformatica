@@ -12,4 +12,9 @@ class Colaborador extends Model
     protected $fillable = [
         'id_usuario'
     ];
+
+    public function lote()
+    {
+        return $this->hasMany(Lote::class, 'id_colaborador');
+    }
 }

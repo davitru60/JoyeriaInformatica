@@ -12,14 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('usuario_rol', function (Blueprint $table) {
-
             $table->unsignedBigInteger('id_usuario');
             $table->foreign('id_usuario')->references('id')->on('users')->onDelete('cascade');
-
             $table->unsignedBigInteger('id_rol');
             $table->foreign('id_rol')->references('id_rol')->on('rol')->onDelete('cascade');
-
-            $table->timestamps();   
+            $table->timestamps();
         });
         
     }

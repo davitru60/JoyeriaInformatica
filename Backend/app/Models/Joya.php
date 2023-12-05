@@ -5,16 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Componentes extends Model
+class Joya extends Model
 {
-    use HasFactory; 
+    use HasFactory;
+    protected $table = 'joya';
 
-
-    protected $table = 'componente';
-    protected $primaryKey = 'id_comp';
     protected $fillable = [
         'nombre',
-        'hw',
-        'cantidad'
+        'foto'
     ];
 }

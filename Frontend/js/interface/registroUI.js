@@ -184,10 +184,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if(respuesta.ok){
                 const datosRespuesta = await respuesta.json()
+                console.log('Respuesta del servidor:', datosRespuesta)
             }
 
         } catch (error) {
-
+            console.error('Error en la respuesta del servidor:', respuesta.status);
         }
     }
 
