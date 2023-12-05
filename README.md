@@ -1,6 +1,6 @@
 # Reto 2 - Joyería Informática
  ## 🧩 Introducción al proyecto
-Este proyecto se centra en el desarrollo de una aplicación web de creación de joyas a partir de componentes de ordenadores ya en desususo. El objetivo del proyecto es aprender a realizar una aplicación web desde cero juntando la parte del servidor y del cliente para finalmente con la interfaz poder mostrar y gestionar los datos relacionados con el sistema.
+Este proyecto se centra en el desarrollo de una aplicación web de creación de joyas a partir de componentes de ordenadores ya en desuso. El objetivo del proyecto es aprender a realizar una aplicación web desde cero juntando la parte del servidor y del cliente para finalmente con la interfaz poder mostrar y gestionar los datos relacionados con el sistema.
 
 ## 🛠️ Requisitos
 - Tener instalado y configurado XAMPP.
