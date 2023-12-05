@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Administrador;
 use App\Models\Clasificador;
+use App\Models\Colaborador;
 use App\Models\Diseñador;
 use App\Models\Rol;
 use App\Models\User;
@@ -20,10 +21,6 @@ class UsuarioController extends Controller
         return response()->json(['usuarios' => $usuarios]);
     }
 
-    public function create()
-    {
-        return response()->json(['message' => 'Not supported for JSON response'], 400);
-    }
 
     public function store(Request $request)
     {
@@ -59,7 +56,6 @@ class UsuarioController extends Controller
                 'respuestasRoles' => $respuestasRoles,
             ], Response::HTTP_CREATED);
         }
-
     }
 
     public function buscar($id_usuario)
@@ -73,28 +69,48 @@ class UsuarioController extends Controller
         return response()->json(['usuario' => $usuario]);
     }
 
-    public function update(Request $request, User $usuario)
-    {
-        $request->validate([
-            'nombre' => 'required',
-            'ape1' => 'required',
-            'ape2' => 'required',
-            'email' => 'required|email',
-            'contrasena' => 'required',
-            'foto' => 'required',
-        ]);
-
-        $usuario->update($request->all());
-
-        return response()->json(['usuario' => $usuario, 'message' => 'Usuario actualizado exitosamente']);
-    }
-
     public function destroy($id_usuario)
     {
         $usuario = User::find($id_usuario);
         $usuario->delete();
 
         return response()->json(['message' => 'Usuario eliminado exitosamente']);
+    }
+
+    public function actualizar(Request $request,$id_usuario)
+    {
+        // Buscar el usuario por ID
+        $usuario = User::find($id_usuario);
+
+        // Verificar si el usuario existe
+        if (!$usuario) {
+            return response()->json(['message' => 'Usuario no encontrado'], 404);
+        }
+
+        // Validar los datos de la solicitud
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'ape1' => 'required|string|max:255',
+            'ape2' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email,' . $usuario->id,
+            'contrasena' => 'required|string|min:6',
+            'foto' => 'required|string',
+        ]);
+
+        // Actualizar los datos del usuario
+        $usuario->update([
+            'nombre' => $request['nombre'],
+            'ape1' => $request['ape1'],
+            'ape2' => $request['ape2'],
+            'email' => $request['email'],
+            'password' => bcrypt($request['contrasena']),
+            'foto' => $request['foto'],
+        ]);
+
+        // Puedes agregar lógica adicional según sea necesario
+
+        // Respuesta JSON con el usuario actualizado
+        return response()->json(['usuario' => $usuario, 'message' => 'Usuario actualizado exitosamente']);
     }
 
     protected function crearUsuarioPorRol(User $usuario, array $roles)
@@ -114,8 +130,6 @@ class UsuarioController extends Controller
                     'rol' => $rolNombre,
                     'mensaje' => 'Rol asignado correctamente',
                 ];
-
-
             } else {
                 $respuestas[] = [
                     'rol' => $rol,
@@ -131,6 +145,9 @@ class UsuarioController extends Controller
     {
         foreach ($roles as $rol) {
             switch ($rol) {
+                case 'Colaborador':
+                    $this->crearColaborador($usuario);
+                    break;
                 case 'Diseñador':
                     $this->crearDisenador($usuario);
                     break;
@@ -139,12 +156,11 @@ class UsuarioController extends Controller
                     break;
 
                 case 'Clasificador':
-                    $this->crearAdministrador($usuario);
+                    $this->crearClasificador($usuario);
                     break;
             }
         }
     }
-
 
     protected function crearDisenador(User $usuario)
     {
@@ -159,5 +175,10 @@ class UsuarioController extends Controller
     protected function crearClasificador(User $usuario)
     {
         Clasificador::create(['id_usuario' => $usuario->id]);
+    }
+
+    protected function crearColaborador(User $usuario)
+    {
+        Colaborador::create(['id_usuario' => $usuario->id]);
     }
 }

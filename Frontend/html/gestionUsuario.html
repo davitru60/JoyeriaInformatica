@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
-    <link rel="stylesheet" href="../sass/estilos.css" />
+    <link rel="stylesheet" href="../sass/styles.css" />
 
     <title>Title</title>
 </head>
@@ -20,7 +20,7 @@
     </main>
     <div class="d-flex" id="wrapper">
         <!-- Sidebar -->
-        <script src="../js/components/sidebarLote.js"></script>
+        <script src="../js/components/sidebarUsuarios.js"></script>
         <!-- /#sidebar-wrapper -->
 
         <!-- Page Content -->
@@ -28,7 +28,7 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
                 <div class="d-flex align-items-center">
                     <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
-                    <h2 class="fs-2 m-0">Dashboard</h2>
+                    <h2 class="fs-2 m-0">Administración</h2>
                 </div>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -75,24 +75,72 @@
             <div class="row m-2">
                 <h3 class="fs-4 mb-3">Lista de entregas</h3>
                 <div class="col">
-                    <table id="example" class="table table-striped" style="width:100%">
+                    <table id="usuarios" class="table table-striped" style="width:100%">
                         <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Position</th>
-                                <th>Office</th>
-                                <th>Age</th>
-                                <th>Start date</th>
-                                <th>Actions</th>
+                            <tr> 
+                                <th>Foto</th>
+                                <th>Nombre</th>
+                                <th>Apellido 1</th>
+                                <th>Apellido 2</th>
+                                <th>Correo</th>
+                                <th>Acciones</th>
                             </tr>
                         </thead>
-                        <tbody id="rellenarTabla">
-                            
-                        </tbody>
+
                     </table>
                 </div>
             </div>
-
+        <!--Modal añadir usuario-->
+        <div class="modal" id="anadirUsuarioModal">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Editar nuevo usuario</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <label for="nombre" class="form-label">Nombre</label>
+                            <input type="text" id="nombre" name="nombre" class="form-control">
+                            <div class="invalid-feedback" id="mensajeNombre"></div>
+                        </div>
+        
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <label for="ap1" class="form-label">Primer apellido</label>
+                            <input type="text" id="ap1" name="ap1" class="form-control">
+                            <div class="invalid-feedback" id="mensajeAp1"></div>
+                        </div>
+        
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <label for="ap2" class="form-label">Segundo apellido</label>
+                            <input type="text" id="ap2" name="ap2" class="form-control">
+                            <div class="invalid-feedback" id="mensajeAp2"></div>
+                        </div>
+        
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="text" id="email" name="email" class="form-control">
+                            <div class="invalid-feedback" id="mensajeEmail"></div>
+                        </div>
+        
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <label for="contra" class="form-label">Contraseña</label>
+                            <div class="input-group">
+                                <input type="password" id="contra" name="contra" class="form-control">
+                                <button type="button" class="btn btn-primary" id="btn-contra">
+                                <i class="bi bi-eye-slash-fill" id="eye-icon"></i>
+                                </button>
+                            <div class="invalid-feedback" id="mensajeContrasena"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="anadirBtn">Crear usuario</button>
+                    </div>
+                </div>                
+            </div>
+        </div>
         </div>
     </div>
 
