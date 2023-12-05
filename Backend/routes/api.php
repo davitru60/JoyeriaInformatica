@@ -5,6 +5,7 @@ use App\Http\Controllers\ClasificadorController;
 use App\Http\Controllers\ComponentesController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\JoyaController;
+use App\Http\Controllers\RecetaController;
 use App\Http\Controllers\Api\LoteController;
 use Illuminate\Support\Facades\Route;
 
@@ -40,6 +41,14 @@ Route::post('/joya', [JoyaController::class, 'store']);
 Route::put('/joya/{id}',[JoyaController::class,'actualizar']);
 Route::get('/joya/{id}', [JoyaController::class, 'buscar']); 
 Route::delete('/joya/{id}', [JoyaController::class, 'destroy']); 
+
+//Recetas
+Route::get('/recetas', [RecetaController::class, 'index']);
+Route::post('/recetas', [RecetaController::class, 'store']);
+Route::put('/recetas/{id}', [RecetaController::class, 'actualizar']);
+Route::get('/recetas/{id}', [RecetaController::class, 'buscar']);
+Route::delete('/recetas/{id}', [RecetaController::class, 'destroy']);
+
 
 //Lotes
 Route::group(['middleware' => ['auth:sanctum']], function () {
