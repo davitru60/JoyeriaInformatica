@@ -14,8 +14,9 @@ use Symfony\Component\HttpFoundation\Response;
 
 class LoteController extends Controller
 {
-    public function agregarLote(Request $request){
-    
+    public function agregarLote(Request $request)
+    {
+
         $validator = Validator::make($request->all(), [
             'latitud' => 'required',
             'longitud' => 'required',
@@ -37,19 +38,21 @@ class LoteController extends Controller
         }
     }
 
-    public function mostrarLotes(){
+    public function mostrarLotes()
+    {
         $usuario = Auth::user();
         $colaborador = Colaborador::where('id_usuario', $usuario->id)->value('id_colaborador');
 
         if ($colaborador) {
-            $lotes = Lote::where('id_colaborador',$colaborador)->get();
+            $lotes = Lote::where('id_colaborador', $colaborador)->get();
             return response(['lotes' => $lotes], Response::HTTP_OK);
         } else {
             return response(['mensaje' => 'Usuario no tiene un colaborador asociado'], Response::HTTP_NOT_FOUND);
         }
     }
 
-    public function eliminarLote($id){
+    public function eliminarLote($id)
+    {
         try {
             $lote = Lote::findOrFail($id);
             $lote->delete();
@@ -58,6 +61,18 @@ class LoteController extends Controller
         } catch (Exception $e) {
             return response(['error' => 'No se pudo eliminar el lote'], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
+    }
+
+    public function mostrarLotesNoClasificados()
+    {
+        try {
+            $lotes = Lote::where('estado','!=','Clasificado')->get();
+            return response(['lotes' => $lotes], Response::HTTP_OK);
+
+        } catch (Exception $e) {
+            return response()->json(['error' => 'Error al obtener lotes no clasificados'], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+
     }
 }
 

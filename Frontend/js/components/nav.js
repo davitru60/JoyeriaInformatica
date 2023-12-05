@@ -7,7 +7,7 @@ const obtenerRoles = async () => {
 
 async function mostrarPerfilUsuario() {
     try {
-        const token = localStorage.getItem('token');
+        const token = sessionStorage.getItem('token');
 
         const respuesta = await fetch('http://127.0.0.1:8000/api/perfil', {
             headers: {

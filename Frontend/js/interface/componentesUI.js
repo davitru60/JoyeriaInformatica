@@ -111,7 +111,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     async function modificarComponenteUI(id) {
-        const modificarBtn = document.getElementById(`modificarBtn${id}`);
+        const modificarBtn = document.getElementById(`modificarBtn${id}`)
     
         if (modificarBtn) {
             modificarBtn.addEventListener('click', async () => {

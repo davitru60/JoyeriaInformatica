@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id('id_comp');
             $table->string('nombre');
             $table->boolean('hw');
+            $table->integer('cantidad')->default(0);
             $table->timestamps();
         });
     }

@@ -11,10 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('inventario', function (Blueprint $table) {
-            $table->id('id_inventario');
+        Schema::create('ingrediente', function (Blueprint $table) {
+            $table->id('id_ing');
+            $table->unsignedBigInteger('id_receta');
             $table->unsignedBigInteger('id_comp');
-            $table->string('cantidad');
+            $table->integer('cantidad');
+            $table->foreign('id_receta')->references('id_receta')->on('colaborador')->onDelete('cascade');
             $table->foreign('id_comp')->references('id_comp')->on('componente')->onDelete('cascade');
             $table->timestamps();
         });
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('inventario');
+        Schema::dropIfExists('ingrediente');
     }
 };

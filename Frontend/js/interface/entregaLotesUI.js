@@ -1,8 +1,8 @@
 import { entregarLote } from "../api/lotesAPI.js";
 
 document.addEventListener("DOMContentLoaded", function () {
-    var latitud = document.getElementById("latitud");
-    var longitud = document.getElementById("longitud");
+    var latitud = document.getElementById("latitud")
+    var longitud = document.getElementById("longitud")
 
     function entregarLoteUI() {
         var btnEnviar = document.getElementById("enviarBtn");
@@ -11,21 +11,19 @@ document.addEventListener("DOMContentLoaded", function () {
             const lote = {
                 latitud: latitud.value,
                 longitud: longitud.value,
-            };
-
-            console.log(lote);
+            }
 
             try {
-                await entregarLote(lote);
-                // Puedes agregar aquí cualquier lógica adicional después de entregar el lote.
+                await entregarLote(lote)
+
             } catch (error) {
-                console.error('Error al añadir el lote', error);
+                console.error('Error al añadir el lote', error)
             }
         });
     }
 
     function iniciarMap() {
-        var coord = { lat: 38.693082781209704, lng: -4.108655534417066 };
+        var coord = { lat: 38.693082781209704, lng: -4.108655534417066 }
         generarMapa(coord);
     }
 
@@ -41,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
             position: new google.maps.LatLng(coord.lat, coord.lng),
         });
 
-        marcador.addListener("dragend", function (event) {
+        marcador.addListener("dragend", function () {
             document.getElementById("latitud").value = this.getPosition().lat();
             document.getElementById("longitud").value = this.getPosition().lng();
         });

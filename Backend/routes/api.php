@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\ClasificadorController;
 use App\Http\Controllers\ComponentesController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\Api\LoteController;
@@ -36,3 +37,11 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('lotes',[LoteController::class,'agregarLote']);
     Route::delete('lotes/{id}',[LoteController::class,'eliminarLote']);
 });
+
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::post('despiece{id}',[ClasificadorController::class,'despiezarLote']);
+    Route::put('despiece/{id}',[ClasificadorController::class,'modificarEstadoLote']);
+   
+});
+
+Route::get('lotesNoClasificados',[LoteController::class,'mostrarLotesNoClasificados']);
