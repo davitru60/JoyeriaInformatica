@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\ClasificadorController;
 use App\Http\Controllers\ComponentesController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\JoyaController;
 use App\Http\Controllers\Api\LoteController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,7 +32,14 @@ Route::get('/componente', [ComponentesController::class, 'index']);
 Route::post('/componente', [ComponentesController::class, 'store']); 
 Route::put('/componente/{id}',[ComponentesController::class,'actualizar']);
 Route::get('/componente/{id}', [ComponentesController::class, 'buscar']); 
-Route::delete('/componente/{id}', [ComponentesController::class, 'destroy']); 
+Route::delete('/componente/{id}', [ComponentesController::class, 'destroy']);
+
+//Joyas
+Route::get('/joya', [JoyaController::class, 'index']); 
+Route::post('/joya', [JoyaController::class, 'store']); 
+Route::put('/joya/{id}',[JoyaController::class,'actualizar']);
+Route::get('/joya/{id}', [JoyaController::class, 'buscar']); 
+Route::delete('/joya/{id}', [JoyaController::class, 'destroy']); 
 
 //Lotes
 Route::group(['middleware' => ['auth:sanctum']], function () {
