@@ -158,7 +158,7 @@ const crearNavegacion = async () => {
             'logout': '/logout',
             'clasificador': 'clasificador.html',
             'diseñador': '/pagina-disenador',
-            'administrador': '/pagina-administrador'
+            'administrador': 'gestionUsuario.html'
         };
 
         // Agrega eventos de clic a los elementos del menú

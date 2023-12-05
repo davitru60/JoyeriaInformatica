@@ -11,13 +11,13 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="../sass/styles.css" />
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap" rel="stylesheet">
     <title>Title</title>
 </head>
 
 <body>
-    <main>
-        
-    </main>
     <div class="d-flex" id="wrapper">
         <!-- Sidebar -->
         <script src="../js/components/sidebarUsuarios.js"></script>
@@ -25,55 +25,17 @@
 
         <!-- Page Content -->
         <div id="page-content-wrapper">
-            <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
-                <div class="d-flex align-items-center">
-                    <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
-                    <h2 class="fs-2 m-0">Administración</h2>
-                </div>
+            <script src="../js/components/nav.js"></script>
 
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle second-textd" href="#" id="navbarDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fas fa-user me-2"></i>John Doe
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <li>
-                                    <div class="dropdown-item">
-                                        <i class="fas fa-user-circle me-2"></i>
-                                        <span class="fw-bold">User Profile</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="dropdown-item">
-                                        <i class="fas fa-cog me-2"></i>
-                                        <span class="fw-bold">Account Settings</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="dropdown-divider"></div>
-                                </li>
-                                <li>
-                                    <div class="dropdown-item">
-                                        <i class="fas fa-sign-out-alt me-2"></i>
-                                        <span class="fw-bold">Logout</span>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
+            <div class="container-fluid pages">
+                <div class="card-body" id="intro-card">
+                    <script src="../js/components/tarjetaIntro.js"></script>
                 </div>
-            </nav>
+            </div>
 
             <div class="row m-2">
-                <h3 class="fs-4 mb-3">Lista de entregas</h3>
+                <h3 class="fs-3 mb-3">Lista de usuarios</h3>
                 <div class="col">
                     <table id="usuarios" class="table table-striped" style="width:100%">
                         <thead>
