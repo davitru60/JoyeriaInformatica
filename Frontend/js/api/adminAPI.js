@@ -83,7 +83,8 @@ export async function editarUsuario(id_usuario, usuario){
         const respuesta = await fetch('http://127.0.0.1:8000/api/usuarios/' + id_usuario, {
             method: 'PUT',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
             },
             body: JSON.stringify(usuario),
         });

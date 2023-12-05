@@ -5,8 +5,7 @@ use App\Http\Controllers\ComponentesController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\Api\LoteController;
 use Illuminate\Support\Facades\Route;
-
-
+use App\Http\Middleware\Cors;
 
 Route::get('/usuarios', [UsuarioController::class, 'index']); //Saca todos los usuarios
 Route::post('/usuarios', [UsuarioController::class, 'store']); //Guarda 1 usuario
