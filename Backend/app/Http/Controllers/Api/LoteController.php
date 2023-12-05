@@ -11,12 +11,15 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\Response;
 
+
 class LoteController extends Controller
 {
-    public function agregarLote(Request $request){
-    
+    public function agregarLote(Request $request)
+    {
+
         $validator = Validator::make($request->all(), [
-            'ubicacion' => 'required|string',
+            'latitud' => 'required',
+            'longitud' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -27,28 +30,29 @@ class LoteController extends Controller
             $colaboradorId = Colaborador::where('id_usuario', $usuario->id)->value('id_colaborador');
             $lote = Lote::create([
                 'id_colaborador' => $colaboradorId,
-                'ubicacion' => $request->input('ubicacion')
+                'latitud' => $request->input('latitud'),
+                'longitud' => $request->input('longitud')
             ]);
-
-        
 
             return response(['mensaje' => $lote], Response::HTTP_CREATED);
         }
     }
 
-    public function mostrarLotes(){
+    public function mostrarLotes()
+    {
         $usuario = Auth::user();
         $colaborador = Colaborador::where('id_usuario', $usuario->id)->value('id_colaborador');
 
         if ($colaborador) {
-            $lotes = Lote::where('id_colaborador',$colaborador)->get();
+            $lotes = Lote::where('id_colaborador', $colaborador)->get();
             return response(['lotes' => $lotes], Response::HTTP_OK);
         } else {
             return response(['mensaje' => 'Usuario no tiene un colaborador asociado'], Response::HTTP_NOT_FOUND);
         }
     }
 
-    public function eliminarLote($id){
+    public function eliminarLote($id)
+    {
         try {
             $lote = Lote::findOrFail($id);
             $lote->delete();
@@ -57,6 +61,18 @@ class LoteController extends Controller
         } catch (Exception $e) {
             return response(['error' => 'No se pudo eliminar el lote'], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
+    }
+
+    public function mostrarLotesNoClasificados()
+    {
+        try {
+            $lotes = Lote::where('estado','!=','Clasificado')->get();
+            return response(['lotes' => $lotes], Response::HTTP_OK);
+
+        } catch (Exception $e) {
+            return response()->json(['error' => 'Error al obtener lotes no clasificados'], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+
     }
 }
 

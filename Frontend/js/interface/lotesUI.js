@@ -14,7 +14,8 @@ document.addEventListener("DOMContentLoaded", function () {
             // Agregar cada fila al DataTable
             const row = tabla.row.add([
                 dato.id_lote,
-                dato.ubicacion,
+                dato.latitud,
+                dato.longitud,
                 dato.estado,
                 `<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#myModal${dato.id_lote}"><i class="fas fa-edit"></i></button>` +
                 `<button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal${dato.id_lote} " ><i class="fas fa-trash-alt"></i></button>`

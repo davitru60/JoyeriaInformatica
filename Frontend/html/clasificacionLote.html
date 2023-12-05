@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="../sass/styles.css" />
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap" rel="stylesheet">
@@ -38,14 +37,15 @@
 
             <main>
                 <div class="row m-2">
-                    <h2 class="fs-3 mb-3">Lista de lotes entregados</h2>
+                    <h2 class="fs-3 mb-3">Lista de lotes sin clasificar</h2>
                     <div class="col-table">
                         <table id="loteEntregado" class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th>ID Lote</th>
-                                    <th>Ubicación</th>
-                                    <th>Estado </th>
+                                    <th>Numero lote</th>
+                                    <th>Latitud</th>
+                                    <th>Longitud </th>
+                                    <th>Estado</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
@@ -65,18 +65,11 @@
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
     <script src="../js/utilities/tabla.js"></script>
+    <script src="../js/utilities/barToggle.js"></script>
 
     <script type="module" src="../js/interface/lotesEntregadosUI.js"></script>
 
 
-    <script>
-        var el = document.getElementById("wrapper");
-        var toggleButton = document.getElementById("menu-toggle");
-
-        toggleButton.onclick = function () {
-            el.classList.toggle("toggled");
-        };
-    </script>
 </body>
 
 </html>

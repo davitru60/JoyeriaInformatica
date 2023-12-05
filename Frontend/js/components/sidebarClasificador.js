@@ -125,10 +125,9 @@ const guardarComponente = async() => {
         hw: hwDropdown
     }
 
-    await agregarComponente(componenteObjeto)
+    console.log(componenteObjeto)
 
-    console.log('Nombre del Componente:', nombreComponente)
-    console.log('Valor de HW:', hwDropdown)
+    await agregarComponente(componenteObjeto)
 
     // Cerrar el modal si es necesario
     const modalElement = document.getElementById('agregarComponentesModal')

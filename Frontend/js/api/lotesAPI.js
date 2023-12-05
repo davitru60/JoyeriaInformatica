@@ -3,7 +3,7 @@ export async function mostrarLotes() {
     const urlApi = constantes.urlApi
 
     try {
-        const token = localStorage.getItem('token');
+        const token = sessionStorage.getItem('token')
 
         const respuesta = await fetch(urlApi + 'lotes', {
             headers: {
@@ -23,11 +23,27 @@ export async function mostrarLotes() {
     }
 }
 
+export async function mostrarLotesNoClasificados(){
+    const urlApi = constantes.urlApi
+
+    try{
+        const respuesta = await fetch(urlApi + 'lotesNoClasificados')
+        if (respuesta.ok) {
+            const datos = await respuesta.json()
+            return datos.lotes
+        } else {
+            console.log('Algo fue mal')
+        }
+    }catch(error){
+
+    }
+}
+
 export async function eliminarLote(id) {
     const urlApi = constantes.urlApi
 
     try {
-        const token = localStorage.getItem('token')
+        const token = sessionStorage.getItem('token')
 
         const respuesta = await fetch(urlApi + 'lotes/' + id, {
             method: 'DELETE',
@@ -48,3 +64,41 @@ export async function eliminarLote(id) {
     }
 }
 
+export async function entregarLote(lote){
+    const urlApi = constantes.urlApi
+    const token = sessionStorage.getItem('token')
+    try{
+        const respuesta = await fetch(urlApi+'lotes', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            },
+            body: JSON.stringify(lote)
+        })
+
+        if (respuesta.status==422) {
+            const datos = await respuesta.json()
+
+            console.log(datos)
+            
+         
+            const alerta = document.createElement('div')
+            alerta.classList.add('alert', 'alert-danger', 'mt-3')
+            alerta.textContent = datos.errores
+
+
+            const fila = document.querySelector('.form-group')
+            fila.insertBefore(alerta,fila.firstChild)
+
+            setTimeout(() => {
+                alerta.remove()
+            }, 1500)
+
+        }else{
+            
+        }
+    }catch(error){
+        
+    }
+}

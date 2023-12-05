@@ -38,6 +38,7 @@ class ComponentesController extends Controller
     }
 
     public function actualizar(Request $request, $id_comp){
+        
         // Buscar el $componente por ID
         $componente = Componentes::find($id_comp);
 

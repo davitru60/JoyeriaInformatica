@@ -18,7 +18,7 @@ export async function mostrarComponentes(){
 export async function modificarComponente(id,componente){
     const urlApi = constantes.urlApi
     try{
-        const respuesta = await fetch(urlApi+'componente/'+id,{
+        const respuesta = await fetch(urlApi+'componente/'+ id,{
             method:'PUT',
             headers: {
                 'Content-Type': 'application/json'

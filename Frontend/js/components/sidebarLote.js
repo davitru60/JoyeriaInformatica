@@ -10,8 +10,12 @@ const crearBarraLateral = () => {
             <i class="fas fa-chevron-down ms-auto"></i>
         </a>
         <div class="collapse" id="dashboardCollapse">
-            <a class="list-group-item list-group-item-action fw-bold">
+            <a href="entregaLote.html" class="list-group-item list-group-item-action fw-bold">
                 <i class="fas fa-box me-2 ms-3"></i> Entregar lote
+            </a>
+
+            <a href="inicio.html" class="list-group-item list-group-item-action fw-bold">
+                <i class="fas fa-key me-2 ms-3"></i> Ver lotes
             </a>
         </div>
     </div>
