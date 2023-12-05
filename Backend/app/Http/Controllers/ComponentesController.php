@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Componentes;
-use Illuminate\Console\View\Components\Component;
 use Illuminate\Http\Request;
 
 class ComponentesController extends Controller
@@ -64,33 +63,7 @@ class ComponentesController extends Controller
         return response()->json(['componente' => $componente]);
     }
 
-    public function actualizar(Request $request, $id_comp){
         
-        // Buscar el $componente por ID
-        $componente = Componentes::find($id_comp);
-
-        // Verificar si el comp$componente existe
-        if (!$componente) {
-            return response()->json(['message' => 'Componente no encontrado'], 404);
-        }
-
-        // Validar los datos de la solicitud
-        $request->validate([
-            'nombre' => 'required|string|max:255',
-            'hw' => 'required|boolean',
-        ]);
-
-        // Actualizar los datos del comp$componente
-        $componente->update([
-            'nombre' => $request['nombre'],
-            'hw' => $request['hw'],
-        ]);
-
-        // Respuesta JSON con el $componente actualizado
-        return response()->json(['$componente' => $componente, 'message' => 'Componente actualizado exitosamente']);
-    }
-    
-    
     public function destroy($id_comp)
     {
         $componente = Componentes::find($id_comp);

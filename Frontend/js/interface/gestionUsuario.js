@@ -146,7 +146,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     // Obtener las referencias a los campos de texto dentro del modal específico
                     const modalElement = document.getElementById(`myModal${id}`)
-                    const nombreUsu = modalElement.querySelector(`#nombre${id}`).textContent
+                    const nombreUsu = modalElement.querySelector(`#nombre${id}`).value
                     const ape1Usu = modalElement.querySelector(`#ap1${id}`).value
                     const ape2Usu = modalElement.querySelector(`#ap2${id}`).value
                     const emailUsu = modalElement.querySelector(`#email${id}`).value
