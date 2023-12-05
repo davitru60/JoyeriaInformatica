@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Administrador;
 use App\Models\Clasificador;
+use App\Models\Colaborador;
 use App\Models\Diseñador;
 use App\Models\Rol;
 use App\Models\User;
@@ -144,6 +145,9 @@ class UsuarioController extends Controller
     {
         foreach ($roles as $rol) {
             switch ($rol) {
+                case 'Colaborador':
+                    $this->crearColaborador($usuario);
+                    break;
                 case 'Diseñador':
                     $this->crearDisenador($usuario);
                     break;
@@ -152,7 +156,7 @@ class UsuarioController extends Controller
                     break;
 
                 case 'Clasificador':
-                    $this->crearAdministrador($usuario);
+                    $this->crearClasificador($usuario);
                     break;
             }
         }
@@ -171,5 +175,10 @@ class UsuarioController extends Controller
     protected function crearClasificador(User $usuario)
     {
         Clasificador::create(['id_usuario' => $usuario->id]);
+    }
+
+    protected function crearColaborador(User $usuario)
+    {
+        Colaborador::create(['id_usuario' => $usuario->id]);
     }
 }
