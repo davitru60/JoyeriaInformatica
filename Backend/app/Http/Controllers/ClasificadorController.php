@@ -43,7 +43,7 @@ class ClasificadorController extends Controller
             }
 
             $componente = [
-                'id_lote' => $request->input('id_lote'),
+                'id_lote' => $idLote,
                 'id_comp' => $request->input('id_comp'),
                 'cantidad' => $request->input('cantidad'),
                 'descripcion' => $request->input('descripcion')
@@ -111,7 +111,7 @@ class ClasificadorController extends Controller
             ]);
 
             if ($validator->fails()) {
-                return response()->json(['error' => 'Datos de entrada no válidos', 'detalles' => $validator->errors()], Response::HTTP_UNPROCESSABLE_ENTITY);
+                return response()->json(['error' => 'Datos de entrada no válidos'], Response::HTTP_UNPROCESSABLE_ENTITY);
             } else {
                 $lote->update([
                     'id_clasificador'=> $clasificador->id_clasificador,
@@ -125,5 +125,16 @@ class ClasificadorController extends Controller
         return response()->json(['error' => 'Error al modificar el estado del lote', 'detalles' => $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
     }
 }
+
+    public function obtenerIdComponente(Request $request){
+        $componente= Componentes::where('nombre',$request['nombre_comp'])->first();
+
+        if($componente){
+            return response()->json(['mensaje'=> $componente],Response::HTTP_OK);
+        }else{
+            return response()->json(['mensaje'=> 'El componente no existe'],Response::HTTP_NOT_FOUND);
+        }
+     
+    }
 
 }
