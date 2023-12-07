@@ -23,10 +23,10 @@ export async function mostrarLotes() {
     }
 }
 
-export async function mostrarLotesNoClasificados(){
+export async function mostrarLotesNoClasificados() {
     const urlApi = constantes.urlApi
 
-    try{
+    try {
         const respuesta = await fetch(urlApi + 'lotesNoClasificados')
         if (respuesta.ok) {
             const datos = await respuesta.json()
@@ -34,7 +34,7 @@ export async function mostrarLotesNoClasificados(){
         } else {
             console.log('Algo fue mal')
         }
-    }catch(error){
+    } catch (error) {
 
     }
 }
@@ -64,11 +64,11 @@ export async function eliminarLote(id) {
     }
 }
 
-export async function entregarLote(lote){
+export async function entregarLote(lote) {
     const urlApi = constantes.urlApi
     const token = sessionStorage.getItem('token')
-    try{
-        const respuesta = await fetch(urlApi+'lotes', {
+    try {
+        const respuesta = await fetch(urlApi + 'lotes', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -77,28 +77,38 @@ export async function entregarLote(lote){
             body: JSON.stringify(lote)
         })
 
-        if (respuesta.status==422) {
+        if (respuesta.status == 422) {
             const datos = await respuesta.json()
 
             console.log(datos)
-            
-         
+
+
             const alerta = document.createElement('div')
             alerta.classList.add('alert', 'alert-danger', 'mt-3')
             alerta.textContent = datos.errores
 
 
             const fila = document.querySelector('.form-group')
-            fila.insertBefore(alerta,fila.firstChild)
+            fila.insertBefore(alerta, fila.firstChild)
 
             setTimeout(() => {
                 alerta.remove()
             }, 1500)
 
-        }else{
-            
+        } else {
+            const alertaExito = document.createElement('div')
+            alertaExito.classList.add('alert', 'alert-success', 'mt-3')
+            alertaExito.textContent = 'Lote entregado con éxito.'
+
+            const fila = document.querySelector('.form-group');
+            fila.insertBefore(alertaExito, fila.firstChild);
+
+            setTimeout(() => {
+                alertaExito.remove();
+            }, 1500);
+
         }
-    }catch(error){
-        
+    } catch (error) {
+
     }
 }

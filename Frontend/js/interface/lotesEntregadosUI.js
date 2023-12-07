@@ -1,6 +1,6 @@
-import {mostrarLotesNoClasificados} from '../api/lotesAPI.js'
+import { mostrarLotesNoClasificados } from '../api/lotesAPI.js'
 import { mostrarComponentes } from '../api/componentesAPI.js'
-import { modificarEstadoLote } from '../api/despieceAPI.js'
+import { modificarEstadoLote, despiezarLote } from '../api/despieceAPI.js'
 
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -15,13 +15,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
         lotes.forEach(dato => {
             // Agregar cada fila al DataTable
-            const opcionesComponentes = componentes.map(componente => `<option value="${componente.id_componente}">${componente.nombre}</option>`).join('');
+            const opcionesComponentes = componentes.map(componente => `<option value="${componente.id_comp}">${componente.nombre}</option>`).join('');
             const row = tabla.row.add([
                 dato.id_lote,
                 dato.latitud,
                 dato.longitud,
                 dato.estado,
-                `<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#myModal${dato.id_lote}"><i class="fas fa-edit"></i></button>`+
+                `<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#myModal${dato.id_lote}"><i class="fas fa-edit"></i></button>` +
                 `<button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#modalAgregar${dato.id_lote}"><i class="fas fa-plus"></i></button>`
             ]).draw()
 
@@ -72,8 +72,8 @@ document.addEventListener("DOMContentLoaded", function () {
                                         <input type="text" class="form-control" id="numLote" value="${dato.id_lote}" readonly>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="hwDropdown" class="form-label">Componente</label>
-                                        <select class="form-select" id="hwDropdown" required>
+                                        <label for="compDropdown" class="form-label">Componente</label>
+                                        <select class="form-select" id="compDropdown" required>
                                             ${opcionesComponentes}
                                         </select>
                                     </div>
@@ -89,14 +89,14 @@ document.addEventListener("DOMContentLoaded", function () {
                                 </form>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                                <button type="button" class="btn btn-success" data-bs-dismiss="modal" id="agregarDespiece${dato.id_lote}" >Agregar</button>
                             </div>
                         </div>
                     </div>
                 </div>
             `
 
-            
+
 
 
 
@@ -107,10 +107,11 @@ document.addEventListener("DOMContentLoaded", function () {
             // Almacena la información del lote en la fila para acceder a ella cuando sea necesario
             row.nodes().to$().data('lote', dato)
             modificarEstadoLoteUI(dato.id_lote)
+            despiezarLoteUI(dato.id_lote)
         })
     }
 
-    async function modificarEstadoLoteUI(id){
+    async function modificarEstadoLoteUI(id) {
         const modificarBtn = document.getElementById(`modificarLoteBtn${id}`)
         modificarBtn.addEventListener('click', async () => {
             const modalElement = document.getElementById(`myModal${id}`)
@@ -118,22 +119,47 @@ document.addEventListener("DOMContentLoaded", function () {
             const estado = estadoDropdown.options[estadoDropdown.selectedIndex].value
 
 
-            const loteObjeto={
+            const loteObjeto = {
                 estado: estado
             }
 
-            console.log(loteObjeto)
-
-            await modificarEstadoLote(id,loteObjeto)
+            await modificarEstadoLote(id, loteObjeto)
 
             const modal = new bootstrap.Modal(modalElement)
             modal.hide()
         })
 
     }
-   
 
     cargarLotes()
-  
+
+
+    async function despiezarLoteUI(id) {
+        const agregarBtn = document.getElementById(`agregarDespiece${id}`)
+        agregarBtn.addEventListener('click', async () => {
+            const modalElement = document.getElementById(`modalAgregar${id}`)
+            const compDropdown = modalElement.querySelector('#compDropdown')
+            const componentes = compDropdown.options[compDropdown.selectedIndex].value
+            const cantidad = modalElement.querySelector('#cantidad').value
+            const descripcion = modalElement.querySelector('#descripcion').value
+
+            var componente = {
+                id_comp: componentes,
+                cantidad: cantidad,
+                descripcion: descripcion
+            }
+
+            console.log(componente)
+
+            await despiezarLote(componente, id)
+
+            const modal = new bootstrap.Modal(modalElement)
+            modal.hide()
+
+            modalElement.querySelector('#cantidad').value = '';
+            modalElement.querySelector('#descripcion').value = '';
+        })
+    }
+
 
 })

@@ -16,47 +16,58 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ClasificadorController extends Controller
 {
-    public function despiezarLote(Request $request,$idLote)
-    {
-        try {
-            $lote = Lote::find($idLote);
-            if (!$lote) {
-                return response()->json(['error' => 'Lote no encontrado'], Response::HTTP_NOT_FOUND);
-            }
+    public function despiezarLote(Request $request, $idLote)
+{
+    try {
+        $validator = Validator::make($request->all(), [
+            'id_comp' => 'required',
+            'cantidad' => 'required|integer|min:1',
+            'descripcion' => 'required|string',
+        ]);
 
-            if ($lote->estado == 'Clasificado') {
-                return response()->json(['error' => 'No se puede despiezar un lote clasificado'], Response::HTTP_BAD_REQUEST);
-            }
+        $mensajesPersonalizados = [
+            'cantidad.required' => "El campo cantidad es obligatorio",
+            'descripcion.required' => "El campo descripción es obligatorio",
+            'cantidad.integer' => "El campo cantidad debe ser un número entero",
+            'cantidad.min' => "La cantidad minima debe ser al menos 1"
+        ];
 
-            $usuario = Auth::user();
+        $validator->setCustomMessages($mensajesPersonalizados);
 
-            $clasificador = Clasificador::where('id_usuario', $usuario->id)->first();
-            if (!$clasificador) {
-                return response()->json(['error' => 'Clasificador no encontrado para el usuario'], Response::HTTP_NOT_FOUND);
-            }
-
-            // Validar si el componente (id_comp) existe en la base de datos
-            $compExistente = Componentes::find($request->input('id_comp'));
-
-            if (!$compExistente) {
-                return response()->json(['error' => 'El componente no existe en la base de datos'], Response::HTTP_BAD_REQUEST);
-            }
-
-            $componente = [
-                'id_lote' => $idLote,
-                'id_comp' => $request->input('id_comp'),
-                'cantidad' => $request->input('cantidad'),
-                'descripcion' => $request->input('descripcion')
-            ];
-
-            $this->agregarDespiece($componente, $clasificador->id_clasificador);
-
-            return response()->json(['mensaje' => $componente], Response::HTTP_CREATED);
-
-        } catch (Exception $e) {
-            return response()->json(['error' => 'Error al despiezar el lote', 'detalles' => $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()->all()], Response::HTTP_UNPROCESSABLE_ENTITY);
         }
+
+        $lote = Lote::find($idLote);
+
+        if ($lote->estado == 'Clasificado') {
+            return response()->json(['error' => 'No se puede despiezar un lote clasificado'], Response::HTTP_BAD_REQUEST);
+        }
+
+
+        $usuario = Auth::user();
+        $clasificador = Clasificador::where('id_usuario', $usuario->id)->first();
+
+        $comp = Componentes::where('id_comp',$request->input('id_comp'))->first();
+        $nuevaCantidad = $comp->cantidad + $request->input('cantidad');
+        $comp ->update(['cantidad'=>$nuevaCantidad]);
+
+
+        $componente = [
+            'id_lote' => $idLote,
+            'id_comp' => $request->input('id_comp'),
+            'cantidad' => $request->input('cantidad'),
+            'descripcion' => $request->input('descripcion')
+        ];
+
+        $this->agregarDespiece($componente, $clasificador->id_clasificador);
+
+        return response()->json(['mensaje' => 'Despiece agregado correctamente'], Response::HTTP_CREATED);
+
+    } catch (Exception $e) {
+        return response()->json(['error' => 'Error al despiezar el lote', 'detalles' => $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
     }
+}
 
 
     private function agregarDespiece($componente, $idClasificador)
@@ -125,16 +136,5 @@ class ClasificadorController extends Controller
         return response()->json(['error' => 'Error al modificar el estado del lote', 'detalles' => $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
     }
 }
-
-    public function obtenerIdComponente(Request $request){
-        $componente= Componentes::where('nombre',$request['nombre_comp'])->first();
-
-        if($componente){
-            return response()->json(['mensaje'=> $componente],Response::HTTP_OK);
-        }else{
-            return response()->json(['mensaje'=> 'El componente no existe'],Response::HTTP_NOT_FOUND);
-        }
-     
-    }
 
 }

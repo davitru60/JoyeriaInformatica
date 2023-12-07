@@ -1,7 +1,7 @@
 const obtenerRoles = async () => {
     // Simulando una operación asíncrona, por ejemplo, una solicitud a un servidor
     return {
-        roles: ['Clasificador','Diseñador', 'Administrador']
+        roles: ['Colaborador','Clasificador','Diseñador', 'Administrador']
     };
 };
 
@@ -156,6 +156,7 @@ const crearNavegacion = async () => {
         // Define las URLs correspondientes a cada opción
         const urlsPorOpcion = {
             'logout': '/logout',
+            'colaborador':'inicio.html',
             'clasificador': 'clasificador.html',
             'diseñador': '/pagina-disenador',
             'administrador': 'gestionUsuario.html'

@@ -45,6 +45,4 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::put('despiece/{id}',[ClasificadorController::class,'modificarEstadoLote']);
 });
 
-Route::get('nombreComponente',[ClasificadorController::class ,'obtenerIdComponente']);
-
 Route::get('lotesNoClasificados',[LoteController::class,'mostrarLotesNoClasificados']);
