@@ -45,7 +45,7 @@ Route::delete('/joya/{id}', [JoyaController::class, 'destroy']);
 //Recetas
 Route::get('/recetas', [RecetaController::class, 'index']);
 Route::post('/recetas', [RecetaController::class, 'store']);
-Route::put('/recetas/{id}', [RecetaController::class, 'actualizar']);
+Route::put('/recetas/{id}', [RecetaController::class, 'actualizar']); 
 Route::get('/recetas/{id}', [RecetaController::class, 'buscar']);
 Route::delete('/recetas/{id}', [RecetaController::class, 'destroy']);
 

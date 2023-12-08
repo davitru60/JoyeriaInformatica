@@ -1,23 +1,23 @@
-import { mostrarJoyas,eliminarJoyas,modificarJoyas} from "../api/joyasAPI.js"
+import { mostrarRecetas,eliminarRecetas,modificarRecetas} from "../api/recetasAPI.js"
 
 document.addEventListener("DOMContentLoaded", function () {
-    async function cargarJoyas() {
-        const joyas = await mostrarJoyas() 
-        console.log(joyas)
-        const tabla = $('#joyas').DataTable()
+    async function cargarRecetas() {
+        const recetas = await mostrarRecetas()
+        console.log(recetas)
+        const tabla = $('#recetas').DataTable()
         tabla.clear().draw()
 
-        joyas.forEach(dato => {
+        recetas.forEach(dato => {
             const row = tabla.row.add([
+                dato.id_receta,
                 dato.id_joya,
-                dato.nombre,
-                dato.foto,
-                `<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#myModal${dato.id_joya}"><i class="fas fa-edit"></i></button>` +
-                `<button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal${dato.id_joya} " ><i class="fas fa-trash-alt"></i></button>`
+                dato.descricion,
+                `<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#myModal${dato.id_receta}"><i class="fas fa-edit"></i></button>` +
+                `<button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal${dato.id_receta} " ><i class="fas fa-trash-alt"></i></button>`
             ]).draw()
 
             const modalEditar = `
-            <div class="modal" id="myModal${dato.id_joya}">
+            <div class="modal" id="myModal${dato.id_receta}">
                 <div class="modal-dialog modal-md">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -28,28 +28,28 @@ document.addEventListener("DOMContentLoaded", function () {
                             <form>
                                 <div class="mb-3">
                                     <label for="ubicacion" class="form-label">ID Joyas:</label>
-                                    <input type="text" class="form-control" id="idJoya" value="${dato.id_joya}" readonly>
+                                    <input type="text" class="form-control" id="idJoya" value="${dato.id_receta}" readonly>
                                 </div>
                                 <div class="mb-3">
                                     <label for="ubicacion" class="form-label">Nombre:</label>
-                                    <input type="text" class="form-control" id="nombre" value="${dato.nombre}">
+                                    <input type="text" class="form-control" id="id_joya" value="${dato.id_joya}">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="ubicacion" class="form-label">URL foto:</label>
-                                    <input type="text" class="form-control" id="foto" value="${dato.foto}">
+                                    <label for="ubicacion" class="form-label">URL descricion:</label>
+                                    <input type="text" class="form-control" id="descricion" value="${dato.descricion}">
                                 </div>
                           
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-success" data-bs-dismiss="modal" id="modificarBtn${dato.id_joya}">Modificar</button>
+                            <button type="button" class="btn btn-success" data-bs-dismiss="modal" id="modificarBtn${dato.id_receta}">Modificar</button>
                         </div>
                     </div>
                 </div>
             </div>
         `
         const modalEliminar = `
-        <div class="modal" id="deleteModal${dato.id_joya}">
+        <div class="modal" id="deleteModal${dato.id_receta}">
         <div class="modal-dialog modal-md">
             <div class="modal-content">
     
@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 </div>
     
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="confirmarEliminacionBtn${dato.id_joya}">Confirmar eliminación</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="confirmarEliminacionBtn${dato.id_receta}">Confirmar eliminación</button>
                 </div>
     
             </div>
@@ -78,20 +78,20 @@ document.addEventListener("DOMContentLoaded", function () {
             document.body.insertAdjacentHTML('beforeend', modalEliminar)
 
             // Almacena la información del lote en la fila para acceder a ella cuando sea necesario
-            row.nodes().to$().data('joyas', dato)
-            eliminarJoyasUI(dato.id_joya)
-            modificarJoyasUI(dato.id_joya)
+            row.nodes().to$().data('recetas', dato)
+            eliminarRecetasUI(dato.id_receta)
+            modificarRecetasUI(dato.id_receta)
         })
     
     }
 
-    async function eliminarJoyasUI(id){
+    async function eliminarRecetasUI(id){
         const confirmarEliminacionBtn = document.getElementById(`confirmarEliminacionBtn${id}`)
         if (confirmarEliminacionBtn) {
             confirmarEliminacionBtn.addEventListener('click', async () => {
                 try {
                     
-                    await eliminarJoyas(id)
+                    await eliminarRecetas(id)
 
                     // Cierra el modal después de eliminar
                     const modalElement = document.getElementById(`deleteModal${id}`)
@@ -107,7 +107,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    async function modificarJoyasUI(id) {
+    async function modificarRecetasUI(id) {
         const modificarBtn = document.getElementById(`modificarBtn${id}`)
     
         if (modificarBtn) {
@@ -115,15 +115,15 @@ document.addEventListener("DOMContentLoaded", function () {
                 try {
                     // Obtener las referencias a los campos de texto dentro del modal específico
                     const modalElement = document.getElementById(`myModal${id}`)
-                    const nombreJoya = modalElement.querySelector('#nombre').value
-                    const foto = modalElement.querySelector('#foto').value
+                    const numJoya = modalElement.querySelector('#id_joya').value
+                    const descricion = modalElement.querySelector('#descricion').value
     
-                    const joyaObjeto = {
-                        nombre: nombreJoya,
-                        foto: foto
+                    const recetaObjeto = {
+                        id_joya: numJoya,
+                        descricion: descricion
                     }
     
-                    await modificarJoyas(id, joyaObjeto)
+                    await modificarRecetas(id, recetaObjeto)
     
                     // Cerrar el modal después de modificar
                     const modal = new bootstrap.Modal(modalElement)
@@ -138,6 +138,6 @@ document.addEventListener("DOMContentLoaded", function () {
     
     
     
-    cargarJoyas()
+    cargarRecetas()
 
 })
