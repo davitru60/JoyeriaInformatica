@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         <div class="modal-body">
                             <form>
                                 <div class="mb-3">
-                                    <label for="ubicacion" class="form-label">ID Joyas:</label>
+                                    <label for="ubicacion" class="form-label">Número de Joyas:</label>
                                     <input type="text" class="form-control" id="idJoya" value="${dato.id_joya}" readonly>
                                 </div>
                                 <div class="mb-3">
@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                     <input type="text" class="form-control" id="nombre" value="${dato.nombre}">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="ubicacion" class="form-label">URL foto:</label>
+                                    <label for="ubicacion" class="form-label">Foto:</label>
                                     <input type="text" class="form-control" id="foto" value="${dato.foto}">
                                 </div>
                           

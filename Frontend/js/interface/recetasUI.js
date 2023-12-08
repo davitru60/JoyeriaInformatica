@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const row = tabla.row.add([
                 dato.id_receta,
                 dato.id_joya,
-                dato.descricion,
+                dato.descripcion,
                 `<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#myModal${dato.id_receta}"><i class="fas fa-edit"></i></button>` +
                 `<button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal${dato.id_receta} " ><i class="fas fa-trash-alt"></i></button>`
             ]).draw()
@@ -21,22 +21,22 @@ document.addEventListener("DOMContentLoaded", function () {
                 <div class="modal-dialog modal-md">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title">Detalles de la joya</h4>
+                            <h4 class="modal-title">Detalles de la receta</h4>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                         </div>
                         <div class="modal-body">
                             <form>
                                 <div class="mb-3">
-                                    <label for="ubicacion" class="form-label">ID Joyas:</label>
-                                    <input type="text" class="form-control" id="idJoya" value="${dato.id_receta}" readonly>
+                                    <label for="ubicacion" class="form-label">Número de receta:</label>
+                                    <input type="text" class="form-control" id="id_receta" value="${dato.id_receta}" readonly>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="ubicacion" class="form-label">Nombre:</label>
+                                    <label for="ubicacion" class="form-label">Número de joya:</label>
                                     <input type="text" class="form-control" id="id_joya" value="${dato.id_joya}">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="ubicacion" class="form-label">URL descricion:</label>
-                                    <input type="text" class="form-control" id="descricion" value="${dato.descricion}">
+                                    <label for="ubicacion" class="form-label">Descripción:</label>
+                                    <input type="text" class="form-control" id="descripcion" value="${dato.descripcion}">
                                 </div>
                           
                             </form>
@@ -116,11 +116,11 @@ document.addEventListener("DOMContentLoaded", function () {
                     // Obtener las referencias a los campos de texto dentro del modal específico
                     const modalElement = document.getElementById(`myModal${id}`)
                     const numJoya = modalElement.querySelector('#id_joya').value
-                    const descricion = modalElement.querySelector('#descricion').value
+                    const descripcionRece = modalElement.querySelector('#descripcion').value
     
                     const recetaObjeto = {
                         id_joya: numJoya,
-                        descricion: descricion
+                        descripcion: descripcionRece
                     }
     
                     await modificarRecetas(id, recetaObjeto)
