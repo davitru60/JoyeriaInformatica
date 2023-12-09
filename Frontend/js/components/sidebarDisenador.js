@@ -33,7 +33,7 @@ const crearBarraLateral = () => {
           </a>
 
           <div class="collapse" id="recetasCollapse">
-              <a href="joyas.html" class="list-group-item list-group-item-action fw-bold">
+              <a href="recetas.html" class="list-group-item list-group-item-action fw-bold">
                   <i class="fas fa-stream me-2 ms-3"></i> Ver lista de recetas
               </a>
           </div>
