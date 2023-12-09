@@ -21,8 +21,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 dato.latitud,
                 dato.longitud,
                 dato.estado,
-                `<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#myModal${dato.id_lote}"><i class="fas fa-edit"></i></button>` +
-                `<button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#modalAgregar${dato.id_lote}"><i class="fas fa-plus"></i></button>`
+                `<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#myModal${dato.id_lote}"><i class="fas fa-edit"></i> Clasificar</button>` +
+                `<button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#modalAgregar${dato.id_lote}"><i class="fas fa-plus"></i> Despiezar</button>`
             ]).draw()
 
             // Modal editar un lote
@@ -152,6 +152,7 @@ document.addEventListener("DOMContentLoaded", function () {
             console.log(componente)
 
             await despiezarLote(componente, id)
+            window.location.href="clasificacionLote.html"
 
             const modal = new bootstrap.Modal(modalElement)
             modal.hide()

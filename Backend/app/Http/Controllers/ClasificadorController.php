@@ -97,6 +97,7 @@ class ClasificadorController extends Controller
             }
 
             $lote->update([
+                'estado' => 'Recibido',
                 'id_clasificador' => $idClasificador
             ]);
 

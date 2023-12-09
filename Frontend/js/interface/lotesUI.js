@@ -17,43 +17,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 dato.latitud,
                 dato.longitud,
                 dato.estado,
-                `<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#myModal${dato.id_lote}"><i class="fas fa-edit"></i></button>` +
-                `<button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal${dato.id_lote} " ><i class="fas fa-trash-alt"></i></button>`
+                (dato.estado == 'Enviado' ? `<button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal${dato.id_lote}"> <i class="fas fa-times"></i> Cancelar</button>` : '')
             ]).draw()
 
             // Modal editar un lote
-            const modalEditar = `
-                <div class="modal" id="myModal${dato.id_lote}">
-                    <div class="modal-dialog modal-md">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title">Detalles del lote</h4>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                            </div>
-                            <div class="modal-body">
-                                <form>
-                                    <div class="mb-3">
-                                        <label for="ubicacion" class="form-label">ID Lote:</label>
-                                        <input type="text" class="form-control" id="ubicacion" value="${dato.id_lote}" readonly>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="ubicacion" class="form-label">Ubicación:</label>
-                                        <input type="text" class="form-control" id="ubicacion" value="${dato.ubicacion}" readonly>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="estado" class="form-label">Estado:</label>
-                                        <input type="text" class="form-control" id="estado" value="${dato.estado}" readonly>
-                                    </div>
-                                    <!-- Agrega más campos según tus necesidades -->
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `
+            
 
             const modalEliminar = `
             <div class="modal" id="deleteModal${dato.id_lote}">
@@ -61,27 +29,24 @@ document.addEventListener("DOMContentLoaded", function () {
                 <div class="modal-content">
         
                     <div class="modal-header">
-                        <h4 class="modal-title">Confirmar eliminación</h4>
+                        <h4 class="modal-title">Confirmar cancelación</h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
         
         
                     <div class="modal-body">
-                        <p>¿Estás seguro de que deseas eliminar este lote?</p>
+                        <p>¿Estás seguro de que deseas cancelar este lote?</p>
                     </div>
         
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="confirmarEliminacionBtn${dato.id_lote}">Confirmar eliminación</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="confirmarEliminacionBtn${dato.id_lote}">Confirmar cancelación</button>
                     </div>
         
                 </div>
             </div>
         </div>`
 
-
-
             // Agregar los modales al cuerpo del documento
-            document.body.insertAdjacentHTML('beforeend', modalEditar)
             document.body.insertAdjacentHTML('beforeend', modalEliminar)
 
             // Almacena la información del lote en la fila para acceder a ella cuando sea necesario

@@ -7,16 +7,16 @@ const crearBarraLateral = () => {
               
               <a href="#" class="list-group-item list-group-item-action bg-transparent second-tex fw-bold"
                   data-bs-toggle="collapse" data-bs-target="#usuariosCollapse" aria-expanded="false">
-                  <i class="fas fa-cogs me-2"></i>Usuarios
+                  <i class="fas fa-user me-2"></i>Usuarios
                   <i class="fas fa-chevron-down ms-auto"></i>
               </a>
 
               <div class="collapse" id="usuariosCollapse">
                 <a href="gestionUsuario.html" class="list-group-item list-group-item-action fw-bold" id="verComponenteBtn">
-                     <i class="far fa-keyboard me-2 ms-3"></i> Ver usuarios
+                     <i class="far fa-user me-2 ms-3"></i> Ver usuarios
                 </a>
                   <a class="list-group-item list-group-item-action fw-bold" id="agregarUsuarioBtn">
-                      <i class="fas fa-wrench me-2 ms-3"></i> Agregar usuario
+                      <i class="fas fa-user-plus me-2 ms-3"></i> Agregar usuario
                   </a>
               </div>
 
@@ -32,7 +32,7 @@ const crearBarraLateral = () => {
                  </a>
 
                   <a class="list-group-item list-group-item-action fw-bold" id="agregarComponenteBtn">
-                      <i class="fas fa-wrench me-2 ms-3"></i> Agregar componente
+                      <i class="fas fa-wrench-plus me-2 ms-3"></i> Agregar componente
                   </a>
               </div>
           </div>

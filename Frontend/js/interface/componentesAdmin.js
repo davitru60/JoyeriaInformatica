@@ -12,10 +12,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 dato.id_comp,
                 dato.nombre,
                 dato.hw,
-                `<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#myModal${dato.id_comp}"><i class="fas fa-edit"></i></button>` +
-                `<button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal${dato.id_comp} " ><i class="fas fa-trash-alt"></i></button>`
+                dato.cantidad,
+                `<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#myModal${dato.id_comp}"><i class="fas fa-edit"></i> Editar</button>` +
+                (dato.cantidad === 0 ? `<button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal${dato.id_comp}"><i class="fas fa-trash-alt"></i> Eliminar</button>` : '')
             ]).draw()
-
+            
             const modalEditar = `
             <div class="modal" id="myModal${dato.id_comp}">
                 <div class="modal-dialog modal-md">

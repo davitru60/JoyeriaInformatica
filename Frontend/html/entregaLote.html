@@ -20,7 +20,7 @@
 
 <body>
     <div class="d-flex" id="wrapper">
-       
+
         <!-- Sidebar -->
         <script src="../js/components/sidebarLote.js"></script>
         <!-- /#sidebar-wrapper -->
@@ -37,34 +37,38 @@
             </div>
 
             <main>
-                <div class="row">
+                <div class="row lotes">
                     <div class="col-md-6">
                         <h2 class="fs-3 mb-3">Entregar lote</h2>
-                        <div class="form-group">
-                            <label for="latitud">Latitud</label>
-                            <input type="text" name="latitud" id="latitud" class="form-control">
-                        </div>
-            
-                        <div class="form-group">
-                            <label for="longitud">Longitud</label>
-                            <input type="text" name="longitud" id="longitud" class="form-control">
-                        </div>
-            
-                        <button type="button" class="btn btn-primary mt-3" id="enviarBtn">Enviar</button>
+
+                        <form>
+                            <div class="form-group">
+                                <label for="latitud">Latitud</label>
+                                <input type="text" name="latitud" id="latitud" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="longitud">Longitud</label>
+                                <input type="text" name="longitud" id="longitud" class="form-control">
+                            </div>
+
+                            <button type="button" class="btn btn-primary mt-3" id="enviarBtn">Enviar</button>
                     </div>
-            
+
                     <div class="col-md-6 mt-3">
                         <div id="map" style="height: 500px; width: 100%;"></div>
                     </div>
+                    </form>
+
                 </div>
             </main>
-            
+
 
         </div>
     </div>
 
-   
-    
+
+
 
     <script
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDaeWicvigtP9xPv919E-RNoxfvC-Hqik&callback=iniciarMap"></script>

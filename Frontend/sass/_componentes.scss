@@ -1,16 +1,20 @@
+@import "../sass/base";
+
 * {
     font-family: "Inter", sans-serif;
 }
 
 /*Sidebar*/
 #sidebar-wrapper {
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     min-height: 100vh;
     margin-left: -15rem;
     -webkit-transition: margin 0.25s ease-out;
     -moz-transition: margin 0.25s ease-out;
     -o-transition: margin 0.25s ease-out;
     transition: margin 0.25s ease-out;
+    
+
 
     .sidebar-heading {
         padding: 0.875rem 1.25rem;
@@ -24,6 +28,7 @@
 
 #page-content-wrapper {
     min-width: 100vw;
+    @include page-content-bg;
 }
 
 #wrapper.toggled #sidebar-wrapper {
@@ -31,7 +36,7 @@
 }
 
 nav {
-    background-color: white;
+    @include nav-bg;
     .user-name {
         color: black;
     }
@@ -39,16 +44,21 @@ nav {
 
 main {
     padding: 25px;
+    @include flex-align-itm-center;
+    justify-content: center;
+}
+
+.row.m-2{
+    width: 100%;
 }
 
 .container-fluid.pages {
     height: 150px;
     text-align: start;
-    background-color: rgb(255, 210, 127);
+    @include card-bg;
     border-bottom-left-radius: 25px;
     border-bottom-right-radius: 25px;
-    display: flex;
-    align-items: center;
+    @include flex-align-itm-center;
     padding: 50px;
 }
 
@@ -56,6 +66,7 @@ main {
     padding: 20px;
     background-color: rgb(255, 255, 255);
     border-radius: 25px;
+
 }
 
 
@@ -74,6 +85,24 @@ main {
     font-weight: bold;
     border: none;
 }
+
+.row.dt-row{
+    .col-sm-12{
+        table{
+            tbody{
+                tr{
+                    td{
+                        .btn{
+                            margin-left: 5px;
+
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 
 @media (min-width: 768px) {
     #sidebar-wrapper {
