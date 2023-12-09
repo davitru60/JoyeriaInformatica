@@ -1,0 +1,26 @@
+$blanco: #FFFFFF;
+$azul-claro-suave:#E6F2F7;
+$azul-claro: #97B7CF;
+
+
+@mixin nav-bg{
+    background-color: $blanco;
+}
+
+@mixin page-content-bg{
+    background-color: $azul-claro-suave;
+}
+
+@mixin card-bg{
+    background-color: $azul-claro;
+}
+
+@mixin flex-align-itm-center{
+    display: flex;
+    align-items: center;
+}
+
+@mixin form-btn{
+    background-color: #1B4668;
+    border: none;
+}

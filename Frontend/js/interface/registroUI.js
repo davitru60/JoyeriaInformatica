@@ -185,6 +185,19 @@ document.addEventListener("DOMContentLoaded", function () {
             if(respuesta.ok){
                 const datosRespuesta = await respuesta.json()
                 console.log('Respuesta del servidor:', datosRespuesta)
+            }else{
+                const alerta = document.createElement('div')
+                alerta.classList.add('alert', 'alert-danger', 'mt-3');
+                alerta.textContent = 'Falta algún dato. Verifique que esté todo'
+
+                const formulario = document.querySelector('.row')
+
+                // Insertar la alerta al principio del formulario
+                formulario.insertBefore(alerta, formulario.firstChild)
+
+                setTimeout(() => {
+                    alerta.remove()
+                }, 2000)
             }
 
         } catch (error) {

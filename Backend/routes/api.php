@@ -58,9 +58,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 });
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::post('despiece{id}',[ClasificadorController::class,'despiezarLote']);
+    Route::post('despiece/{id}',[ClasificadorController::class,'despiezarLote']);
     Route::put('despiece/{id}',[ClasificadorController::class,'modificarEstadoLote']);
-   
 });
 
 Route::get('lotesNoClasificados',[LoteController::class,'mostrarLotesNoClasificados']);
