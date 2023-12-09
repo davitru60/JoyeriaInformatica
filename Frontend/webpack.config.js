@@ -5,6 +5,7 @@ module.exports = {
   entry: {
     registro: '../Frontend/js/interface/registroUI.js',
     login: '../Frontend/js/interface/loginUI.js',
+    lotes: '../Frontend/js/interface/lotesUI.js',
   },
   output: {
     filename: '[name].main.js',
