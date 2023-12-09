@@ -158,7 +158,7 @@ const crearNavegacion = async () => {
             'logout': '/logout',
             'colaborador':'inicio.html',
             'clasificador': 'clasificador.html',
-            'diseñador': 'diseñador.html',
+            'diseñador': 'disenador.html',
             'administrador': 'gestionUsuario.html'
         };
 
