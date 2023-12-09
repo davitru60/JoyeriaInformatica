@@ -4,32 +4,54 @@
   align-items: center;
   justify-content: center;
 }
-.contenedor-formulario .container-fluid {
-  width: 50%;
+.contenedor-formulario .container-fluid.registro {
+  border-radius: 20px;
 }
-.contenedor-formulario .container-fluid form .row .col-sm-12 {
+.contenedor-formulario .container-fluid.registro form h3 {
+  text-align: center;
+}
+.contenedor-formulario .container-fluid.registro form .row.registro {
+  border-radius: 20px;
+}
+.contenedor-formulario .container-fluid.registro form .row.registro .col-sm-12 {
   padding-top: 15px;
 }
-.contenedor-formulario .container-fluid form .row .row.boton {
+.contenedor-formulario .container-fluid.registro form .row.registro .col-sm-12 #btn-contra, .contenedor-formulario .container-fluid.registro form .row.registro .col-sm-12 #btn-contra-confirmar {
+  background-color: #1B4668;
+  border: none;
+}
+.contenedor-formulario .container-fluid.registro form .row.registro .row.boton {
   padding: 0;
   display: flex;
   text-align: center;
 }
-.contenedor-formulario .container-fluid form .row .row.boton .btn {
+.contenedor-formulario .container-fluid.registro form .row.registro .row.boton .btn {
   margin-left: 25%;
   width: 50%;
+  background-color: #1B4668;
+  border: none;
 }
-.contenedor-formulario .container-fluid form .row .row.boton p {
+.contenedor-formulario .container-fluid.registro form .row.registro .row.boton p {
   margin-top: 10px;
 }
 
+@media (min-width: 992px) {
+  .container-fluid.registro {
+    width: 50%;
+  }
+}
+@media (max-width: 991px) {
+  .container-fluid.registro {
+    width: 90%;
+  }
+}
 * {
   font-family: "Inter", sans-serif;
 }
 
 /*Sidebar*/
 #sidebar-wrapper {
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   min-height: 100vh;
   margin-left: -15rem;
   transition: margin 0.25s ease-out;
@@ -44,6 +66,7 @@
 
 #page-content-wrapper {
   min-width: 100vw;
+  background-color: #E6F2F7;
 }
 
 #wrapper.toggled #sidebar-wrapper {
@@ -51,7 +74,7 @@
 }
 
 nav {
-  background-color: white;
+  background-color: #FFFFFF;
 }
 nav .user-name {
   color: black;
@@ -59,12 +82,19 @@ nav .user-name {
 
 main {
   padding: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.row.m-2 {
+  width: 100%;
 }
 
 .container-fluid.pages {
   height: 150px;
   text-align: start;
-  background-color: rgb(255, 210, 127);
+  background-color: #97B7CF;
   border-bottom-left-radius: 25px;
   border-bottom-right-radius: 25px;
   display: flex;
@@ -92,6 +122,10 @@ main {
   color: var(--main-text-color);
   font-weight: bold;
   border: none;
+}
+
+.row.dt-row .col-sm-12 table tbody tr td .btn {
+  margin-left: 5px;
 }
 
 @media (min-width: 768px) {
@@ -123,27 +157,56 @@ main {
     overflow-x: scroll;
   }
 }
+.contenedor-formulario {
+  background-image: url(../assets/Career-Spotlight_Computer_Hardware_Engineer_Blog.jpg);
+  background-size: cover;
+}
 .contenedor-formulario .container-fluid.login {
+  border-radius: 20px;
+  padding: 20px;
   width: 35%;
+  background-color: white;
 }
-.contenedor-formulario .container-fluid.login form .row {
-  padding: 10px;
-}
-.contenedor-formulario .container-fluid.login form .row.boton {
-  padding: 0;
-  display: flex;
+.contenedor-formulario .container-fluid.login form h3 {
   text-align: center;
 }
-.contenedor-formulario .container-fluid.login form .row.boton .btn {
-  margin-left: 25%;
-  width: 50%;
+.contenedor-formulario .container-fluid.login form .col {
+  padding: 10px;
 }
-.contenedor-formulario .container-fluid.login form .row.boton p {
+.contenedor-formulario .container-fluid.login form .col #btn-contra {
+  background-color: #1B4668;
+  border: none;
+}
+.contenedor-formulario .container-fluid.login form .col.boton {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.contenedor-formulario .container-fluid.login form .col.boton .btn {
+  width: 50%;
+  background-color: #1B4668;
+  border: none;
+}
+.contenedor-formulario .container-fluid.login form .col.boton p {
   margin-top: 10px;
 }
 
 @media screen and (max-width: 768px) {
-  .contenedor-formulario .container-fluid {
-    min-width: 100%;
+  .contenedor-formulario .container-fluid.login {
+    width: 100%;
   }
+}
+.row.lotes {
+  padding: 30px;
+  width: 90%;
+}
+.row.lotes form {
+  padding: 20px;
+}
+.row.lotes form .form-group {
+  margin-top: 10px;
+}
+.row.lotes #map {
+  border-radius: 20px;
 }/*# sourceMappingURL=styles.css.map */

@@ -128,6 +128,7 @@ const guardarComponente = async() => {
     console.log(componenteObjeto)
 
     await agregarComponente(componenteObjeto)
+    window.location.href="clasificador.html"
 
     // Cerrar el modal si es necesario
     const modalElement = document.getElementById('agregarComponentesModal')

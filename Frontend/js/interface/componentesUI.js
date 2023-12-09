@@ -12,8 +12,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 dato.id_comp,
                 dato.nombre,
                 dato.hw,
-                `<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#myModal${dato.id_comp}"><i class="fas fa-edit"></i></button>` +
-                `<button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal${dato.id_comp} " ><i class="fas fa-trash-alt"></i></button>`
+                dato.cantidad,
+                `<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#myModal${dato.id_comp}"><i class="fas fa-edit"></i> Editar</button>` +
+                (dato.cantidad === 0 ? `<button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal${dato.id_comp}"><i class="fas fa-trash-alt"></i> Eliminar</button>` : '')
             ]).draw()
 
             const modalEditar = `
@@ -95,6 +96,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 try {
                     
                     await eliminarComponente(id)
+                    window.location.href="clasificador.html"
 
                     // Cierra el modal después de eliminar
                     const modalElement = document.getElementById(`deleteModal${id}`)
@@ -128,6 +130,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
     
                     await modificarComponente(id, componenteObjeto)
+                    window.location.href="clasificador.html"
     
                     // Cerrar el modal después de modificar
                     const modal = new bootstrap.Modal(modalElement)
