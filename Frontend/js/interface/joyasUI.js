@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const row = tabla.row.add([
                 dato.id_joya,
                 dato.nombre,
-                dato.foto,
+                `<img src="../assets/joya/${dato.foto}">`,
                 `<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#myModal${dato.id_joya}"><i class="fas fa-edit"></i></button>` +
                 `<button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal${dato.id_joya} " ><i class="fas fa-trash-alt"></i></button>`
             ]).draw()
