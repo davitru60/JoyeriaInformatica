@@ -80,9 +80,6 @@ export async function entregarLote(lote) {
         if (respuesta.status == 422) {
             const datos = await respuesta.json()
 
-            console.log(datos)
-
-
             const alerta = document.createElement('div')
             alerta.classList.add('alert', 'alert-danger', 'mt-3')
             alerta.textContent = datos.errores

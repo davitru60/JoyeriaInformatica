@@ -23,9 +23,21 @@ class AuthController extends Controller
             'ape1' => 'required|string|max:255',
             'ape2' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'contrasena' => 'required|string|min:6',
-            'foto' => 'string'
+            'contrasena' => 'required|string|min:6'
         ]);
+
+        $mensajesPersonalizados = [
+            'nombre.required' => "El campo nombre es obligatorio",
+            'ape1.required' => "El campo primer apellido es obligatorio",
+            'ape2.required' => "El campo segundo apellido es obligatorio",
+            'email.required' => "El campo email es obligatorio",
+            'contrasena.required'=> "El campo contraseña es obligatorio",
+            'email.unique' => "El email ya existe",
+        ];
+
+        $validator->setCustomMessages($mensajesPersonalizados);
+
+
 
         if ($validator->fails()) {
             return response(['errors' => $validator->errors()->all()], Response::HTTP_UNPROCESSABLE_ENTITY);
@@ -40,10 +52,9 @@ class AuthController extends Controller
 
             ]);
 
-            $roles = $request->input('roles');
-            $this->crearTipoUsuario($usuario, $roles);
-
-            $respuestasRoles = $this->crearUsuarioPorRol($usuario, $request->input('roles'));
+        
+            $respuestasRoles = $this->crearColaborador($usuario);
+            $this->crearUsuarioRol($usuario);
 
             return response()->json([
                 'usuario' => $usuario,
@@ -53,52 +64,21 @@ class AuthController extends Controller
     }
 
 
-    protected function crearUsuarioPorRol(User $usuario, array $roles)
-    {
-        $respuestas = [];
-        foreach ($roles as $rolNombre) {
+    
 
-            $rol = Rol::where('descripcion', $rolNombre)->first();
-
-            if ($rol) {
-                UsuarioRol::create([
-                    'id_usuario' => $usuario->id,
-                    'id_rol' => $rol->id_rol,
-                ]);
-
-                $respuestas[] = [
-                    'rol' => $rolNombre,
-                    'mensaje' => 'Rol asignado correctamente',
-                ];
-
-
-            } else {
-                $respuestas[] = [
-                    'rol' => $rol,
-                    'mensaje' => 'Rol no encontrado'
-                ];
-            }
-        }
-
-        return $respuestas;
-    }
-
-    protected function crearTipoUsuario(User $usuario, array $roles)
-    {
-        foreach ($roles as $rol) {
-            switch ($rol) {
-                case 'Colaborador':
-                    $this->crearColaborador($usuario);
-                    break;
-            }
-        }
+    protected function crearUsuarioRol(User $usuario){
+        UsuarioRol::create([
+            'id_usuario' => $usuario->id,
+            'id_rol' => 3
+        ]);
+    
     }
 
     protected function crearColaborador(User $usuario)
     {
         try{
             Colaborador::create(['id_usuario' => $usuario->id]);
-            return response(['mensaje' => 'Colaborador creado exitosamente'], 200);
+            return response(['mensaje' => 'Colaborador creado exitosamente'], Response::HTTP_OK);
         }catch(Exception $e){
             return response(['error' => 'Error al crear el colaborador', 'message' => $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
