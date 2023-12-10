@@ -37,6 +37,18 @@ const crearBarraLateral = () => {
                   <i class="fas fa-stream me-2 ms-3"></i> Ver lista de recetas
               </a>
           </div>
+
+          <a href="#" class="list-group-item list-group-item-action bg-transparent second-text active"
+          data-bs-toggle="collapse" data-bs-target="#ingredientesCollapse" aria-expanded="false">
+          <i class="fas fa-list-alt me-2"></i>Ingredientes
+          <i class="fas fa-chevron-down ms-auto"></i>
+      </a>
+
+      <div class="collapse" id="ingredientesCollapse">
+          <a href="ingredientes.html" class="list-group-item list-group-item-action fw-bold">
+              <i class="fab fa-sistrix me-2 ms-3"></i> Ver lista de ingredientes
+          </a>
+      </div>
       </div>
 
       <div class="list-group list-group-flush">

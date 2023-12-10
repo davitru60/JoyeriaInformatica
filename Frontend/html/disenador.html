@@ -51,7 +51,39 @@
             <main>
                 <div class="row m-2">
                     <h2 class="fs-3 mb-3">Fabricar joya</h2>
+    
+                    <!-- División del espacio en dos columnas (izquierda y derecha) -->
+                    <div class="row">
+                        <!-- Columna izquierda -->
+                        <div class="col-md-6">
+                            <!-- Formulario para fabricar joya -->
+                            <form id="fabricarJoyaForm" class="mb-3">
+                                <div class="mb-3">
+                                    <label for="joyaDeseada" class="form-label">Joya Deseada</label>
+                                    <select class="form-select" id="joyaDeseada" name="joyaDeseada">
+                                        
+                                    </select>
+                                </div>
+                                <button type="button" class="btn btn-primary">Fabricar Joya</button>
+                            </form>
+                        </div>
+    
+                        <!-- Columna derecha -->
+                        <div class="col-md-6">
+                            <!-- Tarjeta para mostrar cantidades -->
+                            <div class="card" id="cantidadesCard">
+                                <div class="card-body">
+                                    <h4 class="card-title">Disponibilidad de ingredientes</h4>
+                                    <p class="card-text" id="disponibilidad"></p>
+                                </div>
 
+                                <div class="card-body">
+                                    <h4 class="card-title">Informacion de fabricación</h4>
+                                    <p class="card-text ms-2" id="cantidadesTexto"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </main>
 
@@ -68,6 +100,7 @@
     <!-- Custom Scripts -->
     <script src="../js/utilities/tabla.js"></script>
     <script src="../js/utilities/barToggle.js"></script>
+    <script type="module" src="../js/interface/fabricaJoyaUI.js"></script>
 
 
 </body>

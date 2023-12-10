@@ -1,5 +1,6 @@
 import { constantes } from './../utilities/constantes.js';
 document.addEventListener("DOMContentLoaded", function () {
+    sessionStorage.clear()
     const emailEntrada = document.getElementById("email")
     const contraEntrada = document.getElementById("contra")
 
@@ -53,9 +54,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
                 window.location.href = 'html/inicio.html'
-
+               
             } else {
-              
+
                 const alerta = document.createElement('div')
                 alerta.classList.add('alert', 'alert-danger', 'mt-3');
                 alerta.textContent = 'Credenciales incorrectas. Verifique su correo y contraseña.'

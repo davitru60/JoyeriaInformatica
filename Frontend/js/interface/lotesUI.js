@@ -1,8 +1,10 @@
 import { mostrarLotes, eliminarLote } from '../api/lotesAPI.js'
 
-document.addEventListener("DOMContentLoaded", function () {
 
+
+document.addEventListener("DOMContentLoaded", function () {  
     async function cargarLotes() {
+      
         const lotes = await mostrarLotes();
 
         const tabla = $('#example').DataTable()
@@ -78,6 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     cargarLotes()
+
 
 
 })
