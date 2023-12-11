@@ -70,7 +70,7 @@ class JoyaController extends Controller
         // Actualizar los datos del joya
         $joya->update([
             'nombre' => $request['nombre'],
-            //'foto' => $request['foto'],
+            'foto' => $request['foto'],
         ]);
 
 

@@ -103,6 +103,16 @@ main {
     }
 }
 
+.img-fluid{
+    display: block;
+    margin: auto;
+    object-fit: cover;
+    width: 100px;
+    height: 100px;
+    border-radius: 20px; 
+}
+
+
 
 @media (min-width: 768px) {
     #sidebar-wrapper {

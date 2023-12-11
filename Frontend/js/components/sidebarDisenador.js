@@ -38,7 +38,7 @@ const crearBarraLateral = () => {
               </a>
               
               <a class="list-group-item list-group-item-action fw-bold" id="agregarRecetaBtn">
-                  <i class="fas fa-wrench-plus me-2 ms-3"></i> Agregar receta    
+                  <i class="fas fa-plus me-2 ms-3"></i> Agregar receta    
               </a>
 
           </div>

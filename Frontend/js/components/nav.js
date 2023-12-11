@@ -1,5 +1,5 @@
 const obtenerRoles = async () => {
-    try{
+    try {
         const token = sessionStorage.getItem('token');
 
         const respuesta = await fetch('http://127.0.0.1:8000/api/roles', {
@@ -8,17 +8,15 @@ const obtenerRoles = async () => {
             }
         })
 
-        if(respuesta.ok){
+        if (respuesta.ok) {
             const roles = await respuesta.json()
-            console.log(roles.usuario)
-            sessionStorage.setItem('roles',JSON.stringify(roles.usuario))
+            sessionStorage.setItem('roles', JSON.stringify(roles.usuario))
         }
-    }catch(error){
+    } catch (error) {
 
     }
-    
-}
 
+}
 obtenerRoles()
 
 
@@ -52,7 +50,7 @@ const crearNavegacion = async () => {
     const contentWrapper = document.getElementById("page-content-wrapper");
 
     try {
-        const roles  = JSON.parse(sessionStorage.getItem('roles'))
+        const roles = JSON.parse(sessionStorage.getItem('roles'))
         const perfilUsuarioGuardado = sessionStorage.getItem('perfilUsuario')
         const perfilUsuario = JSON.parse(perfilUsuarioGuardado)
 
@@ -173,7 +171,7 @@ const crearNavegacion = async () => {
         // Define las URLs correspondientes a cada opción
         const urlsPorOpcion = {
             'logout': '/logout',
-            'colaborador':'inicio.html',
+            'colaborador': 'inicio.html',
             'clasificador': 'clasificador.html',
             'diseñador': 'disenador.html',
             'administrador': 'gestionUsuario.html'
@@ -186,14 +184,13 @@ const crearNavegacion = async () => {
                 elementoOpcion.addEventListener('click', () => {
                     const url = urlsPorOpcion[opcionId];
                     if (url) {
-                        console.log(url);
                         window.location.href = url;
                     }
                 });
             }
         });
 
-       
+
         // Agregar evento de clic para abrir el modal de perfil de usuario
         const perfilUsuarioElemento = document.getElementById("perfilUsuario");
         if (perfilUsuarioElemento) {
@@ -203,10 +200,10 @@ const crearNavegacion = async () => {
                 document.getElementById('modalPrimerApellido').value = perfilUsuario.ape1
                 document.getElementById('modalSegundoApellido').value = perfilUsuario.ape2
                 document.getElementById('modalEmail').value = perfilUsuario.email
-                
+
                 document.getElementById('modalFotoUsuario').src = perfilUsuario.foto
                 console.log(perfilUsuario.foto)
-          
+
 
                 // Abrir el modal
                 const perfilUsuarioModal = new bootstrap.Modal(document.getElementById('perfilUsuarioModal'))
@@ -221,7 +218,7 @@ const crearNavegacion = async () => {
 };
 
 const rolesRutas = () => {
-    const roles  = JSON.parse(sessionStorage.getItem('roles'))
+    const roles = JSON.parse(sessionStorage.getItem('roles'))
     roles.forEach((rol) => {
         const elementoRol = document.getElementById(rol.toLowerCase());
         if (elementoRol) {

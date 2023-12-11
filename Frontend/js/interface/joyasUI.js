@@ -11,9 +11,9 @@ document.addEventListener("DOMContentLoaded", function () {
             const row = tabla.row.add([
                 dato.id_joya,
                 dato.nombre,
-                `<img src="../assets/joya/${dato.foto}" height="100px">`,
-                `<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#myModal${dato.id_joya}"><i class="fas fa-edit"></i></button>` +
-                `<button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal${dato.id_joya} " ><i class="fas fa-trash-alt"></i></button>`
+                `<img src="../assets/joya/${dato.foto}" class="img-fluid" height="100px" width:100%>`,
+                `<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#myModal${dato.id_joya}"><i class="fas fa-edit"></i> Editar</button>` +
+                `<button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal${dato.id_joya} " ><i class="fas fa-trash-alt"></i> Eliminar</button>`
             ]).draw()
 
             const modalEditar = `
@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                 </div>
                                 <div class="mb-3">
                                     <label for="ubicacion" class="form-label">Foto:</label>
-                                    <input type="text" class="form-control" id="foto" value="${dato.foto}" readonly>
+                                    <input type="text" class="form-control" id="foto" value="${dato.foto}">
                                 </div>
                           
                             </form>
