@@ -140,33 +140,14 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    function obtenerValorImagen() {
-        if (fotoEntrada.files.length > 0) {
-            let archivo = foto.files[0].name
-            return archivo
-        }
-    }
-
+    
     function obtenerDatosUsuario() {
-        var checkboxes = document.querySelectorAll('.form-check-input')
-        var valoresCheckbox = ['Colaborador']
-
-        checkboxes.forEach(function (checkbox) {
-            if (checkbox.checked) {
-                valoresCheckbox.push(checkbox.value)
-            }
-        })
-
-        var foto = obtenerValorImagen()
-
         return {
             'nombre': nombreEntrada.value,
             'ape1': ap1Entrada.value,
             'ape2': ap2Entrada.value,
             'email': emailEntrada.value,
             'contrasena': contraConfirmarEntrada.value,
-            'foto': foto,
-            'roles': valoresCheckbox
         }
     }
 
@@ -182,13 +163,27 @@ document.addEventListener("DOMContentLoaded", function () {
                 body: JSON.stringify(usuario)
             })
 
-            if(respuesta.ok){
+            if (respuesta.ok) {
                 const datosRespuesta = await respuesta.json()
-                console.log('Respuesta del servidor:', datosRespuesta)
-            }else{
+                const alerta = document.createElement('div')
+                alerta.classList.add('alert', 'alert-success', 'mt-3');
+                alerta.textContent = "Usuario creado con éxito"
+                console.log(datosRespuesta)
+
+                const formulario = document.querySelector('.row')
+
+                // Insertar la alerta al principio del formulario
+                formulario.insertBefore(alerta, formulario.firstChild)
+
+                setTimeout(() => {
+                    alerta.remove()
+                }, 2000)
+
+            } else if (respuesta.status == 422) {
+                const errores = await respuesta.json()
                 const alerta = document.createElement('div')
                 alerta.classList.add('alert', 'alert-danger', 'mt-3');
-                alerta.textContent = 'Falta algún dato. Verifique que esté todo'
+                alerta.innerText = errores.errors.map((message)=>`- ${message}`).join('\n')
 
                 const formulario = document.querySelector('.row')
 
@@ -200,14 +195,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 }, 2000)
             }
 
-        } catch (error) {
-            console.error('Error en la respuesta del servidor:', respuesta.status);
-        }
+        }catch (error) {
+        console.error('Error en la respuesta del servidor:', respuesta.status);
     }
+}
 
-    registrarBtn.addEventListener("click", async() => {
-        await registrarUsuario()
-    }) 
+    registrarBtn.addEventListener("click", async () => {
+    await registrarUsuario()
+}) 
 
 
 

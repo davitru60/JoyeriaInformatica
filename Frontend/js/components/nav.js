@@ -1,14 +1,29 @@
 const obtenerRoles = async () => {
-    // Simulando una operación asíncrona, por ejemplo, una solicitud a un servidor
-    return {
-        roles: ['Colaborador','Clasificador','Diseñador', 'Administrador']
-    };
-};
+    try{
+        const token = sessionStorage.getItem('token');
+
+        const respuesta = await fetch('http://127.0.0.1:8000/api/roles', {
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        })
+
+        if(respuesta.ok){
+            const roles = await respuesta.json()
+            console.log(roles.usuario)
+            sessionStorage.setItem('roles',JSON.stringify(roles.usuario))
+        }
+    }catch(error){
+
+    }
+    
+}
+
+obtenerRoles()
 
 async function mostrarPerfilUsuario() {
     try {
         const token = sessionStorage.getItem('token');
-
         const respuesta = await fetch('http://127.0.0.1:8000/api/perfil', {
             headers: {
                 'Authorization': 'Bearer ' + token
@@ -35,7 +50,7 @@ const crearNavegacion = async () => {
     const contentWrapper = document.getElementById("page-content-wrapper");
 
     try {
-        const { roles } = await obtenerRoles()
+        const roles  = JSON.parse(sessionStorage.getItem('roles'))
         const perfilUsuarioGuardado = sessionStorage.getItem('perfilUsuario')
         const perfilUsuario = JSON.parse(perfilUsuarioGuardado)
 
@@ -158,7 +173,7 @@ const crearNavegacion = async () => {
             'logout': '/logout',
             'colaborador':'inicio.html',
             'clasificador': 'clasificador.html',
-            'diseñador': 'diseñador.html',
+            'diseñador': 'disenador.html',
             'administrador': 'gestionUsuario.html'
         };
 
@@ -203,8 +218,8 @@ const crearNavegacion = async () => {
     }
 };
 
-const rolesRutas = async () => {
-    const { roles } = await obtenerRoles()
+const rolesRutas = () => {
+    const roles  = JSON.parse(sessionStorage.getItem('roles'))
     roles.forEach((rol) => {
         const elementoRol = document.getElementById(rol.toLowerCase());
         if (elementoRol) {

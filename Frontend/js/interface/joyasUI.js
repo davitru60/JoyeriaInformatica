@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const row = tabla.row.add([
                 dato.id_joya,
                 dato.nombre,
-                dato.foto,
+                `<img src="../assets/joya/${dato.foto}" height="100px">`,
                 `<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#myModal${dato.id_joya}"><i class="fas fa-edit"></i></button>` +
                 `<button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal${dato.id_joya} " ><i class="fas fa-trash-alt"></i></button>`
             ]).draw()
@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                 </div>
                                 <div class="mb-3">
                                     <label for="ubicacion" class="form-label">Foto:</label>
-                                    <input type="text" class="form-control" id="foto" value="${dato.foto}">
+                                    <input type="text" class="form-control" id="foto" value="${dato.foto}" readonly>
                                 </div>
                           
                             </form>
@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     const modalElement = document.getElementById(`deleteModal${id}`)
                     const modal = new bootstrap.Modal(modalElement)
                     modal.hide()
-
+                    location.reload()
                     
 
                 } catch (error) {
@@ -128,6 +128,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     // Cerrar el modal después de modificar
                     const modal = new bootstrap.Modal(modalElement)
                     modal.hide();
+                    location.reload()
                 } catch (error) {
                     console.error('Error al confirmar la modificación:', error)
                 }
