@@ -124,7 +124,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     const modalElement = document.getElementById(`deleteModal${id}`);
                     const modal = new bootstrap.Modal(modalElement);
                     modal.hide();
-
+                    location.reload()
 
 
                 } catch (error) {
@@ -161,6 +161,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     // Cerrar el modal después de modificar
                     const modal = new bootstrap.Modal(modalElement)
                     modal.hide();
+                    location.reload()
                 } catch (error) {
                     console.error('Error al confirmar la modificación:', error)
                 }
