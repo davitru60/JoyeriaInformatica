@@ -1,36 +1,37 @@
 import { constantes } from '../utilities/constantes.js'
 export async function mostrarJoyas(){
     const urlApi = constantes.urlApi
+    const token = sessionStorage.getItem('token')
     try {
         const respuesta = await fetch(urlApi + 'joya', {
             method: 'GET',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
             },
-            // No incluyas un cuerpo en solicitudes GET
-        });
+    
+        })
 
         if (!respuesta.ok) {
-            // Manejar errores de solicitud no exitosa
             throw new Error(`Error al obtener la lista de joya. Código de estado: ${respuesta.status}`);
         }
 
         const joya = await respuesta.json();
-        return joya.joya;
+        return joya.joya
     } catch (error) {
-        console.error('Error en la función monstrarJoya:', error.message);
-        // Puedes lanzar el error nuevamente si quieres que se maneje en el contexto superior
-        throw error;
+        console.error('Error en la función monstrarJoya:', error.message)
     }
 }
 
 export async function modificarJoyas(id,joyas){
     const urlApi = constantes.urlApi
+    const token = sessionStorage.getItem('token')
     try{
         const respuesta = await fetch(urlApi+'joya/'+ id,{
             method:'PUT',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
             },
             body: JSON.stringify(joyas)
 
@@ -50,11 +51,13 @@ export async function modificarJoyas(id,joyas){
 
 export async function eliminarJoyas(id){
     const urlApi = constantes.urlApi
+    const token = sessionStorage.getItem('token')
     try{
         const respuesta = await fetch(urlApi+'joya/'+id,{
             method:'DELETE',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
             }
         })
 

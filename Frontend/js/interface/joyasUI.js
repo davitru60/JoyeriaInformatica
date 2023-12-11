@@ -3,7 +3,6 @@ import { mostrarJoyas,eliminarJoyas,modificarJoyas} from "../api/joyasAPI.js"
 document.addEventListener("DOMContentLoaded", function () {
     async function cargarJoyas() {
         const joyas = await mostrarJoyas() 
-        console.log(joyas)
         const tabla = $('#joyas').DataTable()
         tabla.clear().draw()
 

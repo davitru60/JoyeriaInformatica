@@ -27,12 +27,17 @@ export async function mostrarLotesNoClasificados() {
     const urlApi = constantes.urlApi
 
     try {
-        const respuesta = await fetch(urlApi + 'lotesNoClasificados')
+        const token = sessionStorage.getItem('token')
+        const respuesta = await fetch(urlApi + 'lotesNoClasificados',{
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        })
         if (respuesta.ok) {
             const datos = await respuesta.json()
             return datos.lotes
         } else {
-            console.log('Algo fue mal')
+           
         }
     } catch (error) {
 

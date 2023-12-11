@@ -1,13 +1,15 @@
 import { constantes } from "../utilities/constantes.js"
 
-export async function mostrarUsuario(){
+export async function mostrarUsuario() {
     const rutaUsuario = constantes.urlApi + 'usuarios';
 
     try {
+        const token = sessionStorage.getItem('token')
         const respuesta = await fetch(rutaUsuario, {
             method: 'GET',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
             },
             // No incluyas un cuerpo en solicitudes GET
         });
@@ -52,14 +54,16 @@ export async function cogerUnUsuario(id_usuario) {
     }
 }
 
-export async function eliminarUsuario(id_usuario){
+export async function eliminarUsuario(id_usuario) {
     const rutaUsuario = constantes.urlApi + 'usuarios/';
 
     try {
+        const token = sessionStorage.getItem('token')
         const respuesta = await fetch(rutaUsuario + id_usuario, {
             method: 'DELETE',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
             },
             // No incluyas un cuerpo en solicitudes DELETE
         });
@@ -77,14 +81,16 @@ export async function eliminarUsuario(id_usuario){
         throw error;
     }
 }
-export async function editarUsuario(id_usuario, usuario){
+export async function editarUsuario(id_usuario, usuario) {
     const rutaUsuario = constantes.urlApi + 'usuarios/';
+    const token = sessionStorage.getItem('token')
     try {
         const respuesta = await fetch('http://127.0.0.1:8000/api/usuarios/' + id_usuario, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
+                'Access-Control-Allow-Origin': '*',
+                'Authorization': 'Bearer ' + token
             },
             body: JSON.stringify(usuario),
         });
@@ -102,24 +108,27 @@ export async function editarUsuario(id_usuario, usuario){
         throw error;
     }
 }
-export async function anadirUsuario(usuarioCreado){
+export async function anadirUsuario(usuarioCreado) {
     const rutaUsuario = constantes.urlApi + 'usuarios/';
+    const token = sessionStorage.getItem('token')
+    
     try {
-    const respuesta = await fetch(rutaUsuario, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-        },
-        body: JSON.stringify(usuarioCreado),
-    })
-    if (!respuesta.ok) {
+        const respuesta = await fetch(rutaUsuario, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': 'Bearer ' + token
+            },
+            body: JSON.stringify(usuarioCreado),
+        })
+        if (!respuesta.ok) {
 
-        throw new Error(`Error al eliminar el usuario. Código de estado: ${respuesta.status}`);
-    }
-    const resultado = await respuesta.json();
-    return resultado;
-    }catch (error){
+            throw new Error(`Error al eliminar el usuario. Código de estado: ${respuesta.status}`);
+        }
+        const resultado = await respuesta.json();
+        return resultado;
+    } catch (error) {
         console.error('Error en la función eliminarUsuario:', error.message);
 
         throw error;

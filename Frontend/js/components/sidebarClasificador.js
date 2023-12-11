@@ -94,12 +94,16 @@ const mostrarModalAgregarComponentes = () => {
     modalInstance.show()
 }
 
-async function agregarComponente(componente){
-    try{
+async function agregarComponente(componente) {
+    try {
+
+        const token = sessionStorage.getItem('token')
         const respuesta = await fetch('http://127.0.0.1:8000/api/componente', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+
             },
             body: JSON.stringify(componente)
         })
@@ -107,15 +111,15 @@ async function agregarComponente(componente){
         if (respuesta.ok) {
             const datos = await respuesta.json()
             console.log(datos)
-        }else{
-            console.log('Algo fue mal')
+        } else {
+
         }
-    }catch(error){
-        
+    } catch (error) {
+
     }
 }
 
-const guardarComponente = async() => {
+const guardarComponente = async () => {
 
     const nombreComponente = document.getElementById('nombreComponente').value
     const hwDropdown = document.getElementById('hwDropdown').value
@@ -128,7 +132,7 @@ const guardarComponente = async() => {
     console.log(componenteObjeto)
 
     await agregarComponente(componenteObjeto)
-    window.location.href="clasificador.html"
+    window.location.href = "clasificador.html"
 
     // Cerrar el modal si es necesario
     const modalElement = document.getElementById('agregarComponentesModal')

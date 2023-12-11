@@ -3,12 +3,18 @@ export async function mostrarComponentes(){
     const urlApi = constantes.urlApi
 
     try{
-        const respuesta = await fetch(urlApi+'componente')
+
+        const token = sessionStorage.getItem('token')
+        const respuesta = await fetch(urlApi+'componente',{
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        })
         if (respuesta.ok) {
             const datos = await respuesta.json()
             return datos.componente
         } else {
-            console.log('Algo fue mal')
+            window.location.href="../html/pagina403.html"
         }
     }catch(error){
         console.error('Error al obtener los componentes:', error)
@@ -18,10 +24,13 @@ export async function mostrarComponentes(){
 export async function modificarComponente(id,componente){
     const urlApi = constantes.urlApi
     try{
+
+        const token = sessionStorage.getItem('token')
         const respuesta = await fetch(urlApi+'componente/'+ id,{
             method:'PUT',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
             },
             body: JSON.stringify(componente)
 
@@ -42,10 +51,13 @@ export async function modificarComponente(id,componente){
 export async function eliminarComponente(id){
     const urlApi = constantes.urlApi
     try{
+
+        const token = sessionStorage.getItem('token')
         const respuesta = await fetch(urlApi+'componente/'+id,{
             method:'DELETE',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
             }
         })
 

@@ -118,11 +118,13 @@ const crearBarraLateral = () => {
 }
 
 async function agregarReceta(receta){
+    const token = sessionStorage.getItem('token')
     try{
         const respuesta = await fetch('http://127.0.0.1:8000/api/recetas', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
             },
             body: JSON.stringify(receta)
         })
