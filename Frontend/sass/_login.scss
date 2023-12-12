@@ -1,0 +1,49 @@
+@import "../sass/base";
+.contenedor-formulario {
+    background-image: url(../assets/Career-Spotlight_Computer_Hardware_Engineer_Blog.jpg);
+    background-size: cover;
+
+    .container-fluid.login {
+        border-radius: 20px;
+        padding: 20px;
+        width: 35%;
+        background-color: white;
+
+        form {
+            h3 {
+                text-align: center;
+            }
+            .col {
+                padding: 10px;
+
+                #btn-contra{
+                    @include form-btn;
+                }
+            }
+
+            .col.boton {
+                padding: 0;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                .btn {
+                    width: 50%;
+                    @include form-btn;
+                }
+                
+                p {
+                    margin-top: 10px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .contenedor-formulario {
+        .container-fluid.login {
+            width: 100%;
+        }
+    }
+}

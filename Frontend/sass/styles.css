@@ -1,0 +1,222 @@
+.contenedor-formulario {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.contenedor-formulario .container-fluid.registro {
+  border-radius: 20px;
+}
+.contenedor-formulario .container-fluid.registro form h3 {
+  text-align: center;
+}
+.contenedor-formulario .container-fluid.registro form .row.registro {
+  border-radius: 20px;
+}
+.contenedor-formulario .container-fluid.registro form .row.registro .col-sm-12 {
+  padding-top: 15px;
+}
+.contenedor-formulario .container-fluid.registro form .row.registro .col-sm-12 #btn-contra, .contenedor-formulario .container-fluid.registro form .row.registro .col-sm-12 #btn-contra-confirmar {
+  background-color: #1B4668;
+  border: none;
+}
+.contenedor-formulario .container-fluid.registro form .row.registro .row.boton {
+  padding: 0;
+  display: flex;
+  text-align: center;
+}
+.contenedor-formulario .container-fluid.registro form .row.registro .row.boton .btn {
+  margin-left: 25%;
+  width: 50%;
+  background-color: #1B4668;
+  border: none;
+}
+.contenedor-formulario .container-fluid.registro form .row.registro .row.boton p {
+  margin-top: 10px;
+}
+
+@media (min-width: 992px) {
+  .container-fluid.registro {
+    width: 50%;
+  }
+}
+@media (max-width: 991px) {
+  .container-fluid.registro {
+    width: 90%;
+  }
+}
+* {
+  font-family: "Inter", sans-serif;
+}
+
+/*Sidebar*/
+#sidebar-wrapper {
+  background-color: rgb(255, 255, 255);
+  min-height: 100vh;
+  margin-left: -15rem;
+  transition: margin 0.25s ease-out;
+}
+#sidebar-wrapper .sidebar-heading {
+  padding: 0.875rem 1.25rem;
+  font-size: 1.2rem;
+}
+#sidebar-wrapper .list-group {
+  width: 15rem;
+}
+
+#page-content-wrapper {
+  min-width: 100vw;
+  background-color: #E6F2F7;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  margin-left: 0;
+}
+
+nav {
+  background-color: #FFFFFF;
+}
+nav .user-name {
+  color: black;
+}
+
+main {
+  padding: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.row.m-2 {
+  width: 100%;
+}
+
+.container-fluid.pages {
+  height: 150px;
+  text-align: start;
+  background-color: #97B7CF;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  display: flex;
+  align-items: center;
+  padding: 50px;
+}
+
+.row {
+  padding: 20px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 25px;
+}
+
+#menu-toggle {
+  cursor: pointer;
+}
+
+.list-group-item {
+  border: none;
+  padding: 20px 30px;
+}
+
+.list-group-item.active {
+  background-color: transparent;
+  color: var(--main-text-color);
+  font-weight: bold;
+  border: none;
+}
+
+.row.dt-row .col-sm-12 table tbody tr td .btn {
+  margin-left: 5px;
+}
+
+.img-fluid {
+  display: block;
+  margin: auto;
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100px;
+  height: 100px;
+  border-radius: 20px;
+}
+
+@media (min-width: 768px) {
+  #sidebar-wrapper {
+    margin-left: 0;
+  }
+  #page-content-wrapper {
+    min-width: 0;
+    width: 100%;
+  }
+  #wrapper.toggled #sidebar-wrapper {
+    margin-left: -15rem;
+  }
+}
+@media (max-width: 768px) and (max-width: 768px) {
+  main {
+    padding: 15px;
+  }
+  .row.m-2 {
+    min-width: 100%;
+  }
+  .container-fluid {
+    width: 100%;
+  }
+  nav {
+    width: 100%;
+  }
+  main .row .col-table {
+    overflow-x: scroll;
+  }
+}
+.contenedor-formulario {
+  background-image: url(../assets/Career-Spotlight_Computer_Hardware_Engineer_Blog.jpg);
+  background-size: cover;
+}
+.contenedor-formulario .container-fluid.login {
+  border-radius: 20px;
+  padding: 20px;
+  width: 35%;
+  background-color: white;
+}
+.contenedor-formulario .container-fluid.login form h3 {
+  text-align: center;
+}
+.contenedor-formulario .container-fluid.login form .col {
+  padding: 10px;
+}
+.contenedor-formulario .container-fluid.login form .col #btn-contra {
+  background-color: #1B4668;
+  border: none;
+}
+.contenedor-formulario .container-fluid.login form .col.boton {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.contenedor-formulario .container-fluid.login form .col.boton .btn {
+  width: 50%;
+  background-color: #1B4668;
+  border: none;
+}
+.contenedor-formulario .container-fluid.login form .col.boton p {
+  margin-top: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .contenedor-formulario .container-fluid.login {
+    width: 100%;
+  }
+}
+.row.lotes {
+  padding: 30px;
+  width: 90%;
+}
+.row.lotes form {
+  padding: 20px;
+}
+.row.lotes form .form-group {
+  margin-top: 10px;
+}
+.row.lotes #map {
+  border-radius: 20px;
+}/*# sourceMappingURL=styles.css.map */

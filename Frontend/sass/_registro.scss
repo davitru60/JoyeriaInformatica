@@ -1,0 +1,57 @@
+@import "../sass/base";
+.contenedor-formulario {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .container-fluid.registro {
+        border-radius: 20px;
+
+        form {
+            h3 {
+                text-align: center;
+            }
+
+            .row.registro {
+                border-radius: 20px;
+
+                .col-sm-12 {
+                    padding-top: 15px;
+
+                    #btn-contra, #btn-contra-confirmar{
+                        @include form-btn;
+                    }
+                }
+
+                .row.boton {
+                    padding: 0;
+                    display: flex;
+                    text-align: center;
+
+                    .btn {
+                        margin-left: 25%;
+                        width: 50%;
+                        @include form-btn;
+                    }
+
+                    p {
+                        margin-top: 10px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 992px) {
+    .container-fluid.registro {
+        width: 50%;
+    }
+}
+
+@media (max-width: 991px) {
+    .container-fluid.registro {
+        width: 90%;
+    }
+}
