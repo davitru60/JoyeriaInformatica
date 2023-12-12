@@ -18,7 +18,7 @@ Seleccionamos **Live Preview: Start Server**, esto iniciará el servidor y nos a
 - **Backend**: Laravel
 
 ## 🤔 Puesta en marcha de la aplicación
-Para instalar las dependencias necesarias en la parte del frontend usaremos el siguiente comando:
+Para instalar las dependencias necesarias en la parte del frontend, abriremos una terminal en la carpeta frontend y usaremos el siguiente comando:
 ```
 npm install
 ```
@@ -26,7 +26,7 @@ Para ejecutar el script de construcción definido en el archivo `package.json` u
 ```
 npm run build
 ```
-Para reconstruir el proyecto en la parte del backend es necesario usar los siguientes comandos:
+Para reconstruir el proyecto en la parte del backend,abriremos una terminal en la carpeta backend y usaremos los siguientes comandos:
 ```
 composer install
 composer update
