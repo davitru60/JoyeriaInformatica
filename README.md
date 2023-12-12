@@ -32,7 +32,37 @@ composer update
 - `POST /login`: Con esta ruta los usuarios pueden iniciar sesión en su cuenta.
 - `POST /registrar`: Con esta ruta los usuario pueden registrarse en el sistema si aún no tienen cuenta.
 
-### Rutas para los lotes
+### Rutas para los colaboradores
 - `GET /lotes`: Con esta ruta los usuarios colaboradores podrán obtener una lista de todos los lotes que han enviado.
 - `POST /lotes`: Con esta ruta los usuarios colaboradores podrán obtener añadir un nuevo lote.
 - `DELETE /lotes`: Con esta ruta los usuarios colaboradores podrán eliminar un lote.
+
+### Rutas para los clasificadores y los administradores
+- `GET /componente`: Con esta ruta se obtiene la lista de todos los componentes.
+- `POST /componente`: Con esta ruta se agrega un componente al sistema.
+- `PUT /componente`: Con esta ruta se actualiza un componente.
+- `DELETE /componente/{id}`: Con esta ruta se elimina un componente dada su id.
+
+### Rutas para los clasificadores
+- `GET /lotesNoClasificados`: Con esta ruta los clasificadores obtendran una lista de los lotes que aún no han sido clasificados.
+- `POST /despiece/{id}`: Con esta ruta un clasificador podrá despiezar un lote.
+- `PUT /despiece/{id}`: Con esta ruta un clasificador podrá modificar el estado de un lote para que esté clasificado.
+
+## Rutas para los administradores
+- `GET /usuarios`: Con esta ruta se obtiene la lista de todos los usuarios.
+- `POST /usuarios`: Con esta ruta se agrega un usuario al sistema.
+- `PUT /usuarios`: Con esta ruta se actualiza un usuario.
+- `DELETE /usuarios/{id}`: Con esta ruta se elimina un usuario dada su id.
+
+## Rutas para los diseñadores
+- `GET /joya`: Con esta ruta se obtiene la lista de todas las joyas.
+- `POST /joya`: Con esta ruta se agrega una joya al sistema.
+- `PUT /joya`: Con esta ruta se actualiza una joya.
+- `DELETE /joya/{id}`: Con esta ruta se elimina una joya dada su id.
+
+- `GET /recetas`: Con esta ruta se obtiene la lista de todas las recetas.
+- `POST /recetas`: Con esta ruta se agrega una receta al sistema.
+- `PUT /recetas`: Con esta ruta se actualiza una receta.
+- `DELETE /recetas/{id}`: Con esta ruta se elimina una receta dada su id.
+
+
