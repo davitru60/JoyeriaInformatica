@@ -48,13 +48,13 @@ composer update
 - `POST /despiece/{id}`: Con esta ruta un clasificador podrá despiezar un lote.
 - `PUT /despiece/{id}`: Con esta ruta un clasificador podrá modificar el estado de un lote para que esté clasificado.
 
-## Rutas para los administradores
+### Rutas para los administradores
 - `GET /usuarios`: Con esta ruta se obtiene la lista de todos los usuarios.
 - `POST /usuarios`: Con esta ruta se agrega un usuario al sistema.
 - `PUT /usuarios`: Con esta ruta se actualiza un usuario.
 - `DELETE /usuarios/{id}`: Con esta ruta se elimina un usuario dada su id.
 
-## Rutas para los diseñadores
+### Rutas para los diseñadores
 - `GET /joya`: Con esta ruta se obtiene la lista de todas las joyas.
 - `POST /joya`: Con esta ruta se agrega una joya al sistema.
 - `PUT /joya`: Con esta ruta se actualiza una joya.
@@ -65,4 +65,9 @@ composer update
 - `PUT /recetas`: Con esta ruta se actualiza una receta.
 - `DELETE /recetas/{id}`: Con esta ruta se elimina una receta dada su id.
 
+- `GET /ingredientes`: Con esta ruta se obtiene la lista de todos los ingredientes.
+- `GET /ingredientes/{id}`: Con esta ruta se obtiene la lista de ingredientes de una joya en específico dado su id.
 
+- `POST /verificarComponentes`: Con esta ruta se verifica si en el sistema quedan los componentes necesarios para poder realizar una joya dados sus ingredientes.
+- `POST /calcular`: Con esta ruta se calcula la cantidad de joyas del mismo tipo que se pueden fabricar dados sus ingredientes y teniendo en cuenta la cantidad de componentes que hay en el sistema.
+- `POST /fabricar`: Con esta ruta se fabrica una joya aportando sus ingredientes para que estos puedan ser restados del inventario.
