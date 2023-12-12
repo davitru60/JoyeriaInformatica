@@ -7,7 +7,7 @@ Este proyecto se centra en el desarrollo de una aplicación web de creación de 
 - Tener instalado composer para poder trabajar con Laravel
 - Visual Studio Code con la extensión Live Preview de Microsoft.
 
-### ¿Como iniciar el servidor de Live Preview?
+### 🤔 ¿Como iniciar el servidor de Live Preview?
 Para iniciarlo usaremos la siguiente combinación de teclas: `CTRL + SHIFT + P` y se nos abrirá lo siguiente: 
 
 ![Captura de pantalla 2023-12-12 190135](https://github.com/davitru60/JoyeriaInformatica/assets/84265707/2a49b2dc-ded8-4223-9134-0fe08d59b9c8)
@@ -17,7 +17,7 @@ Seleccionamos **Live Preview: Start Server**, esto iniciará el servidor y nos a
 - **Frontend**: HTML, Bootstrap 5, SASS, JavaScript
 - **Backend**: Laravel
 
-## 🤔 Puesta en marcha de la aplicación
+## 💭 Puesta en marcha de la aplicación
 Para instalar las dependencias necesarias en la parte del frontend, abriremos una terminal en la carpeta frontend y usaremos el siguiente comando:
 ```
 npm install
