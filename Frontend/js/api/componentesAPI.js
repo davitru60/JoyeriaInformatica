@@ -14,7 +14,7 @@ export async function mostrarComponentes(){
             const datos = await respuesta.json()
             return datos.componente
         } else {
-            window.location.href="../html/pagina403.html"
+            
         }
     }catch(error){
         console.error('Error al obtener los componentes:', error)

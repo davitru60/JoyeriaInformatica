@@ -80,6 +80,7 @@ Route::middleware(['auth:sanctum', 'verificarDisenador'])->group(function () {
 
     Route::post('verificarComponentes', [FabricadorController::class, 'verificarComponentes']);
     Route::post('calcular', [FabricadorController::class, 'calcularCantidadJoyas']);
+    Route::post('fabricar',[FabricadorController::class,'fabricarJoyas']);
 });
 
 

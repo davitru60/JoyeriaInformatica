@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Componentes;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class FabricadorController extends Controller
 {
@@ -17,15 +18,14 @@ class FabricadorController extends Controller
             $nombre = $componente['nombre'];
             $cantidadNecesaria = $componente['cantidad'];
 
-            // Obtener la cantidad disponible del componente
             $cantidadDisponible = Componentes::where('nombre', $nombre)->value('cantidad');
 
-            // Verificar si hay suficientes componentes
+  
             if ($cantidadDisponible < $cantidadNecesaria) {
                 $response[] = [
                     'nombre' => $nombre,
                     'disponibilidad' => false,
-                    'codigo' => 'NO_SUFICIENTES_COMPONENTES',
+                    'cantDisponible' => $cantidadDisponible,
                 ];
             } else {
                 $response[] = [
@@ -43,13 +43,11 @@ class FabricadorController extends Controller
     {
         $componentesNecesarios = $request->input('ingredientes');
 
-        // Recoger las cantidades disponibles de cada componente
         $cantidadesDisponibles = [];
 
         foreach ($componentesNecesarios as $componente) {
             $nombre = $componente['nombre'];
 
-            // Obtener la cantidad disponible del componente
             $cantidadDisponible = Componentes::where('nombre', $nombre)->value('cantidad');
 
             $cantidadesDisponibles[$nombre] = $cantidadDisponible;
@@ -70,6 +68,34 @@ class FabricadorController extends Controller
         }
 
         return response()->json(['cantidad_maxima_joyas' => floor($cantidadMinima)]);
+    }
+
+
+    public function fabricarJoyas(Request $request)
+    {
+        $componentesNecesarios = $request->input('ingredientes');
+        $mensajeError = null;
+    
+        foreach ($componentesNecesarios as $componente) {
+            $nombre = $componente['nombre'];
+            $cantidadNecesaria = $componente['cantidad'];
+    
+            $componenteDB = Componentes::where('nombre', $nombre)->first();
+    
+            if ($componenteDB->cantidad >= $cantidadNecesaria) {
+                $componenteDB->cantidad -= $cantidadNecesaria;
+                $componenteDB->save();
+            } else {
+                // Guardar el mensaje de error pero seguir iterando por si hay otros componentes con problemas
+                $mensajeError = 'No hay suficientes componentes disponibles para fabricar la joya';
+            }
+        }
+    
+        if ($mensajeError !== null) {
+            return response()->json(['mensaje' => $mensajeError], Response::HTTP_BAD_REQUEST);
+        }
+    
+        return response()->json(['mensaje' => 'Joya fabricada con éxito'], Response::HTTP_OK);
     }
 
 }
