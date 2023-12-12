@@ -12,8 +12,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 dato.id_receta,
                 dato.id_joya,
                 dato.descripcion,
-                `<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#myModal${dato.id_receta}"><i class="fas fa-edit"></i></button>` +
-                `<button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal${dato.id_receta} " ><i class="fas fa-trash-alt"></i></button>`
+                `<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#myModal${dato.id_receta}"><i class="fas fa-edit"></i> Editar</button>` +
+                `<button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal${dato.id_receta} " ><i class="fas fa-trash-alt"></i> Borrar</button>`
             ]).draw()
 
             const modalEditar = `
@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
     
     
                 <div class="modal-body">
-                    <p>¿Estás seguro de que deseas eliminar este joya?</p>
+                    <p>¿Estás seguro de que deseas eliminar esta receta?</p>
                 </div>
     
                 <div class="modal-footer">

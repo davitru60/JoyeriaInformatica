@@ -54,9 +54,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     <label for="contra" class="form-label">Contraseña</label>
                     <div class="input-group">
                         <input type="password" id="contra${usu.id}" name="contra${usu.id}" class="form-control" value=${usu.contrasena}>
-                        <button type="button" class="btn btn-primary" id="btn-contra">
-                        <i class="bi bi-eye-slash-fill" id="eye-icon"></i>
-                        </button>
                     <div class="invalid-feedback" id="mensajeContrasena"></div>
                     </div>
                 </div>

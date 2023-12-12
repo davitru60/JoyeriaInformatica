@@ -94,14 +94,8 @@ const crearNavegacion = async () => {
                                         <span class="fw-bold">Perfil de usuario</span>
                                     </div>
                                 </li>
-                                <li>
-                                    <div class="dropdown-divider"></div>
-                                </li>
-                                <li>
-                                    <div class="dropdown-item" id="logout">
-                                        <i class="fas fa-sign-out-alt me-2"></i>
-                                        <span class="fw-bold">Logout</span>
-                                    </div>
+                                
+                           
                                 </li>
                             </ul>
                         </li>
