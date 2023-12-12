@@ -12,12 +12,14 @@ Este proyecto se centra en el desarrollo de una aplicación web de creación de 
 - **Backend**: Laravel
 
 ## 🤔 Puesta en marcha de la aplicación
-Para reconstruir el proyecto en la parte del frontend es necesario usar el siguiente comando:
+Para instalar las dependencias necesarias en la parte del frontend usaremos el siguiente comando:
 ```
 npm install
 ```
-Esto lo que hará será descargar todas las dependencias necesarias para que Bootstrap funcione correctamente.
-
+Para ejecutar el script de construcción definido en el archivo `package.json` usaremos el siguiente comando:
+```
+npm run build
+```
 Para reconstruir el proyecto en la parte del backend es necesario usar los siguientes comandos:
 ```
 composer install
