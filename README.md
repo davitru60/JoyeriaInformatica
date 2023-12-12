@@ -2,6 +2,12 @@
  ## 🧩 Introducción al proyecto
 Este proyecto se centra en el desarrollo de una aplicación web de creación de joyas a partir de componentes de ordenadores ya en desuso. El objetivo del proyecto es aprender a realizar una aplicación web desde cero juntando la parte del servidor y del cliente para finalmente con la interfaz poder mostrar y gestionar los datos relacionados con el sistema.
 
+> [!NOTE]
+> Cuando se inicia sesión, al principio no se muestra la barra de navegación, para que se muestre tan solo hay que recargar la página.
+
+> [!NOTE]
+> Cuando se realizan algunas operaciones CRUD en algunas páginas es necesario recargar la página para ver los cambios.
+
 ## 🛠️ Requisitos
 - Tener instalado y configurado XAMPP.
 - Tener instalado composer para poder trabajar con Laravel
