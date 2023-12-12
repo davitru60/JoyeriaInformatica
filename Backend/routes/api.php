@@ -12,8 +12,27 @@ use App\Http\Controllers\IngredienteController;
 use Illuminate\Support\Facades\Route;
 
 
+/**
+ * En la autoria de las rutas tambien se incluyen las funcionalidades creadas por cada uno
+ */
 
-//Usuarios
+/**
+ * Seeders, factorias , modelos
+ * @author David Trujillo Carrero
+ * @author Raul Gutierrez Merino
+ */
+
+ /**
+  * Middlewares
+  * @author David Trujillo Carrero
+  */
+
+/**
+ * Rutas de usuarios
+ * @author David Trujillo Carrero
+ */
+
+
 Route::post('login', [AuthController::class, 'login']);
 Route::post('registrar', [AuthController::class, 'registrar']);
 
@@ -23,7 +42,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 });
 
 
-//Colaborador
+/**
+ * Rutas de colaborador
+ * @author David Trujillo Carrero
+ */
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('lotes', [LoteController::class, 'mostrarLotes']);
     Route::post('lotes', [LoteController::class, 'agregarLote']);
@@ -31,7 +53,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 });
 
 
-//Clasificador
+/**
+ * Rutas de clasificador
+ * @author David Trujillo Carrero
+ */
 Route::middleware(['auth:sanctum', 'verificarClasificador'])->group(function () {
     Route::get('lotesNoClasificados', [LoteController::class, 'mostrarLotesNoClasificados']);
 });
@@ -41,7 +66,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::put('despiece/{id}', [ClasificadorController::class, 'modificarEstadoLote']);
 });
 
-//Administrador y clasificador
+/**
+ * Rutas de administrador y clasificador
+ * @author Raul Gutierrez Merino
+ */
 Route::middleware(['auth:sanctum', 'verificarAdministrador', 'verificarClasificador'])->group(function () {
     Route::get('/componente', [ComponentesController::class, 'index']);
     Route::post('/componente', [ComponentesController::class, 'store']);
@@ -50,7 +78,10 @@ Route::middleware(['auth:sanctum', 'verificarAdministrador', 'verificarClasifica
     Route::delete('/componente/{id}', [ComponentesController::class, 'destroy']);
 });
 
-//Administrador
+/**
+ * Rutas de administrador
+ * @author Raul Gutierrez Merino
+ */
 Route::middleware(['auth:sanctum', 'verificarAdministrador'])->group(function () {
     Route::get('/usuarios', [UsuarioController::class, 'index']);
     Route::post('/usuarios', [UsuarioController::class, 'store']);
@@ -59,7 +90,11 @@ Route::middleware(['auth:sanctum', 'verificarAdministrador'])->group(function ()
     Route::delete('/usuarios/{id}', [UsuarioController::class, 'destroy']);
 });
 
-//Diseñador
+/**
+ * Rutas de diseñador
+ * @author Raul Gutierrez Merino 
+ * @author David Trujillo Carrero
+ */
 Route::middleware(['auth:sanctum', 'verificarDisenador'])->group(function () {
     Route::get('/joya', [JoyaController::class, 'index']);
     Route::post('/joya', [JoyaController::class, 'store']);
