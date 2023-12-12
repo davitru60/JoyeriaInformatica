@@ -11,6 +11,9 @@ module.exports = {
     clasificacionLote: '../Frontend/js/interface/lotesEntregadosUI.js',
     gestionUsuario: '../Frontend/js/interface/gestionUsuario.js',
     joya: '../Frontend/js/interface/joyasUI.js',
+    receta: '../Frontend/js/interface/recetasUI.js',
+    ingrediente:'../Frontend/js/interface/ingredientesUI.js',
+    fabrica: '../Frontend/js/interface/fabricaJoyaUI.js',
   },
   output: {
     filename: '[name].main.js',
