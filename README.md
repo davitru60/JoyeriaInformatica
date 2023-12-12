@@ -26,12 +26,27 @@ Para ejecutar el script de construcción definido en el archivo `package.json` u
 ```
 npm run build
 ```
-Para reconstruir el proyecto en la parte del backend,abriremos una terminal en la carpeta backend y usaremos los siguientes comandos:
+Para reconstruir el proyecto en la parte del backend, abriremos una terminal en la carpeta backend y usaremos los siguientes comandos:
 ```
 composer install
 composer update
 ```
+A continuación, en la carpeta de backend creamos un archivo .env igual al archivo .env.example, la única diferencia que tendrá es el nombre de la base de datos, el usuario y la contraseña.
 
+### ✅ Ejecutar migraciones y seeders para crear la base de datos
+Para disponer de las tablas en la base de datos y de registros en ella vamos a necesitar ejecutar los siguientes comandos:
+```
+php artisan migrate 
+php artisan db:seed 
+```
+- Con php artisan migrate crearemos las migraciones.
+- Con php artisan db:seed crearemos los seeders los cuales agregarán registros a la base de datos.
+
+### 🖱️ Iniciar el backend
+Para iniciar el backend, abriremos en una terminal la carpeta de backend y escribiremos el siguiente comando:
+```
+php artisan serve
+```
 
 ## 💻 Definición de las rutas de la API REST
 ### Rutas para todos los usuarios
